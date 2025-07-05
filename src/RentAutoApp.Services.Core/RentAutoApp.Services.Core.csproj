@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RentAutoApp.Data\RentAutoApp.Data.csproj" />
+    <ProjectReference Include="..\RentAutoApp.GCommon\RentAutoApp.GCommon.csproj" />
+    <ProjectReference Include="RentAutoApp.Services.AutoMapping\RentAutoApp.Services.AutoMapping.csproj" />
+    <ProjectReference Include="RentAutoApp.Services.Common\RentAutoApp.Services.Common.csproj" />
+  </ItemGroup>
+
+</Project>

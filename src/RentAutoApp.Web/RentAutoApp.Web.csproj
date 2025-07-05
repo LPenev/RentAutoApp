@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-RentAutoApp.Web-bb0eb243-bbb5-4dfb-a806-9d9eac04e82a</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RentAutoApp.Services.Core\RentAutoApp.Services.Core.csproj" />
+    <ProjectReference Include="RentAutoApp.Web.Infrastructure\RentAutoApp.Web.Infrastructure.csproj" />
+    <ProjectReference Include="RentAutoApp.Web.ViewModels\RentAutoApp.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>
