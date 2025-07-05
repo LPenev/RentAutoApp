@@ -1,0 +1,45 @@
+site_name: RentAutoApp Documentation
+site_url: 
+site_author: Lachezar Penev
+repo_url: https://github.com/LPenev/RentAutoApp
+repo_name: GitHub
+theme:
+  name: material
+  logo: assets/logo.png    # Optional – remove if not used
+  favicon: assets/favicon.ico
+  palette:
+    primary: blue
+    accent: light blue
+  features:
+    - navigation.tabs
+    - navigation.top
+    - toc.integrate
+    - search.highlight
+    - content.code.copy
+    - navigation.indexes
+
+nav:
+  - 🏁 Overview: 01_Overview.md
+  - 🧱 Project Structure: 02_ProjectStructure.md
+  - 🔗 Dependencies: 03_Dependencies.md
+  - 🛠️ Development Setup: 04_DevelopmentSetup.md
+  - 🎨 Code Conventions: 05_CodeConventions.md
+  - 🧪 Testing: 06_Testing.md
+  - 🏛️ Architecture: 07_Architecture.md
+  - 🗄️ Database Design: 08_Database.md
+  - 📡 API Endpoints: 09_API_Endpoints.md
+  - 🐞 Troubleshooting: 10_Troubleshooting.md
+  - 🤝 Contributing: 11_Contributing.md
+  - 🗺️ Feature Map: 12_FeatureMap.md
+  - 🔁 Refactoring Map: 13_RefactorMap.md
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
