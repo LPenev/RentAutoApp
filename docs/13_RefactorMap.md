@@ -36,6 +36,7 @@ This document records structural changes performed during cleanup of the `RentAu
 
 ## 🧭 After Refactor – Clean Web Layer Structure
 
+<pre>
 RentAutoApp.Web/ 
 ├── Controllers/ 
 ├── Views/ 
@@ -45,7 +46,7 @@ RentAutoApp.Web/
 ├── RentAutoApp.Web.Infrastructure/ 
 ├── appsettings.json 
 └── Program.cs
-
+</pre>
 
 ---
 
