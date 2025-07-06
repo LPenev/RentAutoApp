@@ -6,6 +6,7 @@ This document outlines the architectural principles and design structure of the 
 
 ## 🧱 Architectural Layers
 
+<pre>
 [Web Layer]
 	↓ 
 [Services Layer]
@@ -13,11 +14,12 @@ This document outlines the architectural principles and design structure of the 
 [Data Layer]
 	↓
 [Data.Models & GCommon]
-
+</pre>
+	
 ### 1. Architecture Diagram
 
 # 🏛️ High-Level Architecture Diagram – RentAutoApp
-
+<pre>
                                +----------------------+
                                |    Client Browser    |
                                | (Razor Views / JS)   |
@@ -52,6 +54,7 @@ This document outlines the architectural principles and design structure of the 
                            | (Enums, Interfaces, Constants) |
                            +--------------------------------+
 
+</pre>
 🧭 Notes
 Flow: Top-down from Web → Services → Data → Models/Common
 
