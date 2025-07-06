@@ -3,7 +3,7 @@
 This file documents the directory structure of the RentAutoApp solution.
 
 ## 🔷 Root Layout
-<pre> ```
+<pre>
 RentAutoApp/
 ├── src/
 │   ├── RentAutoApp.Web/ 
@@ -24,7 +24,7 @@ RentAutoApp/
 ├── README.md
 ├── RentAutoApp.sln
 └── mkdocs.yml
-``` </pre>
+</pre>
 ## 🔹 Folder Roles
 
 - `Web/`: MVC controllers, Razor views, ViewModels, Infrastructure
