@@ -42,8 +42,6 @@ RentAutoApp.Web/
 ├── Views/ 
 ├── wwwroot/ 
 ├── Areas/ 
-├── RentAutoApp.Web.ViewModels/ 
-├── RentAutoApp.Web.Infrastructure/ 
 ├── appsettings.json 
 └── Program.cs
 </pre>
