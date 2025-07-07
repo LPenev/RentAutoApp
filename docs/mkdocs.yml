@@ -32,6 +32,8 @@ nav:
   - 🤝 Contributing: 11_Contributing.md
   - 🗺️ Feature Map: 12_FeatureMap.md
   - 🔁 Refactoring Map: 13_RefactorMap.md
+  - 🧭 Project References: 14_ProjectReferencesMap.md
+
 
 markdown_extensions:
   - admonition
