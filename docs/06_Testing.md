@@ -18,11 +18,12 @@ This document describes the testing approach, tools, and structure for the RentA
 
 ## 🏗️ Test Project Structure
 
+<pre>
 tests/
 ├── RentAutoApp.Services.Core.Tests/ # Unit tests for business logic and services 
 ├── RentAutoApp.Web.Tests/ # Unit tests for controller actions and web logic
 └── RentAutoApp.IntegrationTests/ # API integration tests across all layers
-
+</pre>
 
 ---
 

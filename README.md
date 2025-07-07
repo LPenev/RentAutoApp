@@ -62,11 +62,13 @@ Comprehensive architecture, setup guides, and module documentation can be found 
 See full structure in docs/mkdocs.yml
 
 ## 🔍 Project Structure
-RentAutoApp/
-├── src/       # Main application source
-├── tests/     # Unit and integration tests (NUnit)
-├── docs/      # Markdown documentation & mkdocs config
-└── README.md  # You're here
+<pre>
+	RentAutoApp/ 
+	├── src/ # Main application source 
+	├── tests/ # Unit and integration tests (NUnit) 
+	├── docs/ # Markdown documentation & mkdocs config 
+	└── README.md # You're here 
+</pre>
 
 ## 🧪 Testing
 Run all tests using:
