@@ -1,44 +1,52 @@
-# 01 – Project Overview
+# 01 – Overview
 
-**RentAutoApp** is a modern, web-based Vehicle Rental Management System built with ASP.NET Core MVC (.NET 8).  
-The application serves the operational needs of rental businesses managing fleets of cars, SUVs, and motorcycles.
+Welcome to the **RentAutoApp** project documentation. This document provides a high-level overview of the application's purpose, architecture, and key modules.
 
-## 🎯 Purpose
+---
 
-The solution is designed to automate the entire rental workflow:
+## 🚗 What is RentAutoApp?
 
-- Vehicle and fleet management
-- Reservation handling with availability checks
-- Digital contract generation in PDF
-- Maintenance schedules and expiry reminders
-- Real-time vehicle status through AJAX updates
-- Price calculation with discount engine
-- Secure user access by roles (Admin, Employee, Client)
+RentAutoApp is a modular ASP.NET Core MVC application designed for managing car rentals. It supports multiple users, roles, reservation flow, vehicle listings, search, and administrative features.
 
-## 🌍 Target Audience
+---
 
-- Vehicle rental companies
-- Fleet managers
-- Internal staff responsible for bookings and contracts
-- Clients renting vehicles online
+## 🧱 Solution Layout
 
-## 🛠️ Technology Stack
+```plaintext
+RentAutoApp/
+├── src/
+│   ├── RentAutoApp.Web/ 
+│   ├── RentAutoApp.Web.ViewModels/
+│   ├── RentAutoApp.Web.Infrastructure/
+│   ├── RentAutoApp.Data/
+│   ├── RentAutoApp.Data.Models/
+│   ├── RentAutoApp.Data.Common/
+│   ├── RentAutoApp.Services.Core/
+│   ├── RentAutoApp.Services.AutoMapping/
+│   ├── RentAutoApp.Services.Common/
+│   └── RentAutoApp.GCommon/
+├── tests/
+│   ├── RentAutoApp.Services.Core.Tests/
+│   ├── RentAutoApp.Web.Tests/
+│   └── RentAutoApp.IntegrationTests/
+├── docs/
+├── README.md
+├── RentAutoApp.sln
+└── mkdocs.yml
+```
 
-| Category         | Technologies Used                                    |
-|------------------|------------------------------------------------------|
-| Backend          | ASP.NET Core 8 MVC, C#, Entity Framework Core 8      |
-| Frontend         | Bootstrap 5, Razor Pages, **AJAX** (jQuery/Fetch)    |
-| Database         | **Microsoft SQL Server (MSSQL)**                     |
-| Mapping & Models | AutoMapper                                           |
-| Validation       | FluentValidation                                     |
-| Docs & Config    | Markdown (MkDocs), JSON configuration files          |
-| Hosting          | Windows / IIS / Azure (future deployment)            |
+---
 
-## 🧩 Key Features
+## 🧩 Layers Overview
 
-- Reservation calendar with AJAX-based availability updates
-- Document expiry alerts (insurance, inspections, vignettes)
-- Automatic PDF contract creation and optional signature
-- Multi-role system with dynamic dashboard per role
-- Real-time pricing engine with promotional logic
-- Multilingual UI (Bulgarian / English)
+- **Web**: MVC controllers, views, Razor pages
+- **ViewModels**: UI binding and validation objects
+- **Infrastructure**: Middleware and MVC helpers
+- **Services.Core**: Application logic, validation
+- **Services.AutoMapping**: AutoMapper profiles
+- **Services.Common**: Shared business utilities
+- **Data**: EF Core context and repository coordination
+- **Data.Models**: Entity definitions
+- **Data.Common**: Abstractions like repositories
+- **GCommon**: Shared enums, interfaces, constants
+- **tests/**: Unit and integration test coverage

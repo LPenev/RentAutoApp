@@ -7,14 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="15.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\RentAutoApp.Data\RentAutoApp.Data.csproj" />
     <ProjectReference Include="..\RentAutoApp.GCommon\RentAutoApp.GCommon.csproj" />
-    <ProjectReference Include="RentAutoApp.Services.AutoMapping\RentAutoApp.Services.AutoMapping.csproj" />
-    <ProjectReference Include="RentAutoApp.Services.Common\RentAutoApp.Services.Common.csproj" />
+    <ProjectReference Include="..\RentAutoApp.Services.AutoMapping\RentAutoApp.Services.AutoMapping.csproj" />
+    <ProjectReference Include="..\RentAutoApp.Services.Common\RentAutoApp.Services.Common.csproj" />
   </ItemGroup>
 
 </Project>

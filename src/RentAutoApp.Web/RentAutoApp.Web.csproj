@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-RentAutoApp.Web-bb0eb243-bbb5-4dfb-a806-9d9eac04e82a</UserSecretsId>
+    <UserSecretsId>aspnet-RentAutoApp.Web-4a6aa16d-2a19-42a7-a42c-c11b0e7a2679</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,8 +16,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RentAutoApp.Services.Core\RentAutoApp.Services.Core.csproj" />
-    <ProjectReference Include="RentAutoApp.Web.Infrastructure\RentAutoApp.Web.Infrastructure.csproj" />
-    <ProjectReference Include="RentAutoApp.Web.ViewModels\RentAutoApp.Web.ViewModels.csproj" />
+    <ProjectReference Include="..\RentAutoApp.Web.Infrastructure\RentAutoApp.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\RentAutoApp.Web.ViewModels\RentAutoApp.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

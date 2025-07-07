@@ -6,14 +6,19 @@ This document outlines the dependencies between the core layers and test project
 
 ## 🧱 Dependency Table
 
-| Project                          | Depends On                                                                 |
-|----------------------------------|------------------------------------------------------------------------------|
-| `RentAutoApp.Web`               | `RentAutoApp.Services.Core`, `RentAutoApp.Web.ViewModels`, `RentAutoApp.Web.Infrastructure` |
-| `RentAutoApp.Services.Core`     | `RentAutoApp.Data`, `RentAutoApp.GCommon`, `RentAutoApp.Services.Common`, `RentAutoApp.Services.AutoMapping` |
-| `RentAutoApp.Data`              | `RentAutoApp.Data.Models`, `RentAutoApp.Data.Common`                         |
-| `RentAutoApp.Services.Core.Tests` | `RentAutoApp.Services.Core`, `RentAutoApp.GCommon`, `RentAutoApp.Data`, **NUnit**, mocking library (e.g., Moq) |
-| `RentAutoApp.Web.Tests`         | `RentAutoApp.Web`, `RentAutoApp.Web.ViewModels`, `RentAutoApp.Services.Core`, **NUnit**, mocking library (e.g., Moq) |
-| `RentAutoApp.IntegrationTests`  | `RentAutoApp.Web`, `RentAutoApp.Services.Core`, **Microsoft.AspNetCore.Mvc.Testing**, **NUnit**, `TestServer` or `WebApplicationFactory` |
+| Project                             | Depends On                                                                 |
+|-------------------------------------|------------------------------------------------------------------------------|
+| `RentAutoApp.Web`                   | `RentAutoApp.Services.Core`, `RentAutoApp.Web.ViewModels`, `RentAutoApp.Web.Infrastructure` |
+| `RentAutoApp.Web.ViewModels`        | `FluentValidation` (for input validation)                                   |
+| `RentAutoApp.Web.Infrastructure`    | `Microsoft.AspNetCore.Http.Abstractions`, `Microsoft.Extensions.DependencyInjection` |
+| `RentAutoApp.Services.Core`         | `RentAutoApp.Data`, `RentAutoApp.GCommon`, `RentAutoApp.Services.Common`, `RentAutoApp.Services.AutoMapping` |
+| `RentAutoApp.Services.AutoMapping`  | `AutoMapper`, `RentAutoApp.Data.Models`, `RentAutoApp.Web.ViewModels`       |
+| `RentAutoApp.Services.Common`       | `System.Text.Json`, `Microsoft.Extensions.Configuration`, `FluentValidation` |
+| `RentAutoApp.Data`                  | `RentAutoApp.Data.Models`, `RentAutoApp.Data.Common`, `Microsoft.EntityFrameworkCore` |
+| `RentAutoApp.GCommon`               | *(Standalone: shared types, enums, constants)*                              |
+| `RentAutoApp.Services.Core.Tests`   | `RentAutoApp.Services.Core`, `RentAutoApp.GCommon`, `RentAutoApp.Data`, `Moq`, `NUnit`, `FluentAssertions` |
+| `RentAutoApp.Web.Tests`             | `RentAutoApp.Web`, `RentAutoApp.Web.ViewModels`, `RentAutoApp.Services.Core`, `Moq`, `NUnit` |
+| `RentAutoApp.IntegrationTests`      | `RentAutoApp.Web`, `RentAutoApp.Services.Core`, `Microsoft.AspNetCore.Mvc.Testing`, `NUnit`, `Testcontainers` |
 
 ---
 
@@ -22,16 +27,18 @@ This document outlines the dependencies between the core layers and test project
 ### `RentAutoApp.Services.Core.Tests/`
 - Unit tests for business logic and services.
 - Uses **NUnit**
-- Mocks dependencies using `Moq` or `FakeItEasy`
+- Mocks dependencies using `Moq`
+- Uses `FluentAssertions` for better test readability
 
 ### `RentAutoApp.Web.Tests/`
 - Tests controllers, routing, and validation logic.
 - Uses **NUnit** and mocks `Services.Core` interfaces
+- Focused on MVC layer and view model validation
 
 ### `RentAutoApp.IntegrationTests/`
 - Full-stack tests across layers
-- Based on **NUnit**
-- Uses `WebApplicationFactory<Program>` or `TestServer` for full runtime simulation
+- Uses **NUnit** and `WebApplicationFactory<Program>`
+- Optionally uses `Testcontainers` or Docker for environment setup
 
 ---
 
@@ -45,6 +52,6 @@ This document outlines the dependencies between the core layers and test project
 
 ## ✅ Best Practices
 
-- Consistent NUnit usage (`[TestFixture]`, `[Test]`)
-- Descriptive test method names (e.g. `When_X_Should_Y`)
-- Shared test utilities in a `TestHelpers/` folder if needed
+- Use consistent testing patterns (e.g. `When_X_Should_Y`)
+- Group shared mocks or helpers in a `TestHelpers/` folder
+- Follow the same dependency injection patterns as production code

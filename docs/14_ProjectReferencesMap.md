@@ -5,42 +5,57 @@ It ensures architectural consistency by listing who can reference whom based on 
 
 ---
 
-## 🧭 Dependency Direction (Clean Architecture)
+## 🧭 Dependency Direction (Layered View)
 
 <pre>
-src/ 
-├── Web/
-│   ├── ViewModels/
-│   ├── Infrastructure/
-│   └── [Refs: Services.Core + GCommon] 
-│    
-├── Services.Core/ 
-│   ├── AutoMapping/ 
-│   ├── Common/ 
-│   └── [Refs: Data + GCommon] 
-├── Data/ 
-│ ├── Data.Models/ 
-│ 	├── Data.Common/ 
-│ 	└── [Refs: Models + Common] 
-└── GCommon/ 
-    └── [Refs: (none)]
+src/
+├── RentAutoApp.Web/
+│   └── [Refs: Services.Core, Web.ViewModels, Web.Infrastructure, GCommon]
+
+├── RentAutoApp.Web.ViewModels/
+│   └── [Refs: FluentValidation (external only)]
+
+├── RentAutoApp.Web.Infrastructure/
+│   └── [Refs: ViewModels, optionally GCommon]
+
+├── RentAutoApp.Services.Core/
+│   └── [Refs: Data, Services.AutoMapping, Services.Common, GCommon]
+
+├── RentAutoApp.Services.AutoMapping/
+│   └── [Refs: Web.ViewModels, Data.Models, GCommon]
+
+├── RentAutoApp.Services.Common/
+│   └── [Refs: GCommon]
+
+├── RentAutoApp.Data/
+│   └── [Refs: Data.Models, Data.Common]
+
+├── RentAutoApp.Data.Models/
+│   └── [Refs: GCommon (optionally)]
+
+├── RentAutoApp.Data.Common/
+│   └── [Refs: GCommon]
+
+├── RentAutoApp.GCommon/
+│   └── [Refs: (none)]
 </pre>
 
 ---
 
 ## 🔗 Allowed Project References
 
-| Project                            | May Reference                                                  |
-|------------------------------------|----------------------------------------------------------------|
-| `RentAutoApp.Web`                  | `Services.Core`, `Web.ViewModels`, `Web.Infrastructure`, `GCommon` |
-| `RentAutoApp.Services.Core`        | `Data`, `GCommon`, `Services.AutoMapping`, `Services.Common`      |
-| `RentAutoApp.Data`                 | `Data.Models`, `Data.Common`                                   |
-| `RentAutoApp.Web.ViewModels`       | _(no outward references)_                                      |
-| `RentAutoApp.Web.Infrastructure`   | _(optional reference to ViewModels or GCommon)_                |
-| `RentAutoApp.Services.AutoMapping` | `GCommon`, `Data.Models`                                       |
-| `RentAutoApp.Services.Common`      | `GCommon`                                                      |
-| `RentAutoApp.Data.Models`          | `GCommon` (if needed for enums, base interfaces)               |
-| `RentAutoApp.GCommon`              | _(should not reference any other project)_                     |
+| Project                                  | May Reference                                                                 |
+|------------------------------------------|--------------------------------------------------------------------------------|
+| `RentAutoApp.Web`                        | `Services.Core`, `Web.ViewModels`, `Web.Infrastructure`, `GCommon`            |
+| `RentAutoApp.Web.ViewModels`             | _(no outward references)_                                                     |
+| `RentAutoApp.Web.Infrastructure`         | `Web.ViewModels`, optionally `GCommon`                                        |
+| `RentAutoApp.Services.Core`              | `Data`, `Services.AutoMapping`, `Services.Common`, `GCommon`                  |
+| `RentAutoApp.Services.AutoMapping`       | `Data.Models`, `Web.ViewModels`, `GCommon`                                    |
+| `RentAutoApp.Services.Common`            | `GCommon`                                                                     |
+| `RentAutoApp.Data`                       | `Data.Models`, `Data.Common`                                                  |
+| `RentAutoApp.Data.Models`                | `GCommon` (only for shared enums/interfaces)                                  |
+| `RentAutoApp.Data.Common`                | `GCommon`                                                                     |
+| `RentAutoApp.GCommon`                    | _(must not reference any other project)_                                      |
 
 ---
 
@@ -50,45 +65,50 @@ These dependencies violate architecture and should be avoided:
 
 | Forbidden Reference                           | Reason                                                |
 |-----------------------------------------------|--------------------------------------------------------|
-| `Web` ➡ `Data`                                | UI must call services, not access DB directly         |
-| `Services.Core` ➡ `Web.ViewModels`            | Core logic shouldn't depend on UI                     |
-| `Data.Models` ➡ `Services.Core`               | Data should remain isolated from upper layers         |
-| `GCommon` ➡ `Web` or `Services.Core`          | Common layer must stay dependency-free                |
+| `Web` ➡ `Data`                                | Web must use services only                            |
+| `Services.Core` ➡ `Web.ViewModels` (except via AutoMapping) | Logic must be UI-agnostic                  |
+| `Data.Models` ➡ `Services.Core`               | Low-level layer depending on high-level               |
+| `GCommon` ➡ `Web` or `Services.Core`          | GCommon must stay completely decoupled                |
 
 ---
 
-## 🛑 Tip for Enforcement
+## 🛠️ How to Enforce
 
-Use `Solution Explorer → Project Dependencies` to visualize links.
-
-Alternatively, enable analyzers like:
-- **[ArchUnitNET](https://github.com/TNG/ArchUnitNET)** (architecture testing)
-- **.editorconfig + StyleCop rules** to restrict usage of forbidden namespaces
+- Use **Solution Explorer → Project Dependencies** to verify allowed references.
+- Enforce with:
+  - `ArchUnitNET` (architecture tests)
+  - `.editorconfig` or `Directory.Build.props` restrictions
+  - Visual Studio analyzers
 
 ---
 
 ## 🧩 Visual Summary
+
 <pre>
-src/ 
-├── Web/
-│   ├── ViewModels/
-│   ├── Infrastructure/
-│   └── [Refs: Services.Core + GCommon] 
-│    
-├── Services.Core/ 
-│   ├── AutoMapping/ 
-│   ├── Common/ 
-│   └── [Refs: Data + GCommon] 
-├── Data/ 
-│ ├── Data.Models/ 
-│ 	├── Data.Common/ 
-│ 	└── [Refs: Models + Common] 
-└── GCommon/ 
-    └── [Refs: (none)]
+src/
+├── RentAutoApp.Web/
+├── RentAutoApp.Web.ViewModels/
+├── RentAutoApp.Web.Infrastructure/
+├── RentAutoApp.Services.Core/
+├── RentAutoApp.Services.AutoMapping/
+├── RentAutoApp.Services.Common/
+├── RentAutoApp.Data/
+├── RentAutoApp.Data.Models/
+├── RentAutoApp.Data.Common/
+└── RentAutoApp.GCommon/
 </pre>
+
+Arrows → represent allowed references (unidirectional)
+
+```
+GCommon ← (Data.Models, Data.Common, Services.Common, AutoMapping, Core, Web)
+     ↑
+Data.Models ← Data ← Services.Core
+Web.ViewModels ← AutoMapping ← Services.Core ← Web
+Web.Infrastructure ← Web
+```
 
 ---
 
-By enforcing this dependency flow, we ensure **long-term flexibility**, easier testing, and cleaner onboarding for new team members.  
-_“Architecture is what determines what you don’t have to think about.”_ 🚦🧱
-
+By enforcing these reference rules, you protect **clean architecture boundaries** and enable long-term maintainability.  
+_“Architecture is the decisions you wish you didn’t have to revisit.”_ 🧱

@@ -4,17 +4,18 @@ This file documents the directory structure of the RentAutoApp solution.
 
 ## 🔷 Root Layout
 
+```
 RentAutoApp/
 ├── src/
 │   ├── RentAutoApp.Web/ 
-│   │	├── RentAutoApp.Web.ViewModels/
-│   │	└── RentAutoApp.Web.Infrastructure/
+│   ├── RentAutoApp.Web.ViewModels/
+│   ├── RentAutoApp.Web.Infrastructure/
 │   ├── RentAutoApp.Data/
-│   │	├── RentAutoApp.Data.Models/
-│   │	└── RentAutoApp.Data.Common/
+│   ├── RentAutoApp.Data.Models/
+│   ├── RentAutoApp.Data.Common/
 │   ├── RentAutoApp.Services.Core/
-│   │	├── RentAutoApp.Services.AutoMapping/
-│   │	└── RentAutoApp.Services.Common/
+│   ├── RentAutoApp.Services.AutoMapping/
+│   ├── RentAutoApp.Services.Common/
 │   └── RentAutoApp.GCommon/
 ├── tests/
 │   ├── RentAutoApp.Services.Core.Tests/
@@ -24,12 +25,19 @@ RentAutoApp/
 ├── README.md
 ├── RentAutoApp.sln
 └── mkdocs.yml
+```
 
 ## 🔹 Folder Roles
 
-- `Web/`: MVC controllers, Razor views, ViewModels, Infrastructure
-- `Data/`: EF models, DbContext, repository abstractions
-- `Services.Core/`: Business logic, service interfaces, AutoMapper profiles
-- `GCommon/`: Shared enums, interfaces, constants
-- `tests/`: Unit and integration tests
-- `docs/`: Markdown documentation, mkdocs config, project readme
+- `RentAutoApp.Web/`: MVC controllers, Razor views, HTTP pipeline, main entry point for web app.
+- `RentAutoApp.Web.ViewModels/`: View models used for UI presentation and form binding.
+- `RentAutoApp.Web.Infrastructure/`: Middleware, extensions, filters, and static helpers.
+- `RentAutoApp.Data/`: EF Core context setup and data access coordination.
+- `RentAutoApp.Data.Models/`: Entity Framework Core models (Code First).
+- `RentAutoApp.Data.Common/`: Repository interfaces and base data access abstractions.
+- `RentAutoApp.Services.Core/`: Core business logic and service interfaces.
+- `RentAutoApp.Services.AutoMapping/`: AutoMapper profiles for DTO ↔ Entity mapping.
+- `RentAutoApp.Services.Common/`: Shared business utilities, validators, constants.
+- `RentAutoApp.GCommon/`: Global shared types (enums, constants, shared interfaces).
+- `tests/`: Unit and integration test projects by concern.
+- `docs/`: Markdown documentation and developer guides.
