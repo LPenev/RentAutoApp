@@ -8,17 +8,18 @@ This document outlines the dependencies between the core layers and test project
 
 | Project                             | Depends On                                                                 |
 |-------------------------------------|------------------------------------------------------------------------------|
-| `RentAutoApp.Web`                   | `RentAutoApp.Services.Core`, `RentAutoApp.Web.ViewModels`, `RentAutoApp.Web.Infrastructure` |
-| `RentAutoApp.Web.ViewModels`        | `FluentValidation` (for input validation)                                   |
-| `RentAutoApp.Web.Infrastructure`    | `Microsoft.AspNetCore.Http.Abstractions`, `Microsoft.Extensions.DependencyInjection` |
+| `RentAutoApp.Web`                   | `RentAutoApp.Services.Core`, `RentAutoApp.Web.ViewModels`, `RentAutoApp.Web.Infrastructure`, `RentAutoApp.GCommon` |
+| `RentAutoApp.Web.ViewModels`        | `RentAutoApp.Web.ViewModels` |
+| `RentAutoApp.Web.Infrastructure`    | `RentAutoApp.GCommon` |
 | `RentAutoApp.Services.Core`         | `RentAutoApp.Data`, `RentAutoApp.GCommon`, `RentAutoApp.Services.Common`, `RentAutoApp.Services.AutoMapping` |
-| `RentAutoApp.Services.AutoMapping`  | `AutoMapper`, `RentAutoApp.Data.Models`, `RentAutoApp.Web.ViewModels`       |
-| `RentAutoApp.Services.Common`       | `System.Text.Json`, `Microsoft.Extensions.Configuration`, `FluentValidation` |
+| `RentAutoApp.Services.AutoMapping`  | `RentAutoApp.Data.Models`, `RentAutoApp.Web.ViewModels`       |
+| `RentAutoApp.Services.Common`       |  |
 | `RentAutoApp.Data`                  | `RentAutoApp.Data.Models`, `RentAutoApp.Data.Common`, `Microsoft.EntityFrameworkCore` |
+| `RentAutoApp.Data.Models`           | `RentAutoApp.GCommon` |
 | `RentAutoApp.GCommon`               | *(Standalone: shared types, enums, constants)*                              |
-| `RentAutoApp.Services.Core.Tests`   | `RentAutoApp.Services.Core`, `RentAutoApp.GCommon`, `RentAutoApp.Data`, `Moq`, `NUnit`, `FluentAssertions` |
-| `RentAutoApp.Web.Tests`             | `RentAutoApp.Web`, `RentAutoApp.Web.ViewModels`, `RentAutoApp.Services.Core`, `Moq`, `NUnit` |
-| `RentAutoApp.IntegrationTests`      | `RentAutoApp.Web`, `RentAutoApp.Services.Core`, `Microsoft.AspNetCore.Mvc.Testing`, `NUnit`, `Testcontainers` |
+| `RentAutoApp.Services.Core.Tests`   | `RentAutoApp.Services.Core`, `RentAutoApp.GCommon`  |
+| `RentAutoApp.Web.Tests`             | `RentAutoApp.Web`, `RentAutoApp.Services.Core` |
+| `RentAutoApp.IntegrationTests`      | `RentAutoApp.Web`, `RentAutoApp.Services.Core` |
 
 ---
 

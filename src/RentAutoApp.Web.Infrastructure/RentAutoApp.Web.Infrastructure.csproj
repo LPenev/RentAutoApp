@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RentAutoApp.GCommon\RentAutoApp.GCommon.csproj" />
+    <ProjectReference Include="..\RentAutoApp.Web.ViewModels\RentAutoApp.Web.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>

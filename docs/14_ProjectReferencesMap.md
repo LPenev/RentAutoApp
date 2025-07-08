@@ -13,7 +13,7 @@ src/
 │   └── [Refs: Services.Core, Web.ViewModels, Web.Infrastructure, GCommon]
 
 ├── RentAutoApp.Web.ViewModels/
-│   └── [Refs: FluentValidation (external only)]
+│   └── [Refs: GCommon]
 
 ├── RentAutoApp.Web.Infrastructure/
 │   └── [Refs: ViewModels, optionally GCommon]
@@ -34,7 +34,7 @@ src/
 │   └── [Refs: GCommon (optionally)]
 
 ├── RentAutoApp.Data.Common/
-│   └── [Refs: GCommon]
+│   └── [Refs: (none)]
 
 ├── RentAutoApp.GCommon/
 │   └── [Refs: (none)]

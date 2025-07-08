@@ -20,7 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\RentAutoApp.Services.Core\RentAutoApp.Services.Core.csproj" />
     <ProjectReference Include="..\..\src\RentAutoApp.Web\RentAutoApp.Web.csproj" />
-    <ProjectReference Include="..\..\src\RentAutoApp.Web\RentAutoApp.Web.ViewModels\RentAutoApp.Web.ViewModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
