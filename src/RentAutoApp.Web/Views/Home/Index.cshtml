@@ -1,8 +1,47 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+	ViewData["Title"] = "Начало";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero-section">
+	<h2 class="mb-4 text-center">Намерете перфектния автомобил под наем</h2>
+	<form class="row g-3">
+		<div class="col-md-3">
+			<label class="form-label">Локация</label>
+			<select class="form-select">
+				<option>гр.София, Терминал 2</option>
+				<option>гр.София, ул.Алабин 12</option>
+				<option>гр.Варна, ул.Ботев 22</option>
+			</select>
+		</div>
+		<div class="col-md-2">
+			<label class="form-label">Начална дата</label>
+			<input type="date" class="form-control">
+		</div>
+		<div class="col-md-2">
+			<label class="form-label">Крайна дата</label>
+			<input type="date" class="form-control">
+		</div>
+		<div class="col-md-3">
+			<label class="form-label">Тип автомобил</label>
+			<select class="form-select">
+				<option>Икономичен</option>
+				<option>Стандартен</option>
+				<option>Луксозен</option>
+			</select>
+		</div>
+		<div class="col-md-2 d-flex align-items-end">
+			<button class="btn btn-primary w-100">Намери автомобил</button>
+		</div>
+	</form>
+</div>
+
+<!-- Featured Offers -->
+<div class="container mb-5">
+	<h3 class="text-center mb-4">Избрани оферти</h3>
+	@Html.Partial("_FeaturedCars")
+</div>
+
+<div class="my-5 p-4 bg-warning bg-opacity-75 rounded">
+	<h4 class="text-center">Специална оферта: Mercedes-Benz C-Class само за 79 лв./ден!</h4>
+	<p class="text-center mb-0">Само тази седмица! Лукс и комфорт на достъпна цена.</p>
 </div>
