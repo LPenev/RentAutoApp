@@ -32,5 +32,8 @@ public class RentAutoAppDbContext : IdentityDbContext
     public DbSet<Discount> Discounts { get; set; }
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<Service> Services { get; set; }
+    public DbSet<Country> Countries { get; set; }
+    public DbSet<City> Cities { get; set; }
+    public DbSet<Street> Streets { get; set; }
 
 }

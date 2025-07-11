@@ -1,3 +1,5 @@
+using RentAutoApp.GCommon.Enums;
+
 namespace RentAutoApp.Data.Models;
 
 public class Reservation
@@ -19,7 +21,7 @@ public class Reservation
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
 
-    public string Status { get; set; } = null!;
+    public ReservationStatus Status { get; set; }
     public decimal PriceCalculated { get; set; }
 
     public DateTime CreatedAt { get; set; }

@@ -3,8 +3,16 @@ namespace RentAutoApp.Data.Models;
 public class Location
 {
     public int Id { get; set; }
-    public string Name { get; set; } = null!;
-    public string Address { get; set; } = null!;
-    public string City { get; set; } = null!;
-    public string Country { get; set; } = null!;
+
+    public int CountryId { get; set; }
+
+    public Country Country { get; set; } = null!;
+
+    public int CityId { get; set; }
+
+    public City City { get; set; } = null!;
+
+    public int StreetId { get; set; }
+
+    public Street Street { get; set; } = null!;
 }

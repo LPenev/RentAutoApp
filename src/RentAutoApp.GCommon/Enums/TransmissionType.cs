@@ -1,8 +1,6 @@
-namespace RentAutoApp.GCommon.Enums
+namespace RentAutoApp.GCommon.Enums;
+public enum TransmissionType
 {
-    public enum TransmissionType
-    {
-        Manual = 1,
-        Automatic = 2
-    }
+    Manual = 1,
+    Automatic = 2
 }
