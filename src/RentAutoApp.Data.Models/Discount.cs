@@ -17,4 +17,5 @@ public class Discount
     public int? ReservationId { get; set; }
     public Reservation? Reservation { get; set; }
 
+    public ICollection<Reservation> Reservations { get; set; } = new HashSet<Reservation>();
 }

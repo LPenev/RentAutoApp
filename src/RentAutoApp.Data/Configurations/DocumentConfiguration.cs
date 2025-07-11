@@ -10,7 +10,6 @@ public class DocumentConfiguration : IEntityTypeConfiguration<Document>
     {
         builder.HasKey(d => d.Id);
         builder.Property(d => d.DocType).IsRequired().HasMaxLength(50);
-        builder.Property(d => d.DocumentUrl).IsRequired();
         builder.HasOne(d => d.Vehicle)
                .WithMany()
                .HasForeignKey(d => d.VehicleId)

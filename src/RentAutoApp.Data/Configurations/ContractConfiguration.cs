@@ -2,16 +2,21 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RentAutoApp.Data.Models;
 
-namespace RentAutoApp.Data.Configurations;
-
-public class ContractConfiguration : IEntityTypeConfiguration<Contract>
+namespace RentAutoApp.Data.Configurations
 {
-    public void Configure(EntityTypeBuilder<Contract> builder)
+    public class ContractConfiguration : IEntityTypeConfiguration<Contract>
     {
-        builder.HasKey(c => c.Id);
-        builder.Property(c => c.ContractPdfUrl).IsRequired();
-        builder.HasOne(c => c.Reservation)
-               .WithOne()
-               .HasForeignKey<Contract>(c => c.ReservationId);
+        public void Configure(EntityTypeBuilder<Contract> builder)
+        {
+            builder.HasKey(c => c.Id);
+
+            builder.Property(c => c.ContractPdfUrl)
+                .IsRequired();
+
+            builder.HasOne(c => c.Reservation)
+                .WithOne()
+                .HasForeignKey<Contract>(c => c.ReservationId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

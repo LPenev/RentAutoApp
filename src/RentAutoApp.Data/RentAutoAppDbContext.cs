@@ -19,6 +19,7 @@ public class RentAutoAppDbContext : IdentityDbContext
     }
 
     public DbSet<Vehicle> Vehicles { get; set; }
+    public DbSet<VehicleImage> VehicleImages { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<SubCategory> SubCategories { get; set; }
     public DbSet<Reservation> Reservations { get; set; }
@@ -27,4 +28,9 @@ public class RentAutoAppDbContext : IdentityDbContext
     public DbSet<RepairHistory> RepairHistories { get; set; }
     public DbSet<Document> VehicleDocuments { get; set; }
     public DbSet<Location> Locations { get; set; }
+    public DbSet<DamageReport> DamageReports { get; set; }
+    public DbSet<Discount> Discounts { get; set; }
+    public DbSet<Notification> Notifications { get; set; }
+    public DbSet<Service> Services { get; set; }
+
 }

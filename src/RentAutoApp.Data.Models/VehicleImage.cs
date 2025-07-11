@@ -1,4 +1,3 @@
-using System;
 namespace RentAutoApp.Data.Models;
 
 public class VehicleImage
