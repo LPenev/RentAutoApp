@@ -19,6 +19,7 @@ theme:
     - navigation.indexes
 
 nav:
+  - 🛠️ InitDemo: 00_InitDemo.md
   - 🏁 Overview: 01_Overview.md
   - 🧱 Project Structure: 02_ProjectStructure.md
   - 🔗 Dependencies: 03_Dependencies.md
