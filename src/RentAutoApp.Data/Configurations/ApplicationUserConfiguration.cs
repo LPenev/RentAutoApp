@@ -8,8 +8,7 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<Application
 {
     public void Configure(EntityTypeBuilder<ApplicationUser> builder)
     {
-        builder.HasKey(u => u.Id);
-
+        // Key from Identity
         builder.Property(u => u.Role)
                .IsRequired()
                .HasMaxLength(50);

@@ -10,13 +10,17 @@ public class DamageReportConfiguration : IEntityTypeConfiguration<DamageReport>
     {
         builder.HasKey(d => d.Id);
         builder.Property(d => d.Description).HasMaxLength(500);
-        builder.HasOne(d => d.Reservation)
-               .WithMany()
-               .HasForeignKey(d => d.ReservationId);
+       
         builder.HasOne(d => d.Reservation)
                .WithMany()
                .HasForeignKey(d => d.ReservationId)
                .OnDelete(DeleteBehavior.Restrict);
 
+        builder.HasOne(d => d.User)
+            .WithMany()
+            .HasForeignKey(d => d.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        builder.HasIndex(d => new { d.ReservationId, d.UserId });
     }
 }

@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RentAutoApp.Data.Models;
 using System.Reflection;
 
 namespace RentAutoApp.Web.Data;
 
-public class RentAutoAppDbContext : IdentityDbContext
+public class RentAutoAppDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
 {
     public RentAutoAppDbContext(DbContextOptions<RentAutoAppDbContext> options)
         : base(options)

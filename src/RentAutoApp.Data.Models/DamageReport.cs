@@ -14,5 +14,5 @@ public class DamageReport
 
     // User who reported the damage
     public string UserId { get; set; } = null!;
-    public IdentityUser User { get; set; } = null!;
+    public ApplicationUser User { get; set; } = null!;
 }
