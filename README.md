@@ -30,6 +30,10 @@
 
 ## ⚙️ Getting Started
 
+### 0. InitDemo
+
+- Read docs/00_InitDemo.md
+
 ### 1. Prerequisites
 
 - .NET 8 SDK
