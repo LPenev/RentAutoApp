@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using RentAutoApp.Data.Models;
 using RentAutoApp.Data.Seeding;
 using RentAutoApp.Web.Data;
@@ -13,10 +15,18 @@ builder.Services.AddDbContext<RentAutoAppDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+// No E-Mail option
+builder.Services.AddTransient<IEmailSender, NoOpEmailSender>();
+
 builder.Services
-    .AddIdentity<ApplicationUser, IdentityRole>(opt =>
+    .AddIdentity<ApplicationUser, IdentityRole>(options =>
     {
-        opt.SignIn.RequireConfirmedAccount = false;
+        options.SignIn.RequireConfirmedAccount = false;
+        options.Password.RequireDigit = false;
+        options.Password.RequiredLength = 3;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequireLowercase = false;
     })
     .AddEntityFrameworkStores<RentAutoAppDbContext>()
     .AddDefaultTokenProviders();
