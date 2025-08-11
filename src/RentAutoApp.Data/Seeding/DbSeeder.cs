@@ -218,11 +218,11 @@ namespace RentAutoApp.Data.Seeding
                     SubCategoryId = econ.Id,
                     Images = new List<VehicleImage>
                     {
-                        new VehicleImage { ImageUrl = "/images/vehicles/1/image1.jpg" },
-                        new VehicleImage { ImageUrl = "/images/vehicles/1/image2.jpg" },
-                        new VehicleImage { ImageUrl = "/images/vehicles/1/image3.jpg" },
-                        new VehicleImage { ImageUrl = "/images/vehicles/1/image4.jpg" },
-                        new VehicleImage { ImageUrl = "/images/vehicles/1/image5.jpg" }
+                        new VehicleImage { ImageUrl = "/images/vehicles/1/image1.png" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/1/image2.png" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/1/image3.png" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/1/image4.png" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/1/image5.png" }
                     },
                 },
                 new Vehicle
@@ -244,11 +244,11 @@ namespace RentAutoApp.Data.Seeding
                     SubCategoryId = econ.Id,
                     Images = new List<VehicleImage>
                     {
-                        new VehicleImage { ImageUrl = "/images/vehicles/2/image1.jpg" },
-                        new VehicleImage { ImageUrl = "/images/vehicles/2/image2.jpg" },
-                        new VehicleImage { ImageUrl = "/images/vehicles/2/image3.jpg" },
-                        new VehicleImage { ImageUrl = "/images/vehicles/2/image4.jpg" },
-                        new VehicleImage { ImageUrl = "/images/vehicles/2/image5.jpg" }
+                        new VehicleImage { ImageUrl = "/images/vehicles/2/image1.png" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/2/image2.png" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/2/image3.png" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/2/image4.png" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/2/image5.png" }
                     },
                 },
                 new Vehicle
@@ -296,9 +296,9 @@ namespace RentAutoApp.Data.Seeding
                     SubCategoryId = lux.Id,
                     Images = new List<VehicleImage>
                     {
-                        new VehicleImage { ImageUrl = "/images/vehicles/4/image1.jpg" },
-                        new VehicleImage { ImageUrl = "/images/vehicles/4/image2.jpg" },
-                        new VehicleImage { ImageUrl = "/images/vehicles/4/image3.jpg" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/4/image1.png" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/4/image2.png" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/4/image3.png" },
                     },
                 },
                 new Vehicle
@@ -320,11 +320,11 @@ namespace RentAutoApp.Data.Seeding
                     SubCategoryId = lux.Id,
                     Images = new List<VehicleImage>
                     {
-                        new VehicleImage { ImageUrl = "/images/vehicles/5/image1.jpg" },
-                        new VehicleImage { ImageUrl = "/images/vehicles/5/image2.jpg" },
-                        new VehicleImage { ImageUrl = "/images/vehicles/5/image3.jpg" },
-                        new VehicleImage { ImageUrl = "/images/vehicles/5/image4.jpg" },
-                        new VehicleImage { ImageUrl = "/images/vehicles/5/image5.jpg" }
+                        new VehicleImage { ImageUrl = "/images/vehicles/5/image1.png" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/5/image2.png" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/5/image3.png" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/5/image4.png" },
+                        new VehicleImage { ImageUrl = "/images/vehicles/5/image5.png" }
                     },
                 },
             };
