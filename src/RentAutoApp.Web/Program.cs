@@ -35,6 +35,7 @@ builder.Services
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+builder.Services.AddMemoryCache();
 builder.Services.AddScoped<DbSeeder>();
 
 builder.Services.ConfigureApplicationCookie(options =>
