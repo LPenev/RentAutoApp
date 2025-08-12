@@ -1,0 +1,28 @@
+﻿@using RentAutoApp.Web.ViewModels.Vehicles
+@model IEnumerable<FeaturedCarViewModel>
+
+<div class="row g-4">
+	@foreach (var car in Model)
+	{
+		<div class="col-md-4">
+			<div class="card car-card shadow-sm">
+
+				<img src="@car.ImageUrl"
+				     class="card-img-bottom"
+				     alt="@car.Title"
+				     style="height:300px; object-fit:cover;">
+
+				<div class="card-body d-flex flex-column">
+					<h5 class="card-title">@car.Title</h5>
+					<p class="card-text text-muted mb-4">
+						От <strong>@car.PricePerDay лв.</strong> / ден
+					</p>
+					<a href="@Url.Action("Details", "Vehicles", new { id = car.Id })"
+					   class="btn btn-primary mt-auto">
+						Виж повече
+					</a>
+				</div>
+			</div>
+		</div>
+	}
+</div>

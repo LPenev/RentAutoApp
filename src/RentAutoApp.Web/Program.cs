@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using RentAutoApp.Data.Models;
 using RentAutoApp.Data.Seeding;
+using RentAutoApp.Services.Core;
+using RentAutoApp.Services.Core.Contracts;
 using RentAutoApp.Web.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,6 +38,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 builder.Services.AddMemoryCache();
+
+builder.Services.AddScoped<IFeaturedCarsService, FeaturedCarsService>();
+
 builder.Services.AddScoped<DbSeeder>();
 
 builder.Services.ConfigureApplicationCookie(options =>
