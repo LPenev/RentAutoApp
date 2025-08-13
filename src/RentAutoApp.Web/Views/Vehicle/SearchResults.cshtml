@@ -1,0 +1,43 @@
+﻿@using RentAutoApp.Web.ViewModels.Vehicles
+@using static RentAutoApp.GCommon.Constants.Vehicle;
+@model List<VehicleListItemViewModel>
+@{
+	ViewData["Title"] = "Резултати от търсенето";
+	var sd = ViewBag.StartDate as DateTime?;
+	var ed = ViewBag.EndDate as DateTime?;
+}
+
+<h2 class="mb-3">Резултати от търсенето</h2>
+
+@if (sd.HasValue && ed.HasValue)
+{
+	<p class="text-muted">
+		Показват се налични автомобили за периода
+		<strong>@sd.Value.ToString("dd.MM.yyyy")</strong> – <strong>@ed.Value.ToString("dd.MM.yyyy")</strong>.
+	</p>
+}
+
+@if (!Model.Any())
+{
+	<div class="alert alert-info">Няма намерени автомобили по зададените критерии.</div>
+}
+else
+{
+	<div class="row">
+		@foreach (var car in Model)
+		{
+			<div class="col-md-4 mb-4">
+				<div class="card h-100 shadow-sm">
+					<img src="@car.ImageUrl" class="card-img-top" alt="@car.Title" style="height:200px; object-fit:cover;" />
+					<div class="card-body d-flex flex-column">
+						<h5 class="card-title">@car.Title</h5>
+						<p class="text-muted">Цена: @car.PricePerDay лв/ден</p>
+						<a asp-action="Details" asp-route-id="@car.Id" class="btn btn-primary mt-auto">Виж детайли</a>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+}
+
+<a class="btn btn-outline-secondary" asp-action="Index" asp-controller="Home">← @LabelBack</a>

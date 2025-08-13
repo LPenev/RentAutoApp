@@ -23,5 +23,27 @@ namespace RentAutoApp.Web.Controllers
             if (model is null) return RedirectToAction("Index");
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Search(
+            int? selectedLocationId,
+            int? SelectedSubCategoryId,      // CarType
+            DateTime? startDate,
+            DateTime? endDate,
+            CancellationToken ct)
+        {
+            var results = await _vehicleService.SearchAsync(
+                selectedLocationId,
+                SelectedSubCategoryId,
+                startDate,
+                endDate,
+                ct);
+
+            ViewBag.StartDate = startDate;
+            ViewBag.EndDate = endDate;
+
+            return View("SearchResults", results);
+        }
+
     }
 }

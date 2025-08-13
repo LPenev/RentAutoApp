@@ -17,7 +17,7 @@ public class CarSearchViewComponent : ViewComponent
         var formVm = new CarSearchFormViewModel
         {
             SelectedLocationId = model.SelectedLocationId,
-            SelectedCarTypeId = model.SelectedCarTypeId,
+            SelectedSubCategoryId = model.SelectedCarTypeId,
             StartDate = model.StartDate,
             EndDate = model.EndDate,
             Locations = model.Locations.Select(l => new SelectListItem { Value = l.Id.ToString(), Text = l.Name }),
@@ -32,7 +32,7 @@ public class CarSearchViewComponent : ViewComponent
 internal sealed class CarSearchFormViewModel
 {
     public int? SelectedLocationId { get; set; }
-    public int? SelectedCarTypeId { get; set; }
+    public int? SelectedSubCategoryId { get; set; } // SubCategory
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
 
