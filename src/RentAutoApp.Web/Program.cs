@@ -39,6 +39,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddMemoryCache();
 
 builder.Services.AddScoped<IFeaturedCarsService, FeaturedCarsService>();
+builder.Services.AddScoped<ICarSearchService, CarSearchService>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
 
 builder.Services.AddScoped<DbSeeder>();

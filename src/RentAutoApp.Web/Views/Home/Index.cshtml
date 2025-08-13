@@ -2,37 +2,10 @@
 	ViewData["Title"] = "Начало";
 }
 
+<!-- Search for Car -->
 <div class="hero-section">
 	<h2 class="mb-4 text-center">Намерете перфектния автомобил под наем</h2>
-	<form class="row g-3">
-		<div class="col-md-3">
-			<label class="form-label">Локация</label>
-			<select class="form-select">
-				<option>гр.София, Терминал 2</option>
-				<option>гр.София, ул.Алабин 12</option>
-				<option>гр.Варна, ул.Ботев 22</option>
-			</select>
-		</div>
-		<div class="col-md-2">
-			<label class="form-label">Начална дата</label>
-			<input type="date" class="form-control">
-		</div>
-		<div class="col-md-2">
-			<label class="form-label">Крайна дата</label>
-			<input type="date" class="form-control">
-		</div>
-		<div class="col-md-3">
-			<label class="form-label">Тип автомобил</label>
-			<select class="form-select">
-				<option>Икономичен</option>
-				<option>Стандартен</option>
-				<option>Луксозен</option>
-			</select>
-		</div>
-		<div class="col-md-2 d-flex align-items-end">
-			<button class="btn btn-primary w-100">Намери автомобил</button>
-		</div>
-	</form>
+	@await Component.InvokeAsync("CarSearch")
 </div>
 
 <!-- Featured Offers -->
