@@ -13,6 +13,7 @@ public class VehicleDetailsViewModel
     public string Transmission { get; set; } = null!;
     public string Fuel { get; set; } = null!;
     public int Seats { get; set; }
+    public int Doors { get; set; }
 
     public IReadOnlyList<string> ImageUrls { get; set; } = new List<string>();
 }

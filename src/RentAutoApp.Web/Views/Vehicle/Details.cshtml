@@ -4,6 +4,12 @@
 @{
     ViewData["Title"] = Model.Title;
     var images = (Model.ImageUrls?.Count > 0 ? Model.ImageUrls : new[] { "/images/placeholder.jpg" });
+    
+    var returnUrl = Context.Request.Headers["Referer"].ToString();
+    if (string.IsNullOrWhiteSpace(returnUrl))
+    {
+	    returnUrl = Url.Action("Index", "Vehicle");
+    }
 }
 
 <div class="container my-4">
@@ -59,6 +65,7 @@
                 <dt class="col-6">Брой места</dt>
                 <dd class="col-6">@Model.Seats</dd>
                 <dt class="col-6">Врати</dt>
+                <dd class="col-6">@Model.Doors</dd>
             </dl>
 
             <div class="d-grid gap-2 mt-4">
@@ -73,7 +80,7 @@
                 {
                     <button class="btn btn-secondary btn-lg" disabled>@NotAvailableForRent</button>
                 }
-                <a class="btn btn-outline-secondary" href="@Url.Action("Index", "Vehicle")">← @BackToVehicle</a>
+                <a class="btn btn-outline-secondary" href="@returnUrl">← @LabelBack</a>
             </div>
         </div>
     </div>

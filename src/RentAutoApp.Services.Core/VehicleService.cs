@@ -35,6 +35,7 @@ public class VehicleService : IVehicleService
             Transmission = v.Transmission.ToString(),
             Fuel = v.FuelType.ToString(),
             Seats = v.Seats,
+            Doors = v.Doors,
             ImageUrls = v.Images?.Select(i => i.ImageUrl).ToList() ?? new List<string>()
         };
     }

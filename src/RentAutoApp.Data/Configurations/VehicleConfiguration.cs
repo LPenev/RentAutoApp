@@ -17,10 +17,14 @@ public class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
         builder.Property(v => v.Vin).IsRequired().HasMaxLength(50);
         builder.Property(v => v.PricePerDay).HasColumnType("decimal(18,2)");
         builder.Property(v => v.PricePerHour).HasColumnType("decimal(18,2)");
+        builder.Property(v => v.Doors).IsRequired().HasDefaultValue(4);
+        
+        builder.HasCheckConstraint("CK_Vehicles_Doors", "[Doors] >= 2 AND [Doors] <= 6");
 
         builder.HasOne(v => v.SubCategory)
                .WithMany()
                .HasForeignKey(v => v.SubCategoryId)
                .OnDelete(DeleteBehavior.Restrict);
+
     }
 }

@@ -15,6 +15,7 @@ public class Vehicle
     public TransmissionType Transmission { get; set; }
     public int PowerHp { get; set; }
     public int Seats { get; set; }
+    public int Doors { get; set; }
     public int TrunkCapacity { get; set; }
     public int Mileage { get; set; }
 
