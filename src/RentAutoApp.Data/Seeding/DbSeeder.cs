@@ -91,7 +91,7 @@ namespace RentAutoApp.Data.Seeding
             }
 
             // 4) Towns
-            var cityNames = new[] { "Sofia", "Varna", "Burgas", "Plovdiv" };
+            var cityNames = new[] { "София", "Варна", "Бургас", "Пловдив" };
             var cities = new Dictionary<string, City>();
             foreach (var name in cityNames)
             {
@@ -108,12 +108,12 @@ namespace RentAutoApp.Data.Seeding
             // 5) Streets
             var desiredStreets = new (string Name, string Number, string PostalCode, string City)[]
             {
-                ("Vitosha Blvd",       "69", "1000", "Sofia"),
-                ("Graf Ignatiev St",   "25", "1142", "Sofia"),
-                ("Tsar Osvoboditel",   "15", "1504", "Sofia"),
-                ("Bulevard Bulgaria",  "5",  "1408", "Sofia"),
-                ("Tsar Osvoboditel",   "81", "9000", "Varna"),
-                ("Bulevard Bulgaria",  "15", "8000", "Burgas"),
+                ("бул.Витоша",       "69", "1000", "София"),
+                ("ул.Граф Игнатиев",   "25", "1142", "София"),
+                ("ул.Цар Освободител",   "15", "1504", "София"),
+                ("бул.България",  "5",  "1408", "София"),
+                ("ул.Цар Освободител",   "81", "9000", "Варна"),
+                ("бул.България",  "15", "8000", "Бургас"),
             };
 
             foreach (var s in desiredStreets)
@@ -135,14 +135,14 @@ namespace RentAutoApp.Data.Seeding
             await _context.SaveChangesAsync();
 
             // Намираме улици за по-нататъшна употреба
-            var sofia = cities["Sofia"];
-            var varna = cities["Varna"];
+            var sofia = cities["София"];
+            var varna = cities["Варна"];
             var s_vitosha69 = await _context.Streets.SingleAsync(s =>
-                s.Name == "Vitosha Blvd" && s.Number == "69" && s.CityId == sofia.Id);
+                s.Name == "бул.Витоша" && s.Number == "69" && s.CityId == sofia.Id);
             var s_graf25 = await _context.Streets.SingleAsync(s =>
-                s.Name == "Graf Ignatiev St" && s.Number == "25" && s.CityId == sofia.Id);
+                s.Name == "ул.Граф Игнатиев" && s.Number == "25" && s.CityId == sofia.Id);
             var s_tsar81_varna = await _context.Streets.SingleAsync(s =>
-                s.Name == "Tsar Osvoboditel" && s.Number == "81" && s.CityId == varna.Id);
+                s.Name == "ул.Цар Освободител" && s.Number == "81" && s.CityId == varna.Id);
 
             // 6) Локации (Country + City + Street задължителни)
             var wantedLocations = new (City City, Street Street)[]
@@ -217,7 +217,7 @@ namespace RentAutoApp.Data.Seeding
                     PricePerHour = 50,
                     IsAvailable = true,
                     SubCategoryId = econ.Id,
-                    LocationId = 1,
+                    LocationId = 2,
                     Images = new List<VehicleImage>
                     {
                         new VehicleImage { ImageUrl = "/images/vehicles/1/image1.png" },
