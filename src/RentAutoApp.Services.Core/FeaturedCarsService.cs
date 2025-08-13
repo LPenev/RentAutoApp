@@ -34,7 +34,7 @@ public class FeaturedCarsService : IFeaturedCarsService
                 Id = v.Id,
                 Title = v.Brand + " " + v.Model,
                 PricePerDay = v.PricePerDay,
-                ImageUrl = v.Images.Select(i => i.ImageUrl).FirstOrDefault() ?? "/images/placeholder.png"
+                ImageUrl = v.Images.Select(i => i.ImageUrl).FirstOrDefault() ?? "/images/placeholder.jpg"
             })
             .ToListAsync(ct);
 
