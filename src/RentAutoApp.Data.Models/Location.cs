@@ -15,4 +15,6 @@ public class Location
     public int StreetId { get; set; }
 
     public Street Street { get; set; } = null!;
+
+    public ICollection<Vehicle> Vehicles { get; set; } = new HashSet<Vehicle>();
 }

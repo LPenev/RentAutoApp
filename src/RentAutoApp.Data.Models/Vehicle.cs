@@ -26,6 +26,10 @@ public class Vehicle
     public int SubCategoryId { get; set; }
     public SubCategory SubCategory { get; set; } = null!;
 
+    public int LocationId { get; set; }
+    public Location Location { get; set; } = null!;
+
     public ICollection<VehicleImage> Images { get; set; } = new HashSet<VehicleImage>();
     public ICollection<RepairHistory> RepairHistories { get; set; } = new HashSet<RepairHistory>();
+    public ICollection<Reservation> Reservations { get; set; } = new HashSet<Reservation>();
 }

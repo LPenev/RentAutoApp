@@ -217,6 +217,7 @@ namespace RentAutoApp.Data.Seeding
                     PricePerHour = 50,
                     IsAvailable = true,
                     SubCategoryId = econ.Id,
+                    LocationId = 1,
                     Images = new List<VehicleImage>
                     {
                         new VehicleImage { ImageUrl = "/images/vehicles/1/image1.png" },
@@ -244,6 +245,7 @@ namespace RentAutoApp.Data.Seeding
                     PricePerHour = 10,
                     IsAvailable = true,
                     SubCategoryId = econ.Id,
+                    LocationId = 1,
                     Images = new List<VehicleImage>
                     {
                         new VehicleImage { ImageUrl = "/images/vehicles/2/image1.png" },
@@ -271,6 +273,7 @@ namespace RentAutoApp.Data.Seeding
                     PricePerHour = 50,
                     IsAvailable = true,
                     SubCategoryId = lux.Id,
+                    LocationId = 2,
                     Images = new List<VehicleImage>
                     {
                         new VehicleImage { ImageUrl = "/images/vehicles/3/image1.jpg" },
@@ -298,6 +301,7 @@ namespace RentAutoApp.Data.Seeding
                     PricePerHour = 55,
                     IsAvailable = true,
                     SubCategoryId = lux.Id,
+                    LocationId = 3,
                     Images = new List<VehicleImage>
                     {
                         new VehicleImage { ImageUrl = "/images/vehicles/4/image1.png" },
@@ -323,6 +327,7 @@ namespace RentAutoApp.Data.Seeding
                     PricePerHour = 40,
                     IsAvailable = true,
                     SubCategoryId = lux.Id,
+                    LocationId = 3,
                     Images = new List<VehicleImage>
                     {
                         new VehicleImage { ImageUrl = "/images/vehicles/5/image1.png" },

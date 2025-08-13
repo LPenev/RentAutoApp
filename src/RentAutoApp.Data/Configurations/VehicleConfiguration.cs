@@ -26,5 +26,9 @@ public class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
                .HasForeignKey(v => v.SubCategoryId)
                .OnDelete(DeleteBehavior.Restrict);
 
+        builder.HasOne(v => v.Location)
+            .WithMany(l => l.Vehicles) 
+            .HasForeignKey(v => v.LocationId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
