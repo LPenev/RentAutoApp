@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using RentAutoApp.Data.Models;
 using RentAutoApp.Data.Seeding;
 using RentAutoApp.Services.Core;
@@ -40,6 +39,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddMemoryCache();
 
 builder.Services.AddScoped<IFeaturedCarsService, FeaturedCarsService>();
+builder.Services.AddScoped<IVehicleService, VehicleService>();
 
 builder.Services.AddScoped<DbSeeder>();
 

@@ -1,0 +1,80 @@
+﻿@using RentAutoApp.Web.ViewModels.Vehicles;
+@using static RentAutoApp.GCommon.Constants.Vehicle;
+@model VehicleDetailsViewModel
+@{
+    ViewData["Title"] = Model.Title;
+    var images = (Model.ImageUrls?.Count > 0 ? Model.ImageUrls : new[] { "/images/placeholder.jpg" });
+}
+
+<div class="container my-4">
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <!-- Photo gallery -->
+            <div id="vehicleGallery" class="carousel slide" data-bs-ride="carousel">
+	            <div class="carousel-inner rounded-3 overflow-hidden">
+		            @for (int i = 0; i < images.Count(); i++)
+		            {
+			            <div class="carousel-item @(i == 0 ? "active" : null)">
+				            <img src="@images.ElementAt(i)" class="d-block w-100"
+				                 alt="@Model.Title" style="height:420px; object-fit:cover;">
+			            </div>
+		            }
+	            </div>
+	            @if (images.Count() > 1)
+	            {
+		            <button class="carousel-control-prev" type="button" data-bs-target="#vehicleGallery" data-bs-slide="prev">
+			            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			            <span class="visually-hidden">Назад</span>
+		            </button>
+		            <button class="carousel-control-next" type="button" data-bs-target="#vehicleGallery" data-bs-slide="next">
+			            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			            <span class="visually-hidden">Напред</span>
+		            </button>
+	            }
+            </div>
+            <!-- End of gallery-->
+        </div>
+
+        <div class="col-lg-5">
+            <div class="d-flex align-items-center mb-2">
+                <h1 class="h3 mb-0">@Model.Title</h1>
+                <span class="ms-3 badge @(Model.IsAvailable ? "bg-success" : "bg-secondary")">
+                    @(Model.IsAvailable? VehicleIsAvailable : VehicleNotAvailable)
+                </span>
+            </div>
+
+            <div class="fs-5 mb-3">
+                <strong>@Model.PricePerDay</strong> лв/ден
+            </div>
+
+            <dl class="row small">
+                <dt class="col-6">Марка/Модел</dt>
+                <dd class="col-6">@Model.Brand @Model.Model</dd>
+                <dt class="col-6">Година</dt>
+                <dd class="col-6">@Model.Year</dd>
+                <dt class="col-6">Скорости</dt>
+                <dd class="col-6">@Model.Transmission</dd>
+                <dt class="col-6">Гориво</dt>
+                <dd class="col-6">@Model.Fuel</dd>
+                <dt class="col-6">Брой места</dt>
+                <dd class="col-6">@Model.Seats</dd>
+                <dt class="col-6">Врати</dt>
+            </dl>
+
+            <div class="d-grid gap-2 mt-4">
+                @if (Model.IsAvailable)
+                {
+                    <a class="btn btn-primary btn-lg"
+                       href="@Url.Action("Create", "Reservation", new { vehicleId = Model.Id })">
+                        Резервирай
+                    </a>
+                }
+                else
+                {
+                    <button class="btn btn-secondary btn-lg" disabled>@NotAvailableForRent</button>
+                }
+                <a class="btn btn-outline-secondary" href="@Url.Action("Index", "Vehicle")">← @BackToVehicle</a>
+            </div>
+        </div>
+    </div>
+</div>
