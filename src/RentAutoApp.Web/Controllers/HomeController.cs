@@ -18,11 +18,13 @@ public class HomeController : Controller
         return View();
     }
 
+    [Route("terms")]
     public IActionResult Terms()
     {
         return View();
     }
 
+    [Route("privacy")]
     public IActionResult Privacy()
     {
         return View();
