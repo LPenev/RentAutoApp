@@ -12,9 +12,12 @@ namespace RentAutoApp.Web.Controllers
             _vehicleService = vehicleService;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index(CancellationToken ct)
         {
-            return null;
+            // Show all Vehicles
+            var results = await _vehicleService.SearchAsync(null, null, null, null, ct);
+            return View(results);
         }
 
         public async Task<IActionResult> Details(int id, CancellationToken ct)

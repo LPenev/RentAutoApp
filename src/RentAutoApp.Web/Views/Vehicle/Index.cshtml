@@ -1,0 +1,14 @@
+﻿@using RentAutoApp.Web.ViewModels.Vehicles
+@model List<VehicleListItemViewModel>
+
+@{
+	ViewData["Title"] = "Автомобили";
+}
+
+<h1 class="mb-3">Автомобили</h1>
+
+<!-- Търсачка -->
+@await Component.InvokeAsync("CarSearch")
+
+<!-- Резултати (всички автомобили по подразбиране) -->
+<partial name="_VehicleGrid" model="Model" />
