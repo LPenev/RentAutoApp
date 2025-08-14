@@ -1,0 +1,54 @@
+﻿@using RentAutoApp.Web.ViewModels.Contact
+@model ContactFormViewModel
+@{
+	ViewData["Title"] = "Контакти";
+}
+
+<h1 class="mb-3">Контакти</h1>
+
+@if (TempData["ContactOk"] is string ok && !string.IsNullOrWhiteSpace(ok))
+{
+	<div class="alert alert-success">@ok</div>
+}
+
+<form asp-action="Index" method="post" class="row g-3">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+	<div class="col-md-6">
+		<label asp-for="Name" class="form-label"></label>
+		<input asp-for="Name" class="form-control" />
+		<span asp-validation-for="Name" class="text-danger"></span>
+	</div>
+
+	<div class="col-md-6">
+		<label asp-for="Email" class="form-label"></label>
+		<input asp-for="Email" class="form-control" />
+		<span asp-validation-for="Email" class="text-danger"></span>
+	</div>
+
+	<div class="col-md-6">
+		<label asp-for="Phone" class="form-label"></label>
+		<input asp-for="Phone" class="form-control" />
+		<span asp-validation-for="Phone" class="text-danger"></span>
+	</div>
+
+	<div class="col-md-6">
+		<label asp-for="Subject" class="form-label"></label>
+		<input asp-for="Subject" class="form-control" />
+		<span asp-validation-for="Subject" class="text-danger"></span>
+	</div>
+
+	<div class="col-12">
+		<label asp-for="Message" class="form-label"></label>
+		<textarea asp-for="Message" class="form-control" rows="5"></textarea>
+		<span asp-validation-for="Message" class="text-danger"></span>
+	</div>
+
+	<div class="col-12 text-end">
+		<button type="submit" class="btn btn-primary">Изпрати</button>
+	</div>
+</form>
+
+@section Scripts {
+	@await Html.PartialAsync("_ValidationScriptsPartial")
+}

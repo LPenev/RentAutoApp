@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\RentAutoApp.Data\RentAutoApp.Data.csproj" />
     <ProjectReference Include="..\RentAutoApp.GCommon\RentAutoApp.GCommon.csproj" />
     <ProjectReference Include="..\RentAutoApp.Services.AutoMapping\RentAutoApp.Services.AutoMapping.csproj" />

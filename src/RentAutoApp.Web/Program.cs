@@ -16,8 +16,9 @@ builder.Services.AddDbContext<RentAutoAppDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-// No E-Mail option
-builder.Services.AddTransient<IEmailSender, NoOpEmailSender>();
+// E-Mail
+builder.Services.Configure<RentAutoApp.Web.Infrastructure.Email.EmailSettings>(builder.Configuration.GetSection("Email:Smtp"));
+builder.Services.AddScoped<IEmailSender, RentAutoApp.Web.Infrastructure.Email.SmtpEmailSender>();
 
 builder.Services
     .AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -41,6 +42,8 @@ builder.Services.AddMemoryCache();
 builder.Services.AddScoped<IFeaturedCarsService, FeaturedCarsService>();
 builder.Services.AddScoped<ICarSearchService, CarSearchService>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
+builder.Services.AddScoped<ISettingsService, SettingsService>();
+builder.Services.AddScoped<IContactService, ContactService>();
 
 builder.Services.AddScoped<DbSeeder>();
 
@@ -89,5 +92,18 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+
+// Test Email Service
+//if (app.Environment.IsDevelopment())
+//{
+//    app.MapGet("/dev/test-email", async (
+//        Microsoft.AspNetCore.Identity.UI.Services.IEmailSender sender,
+//        RentAutoApp.Services.Core.Contracts.ISettingsService settings) =>
+//    {
+//        var to = await settings.GetAsync("Contact.RecipientEmail") ?? "email@example.com";
+//        await sender.SendEmailAsync(to, "Test email", "<b>It works!</b>");
+//        return Results.Ok($"Sent to {to}");
+//    });
+//}
 
 app.Run();
