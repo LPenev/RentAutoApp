@@ -6,19 +6,34 @@ using RentAutoApp.Data.Seeding;
 using RentAutoApp.Services.Core;
 using RentAutoApp.Services.Core.Contracts;
 using RentAutoApp.Web.Data;
+using RentAutoApp.Web.Infrastructure.Email;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<RentAutoAppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
+
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 // E-Mail
-builder.Services.Configure<RentAutoApp.Web.Infrastructure.Email.EmailSettings>(builder.Configuration.GetSection("Email:Smtp"));
-builder.Services.AddScoped<IEmailSender, RentAutoApp.Web.Infrastructure.Email.SmtpEmailSender>();
+//builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Email:Smtp"));
+//builder.Services.AddScoped<IEmailSender, SmtpEmailSender>();
+
+//builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddSingleton<IEmailSender, RentAutoApp.Web.Infrastructure.Email.NoOpEmailSender>();
+}
+else
+{
+    builder.Services.AddTransient<IEmailSender, SmtpEmailSender>();
+}
 
 builder.Services
     .AddIdentity<ApplicationUser, IdentityRole>(options =>

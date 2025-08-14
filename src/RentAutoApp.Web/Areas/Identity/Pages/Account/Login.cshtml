@@ -2,7 +2,7 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Вход";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -10,7 +10,6 @@
     <div class="col-md-4">
         <section>
             <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div class="form-floating mb-3">
@@ -33,15 +32,15 @@
                     <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
                 </div>
                 <div>
-                    <p class="mt-4">
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
+                    @* <p class="mt-4">
+                        <a id="forgot-password" asp-page="./ForgotPassword">Забравена парола?</a>
+                    </p> *@
                     <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Create new account</a>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Създай нов акаунт</a>
                     </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
+                    @* <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Изпрати отново потвърждение по имейл</a>
+                    </p> *@
                 </div>
             </form>
         </section>
