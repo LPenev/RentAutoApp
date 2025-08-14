@@ -36,5 +36,7 @@ public class RentAutoAppDbContext : IdentityDbContext<ApplicationUser, IdentityR
     public DbSet<Country> Countries { get; set; }
     public DbSet<City> Cities { get; set; }
     public DbSet<Street> Streets { get; set; }
+    public DbSet<SiteSetting> SiteSettings { get; set; }
+
 
 }
