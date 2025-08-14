@@ -14,7 +14,7 @@ public class ApplicationUser : IdentityUser
 
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
-    public DateTime CreatedAt { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
 
     public int? LocationId { get; set; }
 
