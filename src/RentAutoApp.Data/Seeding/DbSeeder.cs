@@ -40,14 +40,14 @@ namespace RentAutoApp.Data.Seeding
             }
 
             // 2) Users (+ denomalisation for display)
-            var users = new (string Email, string Password, string Role)[]
+            var users = new (string Firstname, string Lastname, string Email, string Password, string Role)[]
             {
-                ("admin@rentauto.local",  "Admin123!",  "Administrator"),
-                ("staff@rentauto.local",  "Staff123!",  "Staff"),
-                ("client@rentauto.local", "Client123!", "Client")
+                ("Tihomir","Stoyanov", "admin@rentauto.local",  "Admin123!",  "Administrator"),
+                ("Antom", "Ivanov", "staff@rentauto.local",  "Staff123!",  "Staff"),
+                ("Ivan", "Ivanov", "client@rentauto.local", "Client123!", "Client")
             };
 
-            foreach (var (email, password, role) in users)
+            foreach (var (firstname,lastname, email, password, role) in users)
             {
                 var user = await _userManager.FindByEmailAsync(email);
                 if (user is null)
