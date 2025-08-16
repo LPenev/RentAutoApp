@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentAutoApp.Web.Data;
 
@@ -11,9 +12,11 @@ using RentAutoApp.Web.Data;
 namespace RentAutoApp.Data.Migrations
 {
     [DbContext(typeof(RentAutoAppDbContext))]
-    partial class RentAutoAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250816215723_ReservationIsPaidAndVehicleIsArchived")]
+    partial class ReservationIsPaidAndVehicleIsArchived
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -641,8 +644,6 @@ namespace RentAutoApp.Data.Migrations
 
                     b.HasIndex("DiscountId");
 
-                    b.HasIndex("IsPaid");
-
                     b.HasIndex("PickupLocationId");
 
                     b.HasIndex("ReturnLocationId");
@@ -652,8 +653,6 @@ namespace RentAutoApp.Data.Migrations
                     b.HasIndex("VehicleId");
 
                     b.HasIndex("StartDate", "EndDate");
-
-                    b.HasIndex("Status", "StartDate");
 
                     b.ToTable("Reservations");
                 });
@@ -734,7 +733,7 @@ namespace RentAutoApp.Data.Migrations
                         {
                             Id = 1,
                             Key = "Contact.RecipientEmail",
-                            UpdatedOnUtc = new DateTime(2025, 8, 16, 23, 12, 4, 204, DateTimeKind.Utc).AddTicks(3228),
+                            UpdatedOnUtc = new DateTime(2025, 8, 16, 21, 57, 17, 863, DateTimeKind.Utc).AddTicks(8340),
                             Value = "lppenev@abv.bg"
                         });
                 });
@@ -874,14 +873,7 @@ namespace RentAutoApp.Data.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.HasIndex("RegistrationNumber")
-                        .IsUnique();
-
                     b.HasIndex("SubCategoryId");
-
-                    b.HasIndex("IsArchived", "LocationId", "PricePerDay");
-
-                    b.HasIndex("IsArchived", "IsAvailable", "SubCategoryId", "LocationId");
 
                     b.ToTable("Vehicles", t =>
                         {
