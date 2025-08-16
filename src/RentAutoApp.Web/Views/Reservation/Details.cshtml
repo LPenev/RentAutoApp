@@ -1,0 +1,22 @@
+﻿@using RentAutoApp.Web.ViewModels.Reservations
+@model ReservationDetailsViewModel
+@{
+	ViewData["Title"] = "Детайли за резервация";
+}
+<h2>@ViewData["Title"]</h2>
+
+<div class="card p-3 shadow-sm">
+	<dl class="row">
+		<dt class="col-sm-3">Резервация #</dt><dd class="col-sm-9">@Model.Id</dd>
+		<dt class="col-sm-3">Автомобил</dt><dd class="col-sm-9">@Model.VehicleTitle</dd>
+		<dt class="col-sm-3">От</dt><dd class="col-sm-9">@Model.StartDate.ToString("yyyy-MM-dd")</dd>
+		<dt class="col-sm-3">До</dt><dd class="col-sm-9">@Model.EndDate.ToString("yyyy-MM-dd")</dd>
+		<dt class="col-sm-3">Вземане</dt><dd class="col-sm-9">@Model.PickupLocation</dd>
+		<dt class="col-sm-3">Връщане</dt><dd class="col-sm-9">@Model.ReturnLocation</dd>
+		<dt class="col-sm-3">Статус</dt><dd class="col-sm-9">@Model.Status</dd>
+		<dt class="col-sm-3">Цена</dt><dd class="col-sm-9">@Model.PriceCalculated.ToString("0.00")</dd>
+		<dt class="col-sm-3">Създадена</dt><dd class="col-sm-9">@Model.CreatedAt.ToString("yyyy-MM-dd HH:mm")</dd>
+	</dl>
+
+	<a asp-action="Index" class="btn btn-secondary">Назад</a>
+</div>

@@ -6,6 +6,8 @@ using RentAutoApp.Data.Seeding;
 using RentAutoApp.Services.Core;
 using RentAutoApp.Services.Core.Contracts;
 using RentAutoApp.Web.Data;
+using RentAutoApp.Web.Infrastructure;
+using RentAutoApp.Web.Infrastructure.Contracts;
 using RentAutoApp.Web.Infrastructure.Email;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,14 +28,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 //builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
-if (builder.Environment.IsDevelopment())
-{
-    builder.Services.AddSingleton<IEmailSender, RentAutoApp.Web.Infrastructure.Email.NoOpEmailSender>();
-}
-else
-{
-    builder.Services.AddTransient<IEmailSender, SmtpEmailSender>();
-}
+// NoEmail
+builder.Services.AddSingleton<IEmailSender, RentAutoApp.Web.Infrastructure.Email.NoOpEmailSender>();
+
 
 builder.Services
     .AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -48,6 +45,11 @@ builder.Services
     .AddEntityFrameworkStores<RentAutoAppDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Identity/Account/Login";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+});
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
@@ -59,7 +61,11 @@ builder.Services.AddScoped<ICarSearchService, CarSearchService>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
 builder.Services.AddScoped<ISettingsService, SettingsService>();
 builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
+
+// check demo data and seed demo data when needed.
 builder.Services.AddScoped<DbSeeder>();
 
 builder.Services.ConfigureApplicationCookie(options =>

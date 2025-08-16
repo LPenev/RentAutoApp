@@ -8,6 +8,12 @@
 	{
 		<li class="nav-item">
 			<a class="nav-link"
+			   asp-controller="Reservation"
+			   asp-action="Index">Резервации</a>
+		</li>
+
+		<li class="nav-item">
+			<a class="nav-link"
 			   asp-area="Identity"
 			   asp-page="/Account/Manage/Index"
 			   title="Manage">Здравей @User.Identity?.Name!</a>
@@ -19,7 +25,7 @@
 			      asp-route-returnUrl="@Url.Action("Index","Home", new { area = "" })"
 			      method="post">
 				@Html.AntiForgeryToken()
-				<button type="submit" class="nav-link btn btn-link text-dark">Изход</button>
+				<button type="submit" class="nav-link btn btn-link">Изход</button>
 			</form>
 		</li>
 	}
