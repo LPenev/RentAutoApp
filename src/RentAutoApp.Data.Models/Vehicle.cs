@@ -23,6 +23,9 @@ public class Vehicle
     public decimal PricePerHour { get; set; }
     public bool IsAvailable { get; set; }
 
+    // Soft-delete flag for admin Archive
+    public bool IsArchived { get; set; }
+
     public int SubCategoryId { get; set; }
     public SubCategory SubCategory { get; set; } = null!;
 

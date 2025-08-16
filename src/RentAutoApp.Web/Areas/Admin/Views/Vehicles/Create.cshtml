@@ -1,0 +1,83 @@
+﻿@using RentAutoApp.Web.ViewModels.Admin.Vehicles
+@model VehicleCreateInputModel
+@{
+    ViewData["Title"] = "Нов автомобил";
+}
+@await Html.PartialAsync("~/Areas/Admin/Views/Shared/_AdminMenu.cshtml")
+<h2>Нов автомобил</h2>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label asp-for="Brand"></label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Model"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="RegistrationNumber"></label>
+                <input asp-for="RegistrationNumber" class="form-control" />
+                <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Vin"></label>
+                <input asp-for="Vin" class="form-control" />
+                <span asp-validation-for="Vin" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="FirstRegistrationDate"></label>
+                <input asp-for="FirstRegistrationDate" class="form-control" />
+                <span asp-validation-for="FirstRegistrationDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label asp-for="FuelType"></label>
+                <select asp-for="FuelType" class="form-select" asp-items="Html.GetEnumSelectList<RentAutoApp.GCommon.Enums.FuelType>()"></select>
+                <span asp-validation-for="FuelType" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Transmission"></label>
+                <select asp-for="Transmission" class="form-select" asp-items="Html.GetEnumSelectList<RentAutoApp.GCommon.Enums.TransmissionType>()"></select>
+                <span asp-validation-for="Transmission" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="PowerHp"></label>
+                <input asp-for="PowerHp" class="form-control" />
+                <span asp-validation-for="PowerHp" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="PricePerDay"></label>
+                <input asp-for="PricePerDay" class="form-control" />
+                <span asp-validation-for="PricePerDay" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="PricePerHour"></label>
+                <input asp-for="PricePerHour" class="form-control" />
+                <span asp-validation-for="PricePerHour" class="text-danger"></span>
+            </div>
+            <div class="form-check mb-3">
+                <input asp-for="IsAvailable" class="form-check-input" />
+                <label asp-for="IsAvailable" class="form-check-label"></label>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SubCategoryId"></label>
+                <input asp-for="SubCategoryId" class="form-control" />
+                <span asp-validation-for="SubCategoryId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="LocationId"></label>
+                <input asp-for="LocationId" class="form-control" />
+                <span asp-validation-for="LocationId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Запази</button>
+    <a asp-action="Index" class="btn btn-link">Назад</a>
+</form>

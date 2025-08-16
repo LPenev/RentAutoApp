@@ -24,5 +24,7 @@ public class Reservation
     public ReservationStatus Status { get; set; }
     public decimal PriceCalculated { get; set; }
 
+    public bool IsPaid { get; set; }
+
     public DateTime CreatedAt { get; set; }
 }

@@ -1,0 +1,70 @@
+﻿@using RentAutoApp.Web.ViewModels.Admin.Vehicles
+@model List<VehicleAdminListItemViewModel>
+@{
+    ViewData["Title"] = "Админ — Автомобили";
+    var includeArchived = (bool)(ViewBag.IncludeArchived ?? false);
+}
+@await Html.PartialAsync("~/Areas/Admin/Views/Shared/_AdminMenu.cshtml")
+<h2>Автомобили</h2>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <a asp-action="Create" class="btn btn-primary">+ Нов автомобил</a>
+    </div>
+    <form method="get" class="d-inline">
+        <input type="hidden" name="includeArchived" value="@(includeArchived ? "false" : "true")" />
+        <button class="btn btn-outline-secondary" type="submit">
+            @(includeArchived ? "Скрий архивираните" : "Покажи архивираните")
+        </button>
+    </form>
+</div>
+
+@if (TempData["StatusMessage"] is string msg && !string.IsNullOrWhiteSpace(msg))
+{
+    <div class="alert alert-info">@msg</div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Марка/Модел</th>
+            <th>Рег. №</th>
+            <th>Цена/ден</th>
+            <th>Наличен</th>
+            <th>Архив</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model)
+        {
+            <tr class="@(v.IsArchived ? "table-warning" : "")">
+                <td>@v.Id</td>
+                <td>@v.Brand @v.Model</td>
+                <td>@v.RegistrationNumber</td>
+                <td>@v.PricePerDay.ToString("0.00")</td>
+                <td>@(v.IsAvailable ? "Да" : "Не")</td>
+                <td>@(v.IsArchived ? "Да" : "Не")</td>
+                <td class="text-end">
+                    @if (!v.IsArchived)
+                    {
+                        <form asp-action="SoftDelete" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@v.Id" />
+                            <button class="btn btn-sm btn-outline-danger" type="submit">Архивирай</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-action="Restore" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@v.Id" />
+                            <button class="btn btn-sm btn-outline-success" type="submit">Възстанови</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

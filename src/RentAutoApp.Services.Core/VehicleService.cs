@@ -72,7 +72,7 @@ public class VehicleService : IVehicleService
                 r.StartDate.Date <= end && r.EndDate.Date >= start));
         }
 
-        
+
         return await q
             .OrderBy(v => v.PricePerDay)
             .Select(v => new VehicleListItemViewModel

@@ -23,6 +23,12 @@
 				</button>
 				<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 					<ul class="navbar-nav align-items-center">
+						@if (User.IsInRole("Administrator"))
+						{
+							<li class="nav-item">
+								<a class="nav-link bg-black text-white" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Админ Панел</a>
+							</li>
+						}
 						<li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Начало</a></li>
 						<li class="nav-item"><a class="nav-link" asp-controller="Vehicle" asp-action="Index">Автомобили</a></li>
 						<li class="nav-item"><a class="nav-link" asp-controller="Contact" asp-action="Index">Контакти</a></li>

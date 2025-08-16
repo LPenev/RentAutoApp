@@ -1,0 +1,80 @@
+﻿@using RentAutoApp.Web.ViewModels.Admin.Reservations
+@model List<ReservationAdminListItemViewModel>
+@{
+    ViewData["Title"] = "Админ — Резервации";
+}
+@await Html.PartialAsync("~/Areas/Admin/Views/Shared/_AdminMenu.cshtml")
+<h2>Резервации</h2>
+
+@if (TempData["StatusMessage"] is string msg && !string.IsNullOrWhiteSpace(msg))
+{
+    <div class="alert alert-info">@msg</div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Потребител</th>
+            <th>Автомобил</th>
+            <th>От</th>
+            <th>До</th>
+            <th>Статус</th>
+            <th>Платено</th>
+            <th>Цена</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            <tr>
+                <td>@r.Id</td>
+                <td>@r.UserEmail</td>
+                <td>@r.VehicleTitle</td>
+                <td>@r.StartDate.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@r.EndDate.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@r.Status</td>
+                <td>@(r.IsPaid ? "Да" : "Не")</td>
+                <td>@r.PriceCalculated.ToString("0.00")</td>
+                <td class="text-end">
+                    <div class="btn-group btn-group-sm">
+                        <form asp-action="Confirm" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@r.Id" />
+                            <button class="btn btn-outline-secondary" type="submit">Потвърди</button>
+                        </form>
+                        <form asp-action="PickedUp" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@r.Id" />
+                            <button class="btn btn-outline-secondary" type="submit">Взета</button>
+                        </form>
+                        <form asp-action="Returned" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@r.Id" />
+                            <button class="btn btn-outline-secondary" type="submit">Върната</button>
+                        </form>
+                        <form asp-action="Expired" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@r.Id" />
+                            <button class="btn btn-outline-secondary" type="submit">Изтекла</button>
+                        </form>
+                        <form asp-action="NoShow" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@r.Id" />
+                            <button class="btn btn-outline-secondary" type="submit">No Show</button>
+                        </form>
+                        <form asp-action="Paid" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@r.Id" />
+                            <input type="hidden" name="isPaid" value="@(r.IsPaid ? "false" : "true")" />
+                            <button class="btn btn-outline-@(r.IsPaid ? "warning" : "success")" type="submit">
+                                @(r.IsPaid ? "Отмаркирай платено" : "Маркирай платено")
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
