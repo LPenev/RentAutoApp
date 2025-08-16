@@ -1,0 +1,23 @@
+﻿@model RentAutoApp.Web.ViewModels.UserPanel.ProfileViewModel
+@{
+	ViewData["Title"] = "Моят профил";
+}
+@await Html.PartialAsync("~/Areas/User/Views/Shared/_ProfileMenu.cshtml")
+<h2>Моят профил</h2>
+
+@if (ViewBag.StatusMessage is string msg && !string.IsNullOrWhiteSpace(msg)) {
+	<div class="alert alert-success">@msg</div>
+}
+
+<dl class="row">
+	<dt class="col-sm-3">Имена</dt>
+	<dd class="col-sm-9">@($"{Model.FirstName} {Model.LastName}".Trim())</dd>
+
+	<dt class="col-sm-3">Имейл</dt>
+	<dd class="col-sm-9">@Model.Email</dd>
+
+	@if (!string.IsNullOrWhiteSpace(Model.PhoneNumber)) {
+		<dt class="col-sm-3">Телефон</dt>
+		<dd class="col-sm-9">@Model.PhoneNumber</dd>
+	}
+</dl>

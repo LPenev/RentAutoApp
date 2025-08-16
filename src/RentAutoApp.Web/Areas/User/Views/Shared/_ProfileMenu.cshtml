@@ -1,0 +1,14 @@
+﻿@{
+	var action = (ViewContext.RouteData.Values["action"]?.ToString() ?? "").ToLowerInvariant();
+	string active(string a) => action == a.ToLowerInvariant() ? "active" : "";
+}
+<div class="btn-group mb-3" role="group" aria-label="Навигация в профила">
+	<a class="btn btn-outline-primary @active("index")"
+	   asp-area="User" asp-controller="Profile" asp-action="Index">Моят профил</a>
+	<a class="btn btn-outline-primary @active("personal")"
+	   asp-area="User" asp-controller="Profile" asp-action="Personal">Лични данни</a>
+	<a class="btn btn-outline-primary @active("email")"
+	   asp-area="User" asp-controller="Profile" asp-action="Email">Смяна на имейл</a>
+	<a class="btn btn-outline-primary @active("password")"
+	   asp-area="User" asp-controller="Profile" asp-action="Password">Смяна на парола</a>
+</div>

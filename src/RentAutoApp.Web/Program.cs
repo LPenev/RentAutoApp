@@ -6,6 +6,7 @@ using RentAutoApp.Data.Seeding;
 using RentAutoApp.Services.Core;
 using RentAutoApp.Services.Core.Contracts;
 using RentAutoApp.Web.Data;
+using RentAutoApp.Web.Features.UserPanel;
 using RentAutoApp.Web.Infrastructure;
 using RentAutoApp.Web.Infrastructure.Contracts;
 using RentAutoApp.Web.Infrastructure.Email;
@@ -62,6 +63,8 @@ builder.Services.AddScoped<IVehicleService, VehicleService>();
 builder.Services.AddScoped<ISettingsService, SettingsService>();
 builder.Services.AddScoped<IContactService, ContactService>();
 builder.Services.AddScoped<IReservationService, ReservationService>();
+builder.Services.AddScoped<IUserProfileService, UserProfileService>();
+builder.Services.AddScoped<IUserPanelService, UserPanelService>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
 
