@@ -20,6 +20,8 @@ namespace RentAutoApp.Data.Configurations
                 .WithOne()
                 .HasForeignKey<Invoice>(i => i.ReservationId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasQueryFilter(i => !i.Reservation.Vehicle.IsArchived);
         }
     }
 }

@@ -14,5 +14,7 @@ public class DocumentConfiguration : IEntityTypeConfiguration<Document>
                .WithMany()
                .HasForeignKey(d => d.VehicleId)
                .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasQueryFilter(d => !d.Vehicle.IsArchived);
     }
 }

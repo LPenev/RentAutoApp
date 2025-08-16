@@ -41,5 +41,9 @@ public class ReservationConfiguration : IEntityTypeConfiguration<Reservation>
         builder.HasIndex(r => r.ReturnLocationId);
         builder.HasIndex(r => r.UserId);
         builder.HasIndex(r => new { r.StartDate, r.EndDate });
+        builder.HasIndex(r => new { r.Status, r.StartDate });
+        builder.HasIndex(r => r.IsPaid);
+
+        builder.HasQueryFilter(r => !r.Vehicle.IsArchived);
     }
 }

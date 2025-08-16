@@ -30,5 +30,13 @@ public class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
             .WithMany(l => l.Vehicles) 
             .HasForeignKey(v => v.LocationId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.HasQueryFilter(v => !v.IsArchived);
+
+        builder.HasIndex(v => v.RegistrationNumber).IsUnique();
+
+        builder.HasIndex(v => new { v.IsArchived, v.IsAvailable, v.SubCategoryId, v.LocationId });
+
+        builder.HasIndex(v => new { v.IsArchived, v.LocationId, v.PricePerDay });
     }
 }

@@ -31,5 +31,7 @@ public class RepairHistoryConfiguration : IEntityTypeConfiguration<RepairHistory
             .WithMany(v => v.RepairHistories)
             .HasForeignKey(r => r.VehicleId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasQueryFilter(r => !r.Vehicle.IsArchived);
     }
 }

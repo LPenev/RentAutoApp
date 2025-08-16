@@ -15,5 +15,7 @@ public class ServiceConfiguration : IEntityTypeConfiguration<Service>
                .WithMany()
                .HasForeignKey(s => s.VehicleId)
                .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasQueryFilter(s => !s.Vehicle.IsArchived);
     }
 }

@@ -22,5 +22,7 @@ public class DamageReportConfiguration : IEntityTypeConfiguration<DamageReport>
             .OnDelete(DeleteBehavior.Restrict);
         
         builder.HasIndex(d => new { d.ReservationId, d.UserId });
+
+        builder.HasQueryFilter(d => !d.Reservation.Vehicle.IsArchived);
     }
 }

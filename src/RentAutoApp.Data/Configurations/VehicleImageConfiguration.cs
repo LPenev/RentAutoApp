@@ -20,6 +20,8 @@ namespace RentAutoApp.Data.Configurations
                 .WithMany(v => v.Images)
                 .HasForeignKey(vi => vi.VehicleId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasQueryFilter(vi => !vi.Vehicle.IsArchived);
         }
     }
 }
