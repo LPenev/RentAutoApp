@@ -416,3 +416,6 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/src/RentAutoApp.Web/appsettings.Production.json
+/src/RentAutoApp.Web/appsettings.json
+/src/RentAutoApp.Web/appsettings.Development.json
