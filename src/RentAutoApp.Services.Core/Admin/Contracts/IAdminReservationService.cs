@@ -1,7 +1,7 @@
 ﻿using RentAutoApp.Services.Common;
 using RentAutoApp.Web.ViewModels.Admin.Reservations;
 
-namespace RentAutoApp.Services.Core.Contracts.Admin;
+namespace RentAutoApp.Services.Core.Admin.Contracts;
 
 public interface IAdminReservationService
 {
