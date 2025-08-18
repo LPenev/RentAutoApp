@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RentAutoApp.Data.Models;
 using RentAutoApp.Services.Common;
-using RentAutoApp.Services.Core.Contracts.Admin;
+using RentAutoApp.Services.Core.Admin.Contracts;
 using RentAutoApp.Web.Data;
 using RentAutoApp.Web.ViewModels.Admin.Vehicles;
 
