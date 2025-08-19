@@ -1,0 +1,39 @@
+﻿@model RentAutoApp.Web.ViewModels.WebErrorViewModel
+@{
+	ViewData["Title"] = $"{Model.Code} - {Model.Title}";
+}
+
+<div class="container py-5">
+	<div class="row justify-content-center">
+		<div class="col-lg-8">
+			<div class="card shadow-sm border-0 rounded-4">
+				<div class="card-body p-4 p-md-5 text-center">
+					<div class="display-3 fw-bold">@Model.Code</div>
+					<h1 class="h3 mt-2">@Model.Title</h1>
+					<p class="text-muted mt-3">@Model.Message</p>
+					@if (!string.IsNullOrWhiteSpace(Model.Details))
+					{
+						<div class="alert alert-secondary text-start mt-3">
+							<div class="fw-semibold mb-1">Детайли:</div>
+							<div>@Model.Details</div>
+						</div>
+					}
+					<div class="d-flex gap-2 justify-content-center mt-4">
+						<a class="btn btn-primary rounded-pill px-4" href="@Model.HomeUrl">Към началото</a>
+						@if (!string.IsNullOrWhiteSpace(Model.ContactUrl))
+						{
+							<a class="btn btn-outline-secondary rounded-pill px-4" href="@Model.ContactUrl">Контакти</a>
+						}
+						@if (Model.ShowBackButton)
+						{
+							<button type="button" class="btn btn-light rounded-pill px-4" onclick="history.back()">Назад</button>
+						}
+					</div>
+				</div>
+			</div>
+			<div class="text-center mt-3 text-muted small">
+				Ако проблемът продължава, свържете се с нас и посочете кода за грешка <strong>@Model.Code</strong>.
+			</div>
+		</div>
+	</div>
+</div>

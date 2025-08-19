@@ -1,12 +1,12 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using RentAutoApp.Data.Models;
 using RentAutoApp.Data.Seeding;
 using RentAutoApp.Services.Core;
 using RentAutoApp.Services.Core.Admin;
+using RentAutoApp.Services.Core.Admin.Contracts;
 using RentAutoApp.Services.Core.Contracts;
-using RentAutoApp.Services.Core.Contracts.Admin;
 using RentAutoApp.Web.Data;
 using RentAutoApp.Web.Features.UserPanel;
 using RentAutoApp.Web.Infrastructure;
@@ -68,13 +68,14 @@ builder.Services.AddScoped<IReservationService, ReservationService>();
 builder.Services.AddScoped<IUserProfileService, UserProfileService>();
 builder.Services.AddScoped<IUserPanelService, UserPanelService>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+builder.Services.AddScoped<IErrorPageService, ErrorPageService>();
 
 // Admin services
 builder.Services.AddScoped<IAdminVehicleService, AdminVehicleService>();
 builder.Services.AddScoped<IAdminReservationService, AdminReservationService>();
 
 // check demo data and seed demo data when needed.
-builder.Services.AddScoped<DbSeeder>();
+//builder.Services.AddScoped<DbSeeder>();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -89,12 +90,22 @@ builder.Services.AddAntiforgery(options =>
 
 var app = builder.Build();
 
-// Seed the database
-using (var scope = app.Services.CreateScope())
+if (!app.Environment.IsDevelopment())
 {
-    var seeder = scope.ServiceProvider.GetRequiredService<DbSeeder>();
-    await seeder.SeedAsync();
+    app.UseExceptionHandler("/Error/500");  // Global page on unhandled exceptions (500, etc.)
+    app.UseHsts();
 }
+else
+{
+    app.UseDeveloperExceptionPage(); // in Dev shows details
+}
+
+// DbSeeder check demo data and seed demo data when needed.
+//using (var scope = app.Services.CreateScope())
+//{
+//    var seeder = scope.ServiceProvider.GetRequiredService<DbSeeder>();
+//    await seeder.SeedAsync();
+//}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -115,6 +126,9 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Custom pages for status codes (404, 403, 500, ...)
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
 app.MapControllerRoute(
     name: "default",

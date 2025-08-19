@@ -1,0 +1,6 @@
+﻿@using RentAutoApp.Web.ViewModels
+@await Html.PartialAsync("_WebErrorPage", new WebErrorViewModel {
+	Code = 404,
+	Title = "Страницата не е открита",
+	Message = "Търсената страница не съществува или е преместена."
+})

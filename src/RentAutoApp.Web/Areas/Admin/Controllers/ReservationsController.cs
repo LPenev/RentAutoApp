@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RentAutoApp.Services.Core.Contracts.Admin;
+using RentAutoApp.Services.Core.Admin.Contracts;
 
 namespace RentAutoApp.Web.Areas.Admin.Controllers;
 

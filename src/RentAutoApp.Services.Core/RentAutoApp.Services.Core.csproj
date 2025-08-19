@@ -7,6 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Contracts\**" />
+    <EmbeddedResource Remove="Contracts\**" />
+    <None Remove="Contracts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Contracts\ICarSearchService.cs" />
+    <Compile Include="Contracts\IContactService.cs" />
+    <Compile Include="Contracts\IErrorPageService.cs" />
+    <Compile Include="Contracts\IFeaturedCarsService.cs" />
+    <Compile Include="Contracts\IReservationService.cs" />
+    <Compile Include="Contracts\ISettingsService.cs" />
+    <Compile Include="Contracts\IUserProfileService.cs" />
+    <Compile Include="Contracts\IVehicleService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.17" />
   </ItemGroup>
 
