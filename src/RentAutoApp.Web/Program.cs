@@ -90,14 +90,25 @@ builder.Services.AddAntiforgery(options =>
 
 var app = builder.Build();
 
+var isInContainer = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
+
+// Global error and HSTS only when not container use
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error/500");  // Global page on unhandled exceptions (500, etc.)
-    app.UseHsts();
+    app.UseExceptionHandler("/Error/500");
+    if (!isInContainer)
+        app.UseHsts();
 }
 else
 {
-    app.UseDeveloperExceptionPage(); // in Dev shows details
+    app.UseDeveloperExceptionPage();
+    app.UseMigrationsEndPoint();
+}
+
+// https redirect when not container use
+if (!isInContainer)
+{
+    app.UseHttpsRedirection();
 }
 
 // DbSeeder check demo data and seed demo data when needed.
@@ -107,19 +118,6 @@ else
 //    await seeder.SeedAsync();
 //}
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseMigrationsEndPoint();
-}
-else
-{
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
