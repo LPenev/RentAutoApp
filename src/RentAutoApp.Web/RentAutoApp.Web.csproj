@@ -7,6 +7,7 @@
     <UserSecretsId>aspnet-RentAutoApp.Web-4a6aa16d-2a19-42a7-a42c-c11b0e7a2679</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
