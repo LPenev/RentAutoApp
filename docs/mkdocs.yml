@@ -34,7 +34,7 @@ nav:
   - 🗺️ Feature Map: 12_FeatureMap.md
   - 🔁 Refactoring Map: 13_RefactorMap.md
   - 🧭 Project References: 14_ProjectReferencesMap.md
-
+  - 📧 DevEmail: 15_DevEmail.md
 
 markdown_extensions:
   - admonition
