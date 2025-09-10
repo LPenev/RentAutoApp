@@ -29,19 +29,34 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<RentAutoAppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-var emailSender = builder.Configuration.GetValue<bool>("EmailSender");
+var emailSenderEnabled = builder.Configuration.GetValue<bool>("EmailSettings:EmailSenderEnabled");
 
 // disable or enable EmailSender into appsettings.json
-if (emailSender)
+if (emailSenderEnabled)
 {
     // get email settings from appsettings.json
     builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+
+    builder.Services
+        .AddOptions<EmailSettings>()
+        .Bind(builder.Configuration.GetSection("EmailSettings"))
+        .Validate(s => !string.IsNullOrWhiteSpace(s.Smtp.From), "EmailSettings:Smtp:From is required.")
+        .Validate(s => !string.IsNullOrWhiteSpace(s.Smtp.Host), "EmailSettings:Smtp:Host is required.")
+        .Validate(s => s.Smtp.Port is > 0 and <= 65535, "EmailSettings:Smtp:Port must be between 1 and 65535.")
+        .ValidateOnStart();
+
     builder.Services.AddScoped<IEmailSender, SmtpEmailSender>();
 }
 else
 {
     // NoEmail
     builder.Services.AddSingleton<IEmailSender, RentAutoApp.Web.Infrastructure.Email.NoOpEmailSender>();
+}
+
+// Test Email Service nur in Development and EmailSender is enabled.
+if (emailSenderEnabled && builder.Environment.IsDevelopment())
+{
+    builder.Services.AddEmailTestOptions(builder.Configuration);
 }
 
 builder.Services
@@ -194,16 +209,11 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 // Test Email Service nur in Development and EmailSender is enabled.
-if (emailSender && app.Environment.IsDevelopment())
+var emailTestEnabled = builder.Configuration.GetValue<bool>("EmailTest:Enabled");
+
+if (emailTestEnabled && emailSenderEnabled && app.Environment.IsDevelopment())
 {
-    app.MapGet("/dev/test-email", async (
-       IEmailSender sender,
-       ISettingsService settings) =>
-    {
-        var to = await settings.GetAsync("Contact.RecipientEmail") ?? "email@example.com";
-        await sender.SendEmailAsync(to, "Test email", "<b>It works!</b>");
-        return Results.Ok($"Sent to {to}");
-    });
+    app.MapDevEmailEndpoints(emailTestEnabled);
 }
 
 app.Run();
