@@ -1,4 +1,4 @@
-﻿namespace RentAutoApp.Infrastructure.Email;
+﻿namespace RentAutoApp.Infrastructure.Email.Models;
 
 public sealed class EmailMessage
 {

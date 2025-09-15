@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RentAutoApp.Infrastructure.Email;
+namespace RentAutoApp.Infrastructure.Email.Models;
 
 public class EmailTestOptions
 {
