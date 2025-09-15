@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RentAutoApp.Web.Infrastructure.Email;
+namespace RentAutoApp.Infrastructure.Email;
 
 public class EmailSettings
 {
@@ -18,3 +18,4 @@ public class SmtpOptions
     public string? User { get; set; }
     public string? Password { get; set; }
 }
+
