@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RentAutoApp.GCommon\RentAutoApp.GCommon.csproj" />
+    <ProjectReference Include="..\RentAutoApp.Infrastructure.Email\RentAutoApp.Infrastructure.Email.csproj" />
+    <ProjectReference Include="..\RentAutoApp.Services.Messaging\RentAutoApp.Services.Messaging.csproj" />
     <ProjectReference Include="..\RentAutoApp.Web.ViewModels\RentAutoApp.Web.ViewModels.csproj" />
   </ItemGroup>
 
