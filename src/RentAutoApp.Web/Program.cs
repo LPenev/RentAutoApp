@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.DataProtection;
@@ -32,25 +31,10 @@ builder.Services.AddDbContext<RentAutoAppDbContext>(options =>
 var emailSenderEnabled = builder.Configuration.GetValue<bool>("EmailSettings:EmailSenderEnabled");
 
 // disable or enable EmailSender into appsettings.json
-if (emailSenderEnabled)
+builder.Services.AddEmailSender(builder.Configuration, emailSenderEnabled);
+if (emailSenderEnabled && builder.Environment.IsDevelopment())
 {
-    // get email settings from appsettings.json
-    builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
-
-    builder.Services
-        .AddOptions<EmailSettings>()
-        .Bind(builder.Configuration.GetSection("EmailSettings"))
-        .Validate(s => !string.IsNullOrWhiteSpace(s.Smtp.From), "EmailSettings:Smtp:From is required.")
-        .Validate(s => !string.IsNullOrWhiteSpace(s.Smtp.Host), "EmailSettings:Smtp:Host is required.")
-        .Validate(s => s.Smtp.Port is > 0 and <= 65535, "EmailSettings:Smtp:Port must be between 1 and 65535.")
-        .ValidateOnStart();
-
-    builder.Services.AddScoped<IEmailSender, SmtpEmailSender>();
-}
-else
-{
-    // NoEmail
-    builder.Services.AddSingleton<IEmailSender, RentAutoApp.Web.Infrastructure.Email.NoOpEmailSender>();
+    builder.Services.AddEmailTestOptions(builder.Configuration);
 }
 
 // Test Email Service nur in Development and EmailSender is enabled.
@@ -125,10 +109,11 @@ if (builder.Environment.IsProduction())
     builder.Services.AddDataProtection()
         .PersistKeysToFileSystem(new DirectoryInfo("/keys"))
         .SetApplicationName("RentAutoApp");
-} else if (builder.Environment.IsDevelopment())
+}
+else if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-    
+
 }
 
 var seedDemoData = builder.Configuration.GetValue<bool>("SeedDemoData");
@@ -155,7 +140,7 @@ if (app.Environment.IsProduction())
         //fwd.KnownProxies.Add(IPAddress.Parse("172.18.0.10"));
     };
 
-    
+
     fwd.KnownNetworks.Clear();
     fwd.KnownProxies.Clear();
 
@@ -186,10 +171,10 @@ app.UseHttpsRedirection();
 if (seedDemoData)
 {
     using var scope = app.Services.CreateScope();
-   
-        var seeder = scope.ServiceProvider.GetRequiredService<DbSeeder>();
-        await seeder.SeedAsync();
-    
+
+    var seeder = scope.ServiceProvider.GetRequiredService<DbSeeder>();
+    await seeder.SeedAsync();
+
 }
 
 app.UseStaticFiles();
@@ -209,11 +194,6 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 // Test Email Service nur in Development and EmailSender is enabled.
-var emailTestEnabled = builder.Configuration.GetValue<bool>("EmailTest:Enabled");
-
-if (emailTestEnabled && emailSenderEnabled && app.Environment.IsDevelopment())
-{
-    app.MapDevEmailEndpoints(emailTestEnabled);
-}
+app.MapEmailEndpoints(emailSenderEnabled);
 
 app.Run();
