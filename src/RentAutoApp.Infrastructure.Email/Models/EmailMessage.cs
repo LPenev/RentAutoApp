@@ -11,4 +11,6 @@ public sealed class EmailMessage
     public string? ReplyTo { get; init; }
     public IReadOnlyCollection<string> Cc { get; init; } = Array.Empty<string>();
     public IReadOnlyCollection<string> Bcc { get; init; } = Array.Empty<string>();
+
+    public IReadOnlyCollection<EmailAttachment> Attachments { get; init; } = Array.Empty<EmailAttachment>();
 }

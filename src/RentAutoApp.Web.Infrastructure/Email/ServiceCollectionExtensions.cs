@@ -22,13 +22,21 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddEmailSender(this IServiceCollection services, IConfiguration configuration, bool emailSenderEnabled)
     {
+        // Bind  validate options (fail fast на старт)
         services
-                        .AddOptions<EmailSettings>()
-                        .Bind(configuration.GetSection("EmailSettings"))
-                        .Validate(s => !string.IsNullOrWhiteSpace(s.Smtp.From), "EmailSettings:Smtp:From is required.")
-                        .Validate(s => !string.IsNullOrWhiteSpace(s.Smtp.Host), "EmailSettings:Smtp:Host is required.")
-                        .Validate(s => s.Smtp.Port is > 0 and <= 65535, "EmailSettings:Smtp:Port must be between 1 and 65535.")
-                        .ValidateOnStart();
+        .AddOptions<EmailSettings>()
+        .Bind(configuration.GetSection("EmailSettings"))
+        .ValidateDataAnnotations()
+        .Validate(s =>
+        {
+            if (s is null || s.Smtp is null) return false;
+            if (string.IsNullOrWhiteSpace(s.Smtp.Host)) return false;
+            if (string.IsNullOrWhiteSpace(s.Smtp.From)) return false;
+            if (s.Smtp.EnableSsl && s.Smtp.Port == 25) return false; // типично SSL не е на 25
+            if (!string.IsNullOrWhiteSpace(s.Smtp.User) && string.IsNullOrWhiteSpace(s.Smtp.Password)) return false;
+            return true;
+        }, "Invalid EmailSettings configuration")
+    .ValidateOnStart();
 
         if (emailSenderEnabled)
         {

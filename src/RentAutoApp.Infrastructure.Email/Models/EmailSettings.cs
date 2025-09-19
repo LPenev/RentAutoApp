@@ -4,13 +4,15 @@ namespace RentAutoApp.Infrastructure.Email.Models;
 
 public class EmailSettings
 {
+    [Required]
     public SmtpOptions Smtp { get; set; } = new();
 }
 
 public class SmtpOptions
 {
-    [Required]
+    [Required, MinLength(1)]
     public string Host { get; set; } = default!;
+    [Range(1, 65535)]
     public int Port { get; set; }
     public bool EnableSsl { get; set; }
     [EmailAddress]

@@ -36,14 +36,31 @@ public sealed class SmtpEmailClient : IEmailClient
             )
         { IsBodyHtml = true };
 
+        // Reply-To
         if (!string.IsNullOrWhiteSpace(message.ReplyTo))
             mail.ReplyToList.Add(new MailAddress(message.ReplyTo));
 
-        foreach (var cc in message.Cc)
-            if (!string.IsNullOrWhiteSpace(cc)) mail.CC.Add(cc);
+        // CC
+        if (message.Cc is { Count: > 0 })
+            foreach (var cc in message.Cc)
+                if (!string.IsNullOrWhiteSpace(cc)) mail.CC.Add(cc);
 
+        // BCC
         foreach (var bcc in message.Bcc)
             if (!string.IsNullOrWhiteSpace(bcc)) mail.Bcc.Add(bcc);
+
+        // Attachments
+        if (message.Attachments is { Count: > 0 })
+        {
+            foreach (var att in message.Attachments)
+            {
+                var stream = new MemoryStream(att.Content, writable: false);
+                var attachment = att.ContentType is { Length: > 0 }
+                                    ? new Attachment(stream, att.FileName, att.ContentType)
+                                       : new Attachment(stream, att.FileName);
+                mail.Attachments.Add(attachment);
+            }
+        }
 
         _log.LogInformation("SMTP sending to {To} via {Host}:{Port} (SSL={Ssl})", message.To, _s.Host, _s.Port, _s.EnableSsl);
 
