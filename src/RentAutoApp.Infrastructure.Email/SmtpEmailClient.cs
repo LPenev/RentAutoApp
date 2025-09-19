@@ -46,7 +46,16 @@ public sealed class SmtpEmailClient : IEmailClient
             if (!string.IsNullOrWhiteSpace(bcc)) mail.Bcc.Add(bcc);
 
         _log.LogInformation("SMTP sending to {To} via {Host}:{Port} (SSL={Ssl})", message.To, _s.Host, _s.Port, _s.EnableSsl);
-        await client.SendMailAsync(mail);
+
+        var sendTask = client.SendMailAsync(mail);
+        var timeoutTask = Task.Delay(TimeSpan.FromSeconds(15), ct);
+        var completed = await Task.WhenAny(sendTask, timeoutTask);
+        if (completed != sendTask)
+        {
+            throw new TimeoutException($"SMTP send timed out to {_s.Host}:{_s.Port} (SSL={_s.EnableSsl}). Check port/TLS/credentials.");
+        }
+        await sendTask; // пропагира реалната Exception, ако има
+
         _log.LogInformation("SMTP sent to {To}", message.To);
     }
 }
