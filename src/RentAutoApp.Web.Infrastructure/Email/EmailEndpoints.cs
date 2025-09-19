@@ -30,11 +30,18 @@ namespace RentAutoApp.Web.Infrastructure.Email
                         return Results.BadRequest("No recipient configured for test email.");
                     }
 
-                    await svc.SendAsync(new EmailMessage { To = to!, Subject = opts.Subject, HtmlBody = opts.BodyHtml });
-                    return Results.Ok($"Sent to {to}");
+                    try
+                    {
+                        await svc.SendAsync(new EmailMessage { To = to!, Subject = opts.Subject, HtmlBody = opts.BodyHtml });
+                        return Results.Ok($"Sent to {to}");
+                    }
+                    catch (Exception ex)
+                    {
+                        return Results.Problem($"Failed to send to {to}: {ex.Message}");
+                    }
                 })
-        .WithTags("Dev")
-            .WithName("Dev_TestEmail");
+                .WithTags("Dev")
+                .WithName("Dev_TestEmail");
         }
     }
 }
