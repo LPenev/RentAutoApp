@@ -93,10 +93,20 @@ builder.Services.AddScoped<ISettingsService, SettingsService>();
 builder.Services.AddScoped<IAdminVehicleService, AdminVehicleService>();
 builder.Services.AddScoped<IAdminReservationService, AdminReservationService>();
 
-builder.Services.AddAntiforgery(options =>
+if (builder.Environment.IsDevelopment())
 {
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-});
+    builder.Services.AddAntiforgery(options =>
+    {
+        options.Cookie.SecurePolicy = CookieSecurePolicy.None;
+    });
+}
+else
+{
+    builder.Services.AddAntiforgery(options =>
+    {
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    });
+}
 
 builder.Services.AddControllersWithViews(options =>
 {
