@@ -16,7 +16,7 @@
 				<div class="card-body d-flex flex-column">
 					<h5 class="card-title">@car.Title</h5>
 					<p class="card-text text-muted mb-4">
-						От <strong>@car.PricePerDay лв.</strong> / ден
+						От <strong>@car.PricePerDay @T["Lv"]</strong> / @T["day"]
 					</p>
 					<a href="@Url.Action("Details", "Vehicle", new { id = car.Id })"
 					   class="btn btn-primary mt-auto">
