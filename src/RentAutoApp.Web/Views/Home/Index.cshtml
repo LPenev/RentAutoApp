@@ -1,20 +1,21 @@
-@{
-	ViewData["Title"] = "Начало";
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer T
+@{ 
+	ViewData["Title"] = T["Title"];
 }
 
 <!-- Search for Car -->
 <div class="hero-section">
-	<h2 class="mb-4 text-center">Намерете перфектния автомобил под наем</h2>
+	<h2 class="mb-4 text-center">@T["Hero.Heading"]</h2>
 	@await Component.InvokeAsync("CarSearch")
 </div>
 
 <!-- Featured Offers -->
 <div class="container mb-5">
-	<h3 class="text-center mb-4">Избрани оферти</h3>
+	<h3 class="text-center mb-4">@T["FeaturedOffers.Heading"]</h3>
 	@await Component.InvokeAsync("FeaturedCars", new { count = 3 })
 </div>
 
 <div class="my-5 p-4 bg-warning bg-opacity-75 rounded">
-	<h4 class="text-center">Специална оферта: Mercedes-Benz C-Class само за 79 лв./ден!</h4>
-	<p class="text-center mb-0">Само тази седмица! Лукс и комфорт на достъпна цена.</p>
+	<h4 class="text-center">@T["SpecialOffer.Heading"]</h4>
+	<p class="text-center mb-0">@T["SpecialOffer.Text"]</p>
 </div>

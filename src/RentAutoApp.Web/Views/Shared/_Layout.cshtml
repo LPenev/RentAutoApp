@@ -1,5 +1,8 @@
+@using System.Globalization
+@using RentAutoApp.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SharedResource> L
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,32 +11,80 @@
 	<link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
+
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
 			<div class="container">
-				<a class="navbar-brand" asp-controller="Home" asp-action="Index">
+				<a class="navbar-brand"
+				   asp-controller="Home"
+				   asp-action="Index"
+				   asp-route-culture="@CultureInfo.CurrentUICulture.Name">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-car-front" viewBox="0 0 16 16">
 						<path d="M4 9a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm8 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" />
 						<path fill-rule="evenodd" d="M2.35 3.087A2 2 0 0 1 4.19 2h7.62a2 2 0 0 1 1.84 1.087l.981 1.963A1.5 1.5 0 0 1 16 6.5v3a1.5 1.5 0 0 1-1 1.415V12a1 1 0 0 1-1 1h-.5a.5.5 0 0 1-.5-.5V12H3v.5a.5.5 0 0 1-.5.5H2a1 1 0 0 1-1-1v-1.085A1.5 1.5 0 0 1 0 9.5v-3a1.5 1.5 0 0 1 .37-.987l.98-1.963ZM4.19 3a1 1 0 0 0-.92.543L2.33 5h11.34l-.94-1.457A1 1 0 0 0 11.81 3H4.19ZM15 6.5a.5.5 0 0 0-.5-.5H1.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5H1v-1a1 1 0 1 1 2 0v1h10v-1a1 1 0 1 1 2 0v1h-.5a.5.5 0 0 0 .5-.5v-3Z" />
 					</svg>
 					RentAuto
 				</a>
+
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+
 				<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 					<ul class="navbar-nav align-items-center">
 						@if (User.IsInRole("Administrator"))
 						{
 							<li class="nav-item">
-								<a class="nav-link bg-black text-white" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Админ Панел</a>
+								<a class="nav-link bg-black text-white"
+								   asp-area="Admin"
+								   asp-controller="Dashboard"
+								   asp-action="Index"
+								   asp-route-culture="@CultureInfo.CurrentUICulture.Name">
+									@L["Nav.AdminPanel"]
+								</a>
 							</li>
 						}
-						<li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Начало</a></li>
-						<li class="nav-item"><a class="nav-link" asp-controller="Vehicle" asp-action="Index">Автомобили</a></li>
-						<li class="nav-item"><a class="nav-link" asp-controller="Contact" asp-action="Index">Контакти</a></li>
+
+						<li class="nav-item">
+							<a class="nav-link"
+							   asp-controller="Home"
+							   asp-action="Index"
+							   asp-route-culture="@CultureInfo.CurrentUICulture.Name">
+								@L["Nav.Home"]
+							</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link"
+							   asp-controller="Vehicle"
+							   asp-action="Index"
+							   asp-route-culture="@CultureInfo.CurrentUICulture.Name">
+								@L["Nav.Cars"]
+							</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link"
+							   asp-controller="Contact"
+							   asp-action="Index"
+							   asp-route-culture="@CultureInfo.CurrentUICulture.Name">
+								@L["Nav.Contact"]
+							</a>
+						</li>
 					</ul>
+
 					<partial name="_LoginPartial" />
+
+					<div class="dropdown ms-3">
+						<button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+							@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.ToUpper()
+						</button>
+						<ul class="dropdown-menu dropdown-menu-end">
+							<li><a class="dropdown-item" href="/bg/">@L["Nav.Lang.Bg"]</a></li>
+							<li><a class="dropdown-item" href="/en/">@L["Nav.Lang.En"]</a></li>
+							<li><a class="dropdown-item" href="/de/">@L["Nav.Lang.De"]</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</nav>
@@ -47,10 +98,10 @@
 
 	<footer class="mt-5 bg-light text-center py-3">
 		<div class="container">
-			<p>&copy; 2025 RentAuto. Всички права запазени.</p>
+			<p>@L["Footer.Copy"]</p>
 			<p>
-				<a href="/terms">Условия за ползване</a> |
-				<a href="privacy">Политика за поверителност</a>
+				<a asp-controller="Home" asp-action="Terms" asp-route-culture="@CultureInfo.CurrentUICulture.Name">@L["Footer.Terms"]</a> |
+				<a asp-controller="Home" asp-action="Privacy" asp-route-culture="@CultureInfo.CurrentUICulture.Name">@L["Footer.Privacy"]</a>
 			</p>
 		</div>
 	</footer>

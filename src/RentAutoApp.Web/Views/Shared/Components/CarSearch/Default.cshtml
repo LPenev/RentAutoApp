@@ -1,32 +1,33 @@
-﻿@using RentAutoApp.Web.ViewComponents;
-@model CarSearchFormViewModel
+﻿@model RentAutoApp.Web.ViewComponents.CarSearchFormViewModel
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer T
+
 
 <form method="get" asp-controller="Vehicle" asp-action="Search" class="row g-3">
 	<div class="col-md-4">
-		<label class="form-label">Локация</label>
+		<label class="form-label">@T["Search.Location"]</label>
 		<select asp-for="SelectedLocationId" asp-items="Model.Locations" class="form-select">
-			<option value="">-- Изберете --</option>
+			<option value="">-- @T["Search.Select"] --</option>
 		</select>
 	</div>
 
 	<div class="col-md-4">
-		<label class="form-label">Тип автомобил</label>
+		<label class="form-label">@T["Search.CarType"]</label>
 		<select asp-for="SelectedSubCategoryId" asp-items="Model.CarTypes" class="form-select">
-			<option value="">-- Всички --</option>
+			<option value="">-- @T["Search.All"] --</option>
 		</select>
 	</div>
 
 	<div class="col-md-2">
-		<label class="form-label">От дата</label>
+		<label class="form-label">@T["Search.StartDate"]</label>
 		<input asp-for="StartDate" type="date" class="form-control" />
 	</div>
 
 	<div class="col-md-2">
-		<label class="form-label">До дата</label>
+		<label class="form-label">@T["Search.EndDate"]</label>
 		<input asp-for="EndDate" type="date" class="form-control" />
 	</div>
 
 	<div class="col-12 text-end">
-		<button type="submit" class="btn btn-primary">Търси</button>
+		<button type="submit" class="btn btn-primary">@T["Search.Button"]</button>
 	</div>
 </form>

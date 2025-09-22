@@ -17,6 +17,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.17" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.17" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
   </ItemGroup>
@@ -26,6 +27,39 @@
     <ProjectReference Include="..\RentAutoApp.Services.Core\RentAutoApp.Services.Core.csproj" />
     <ProjectReference Include="..\RentAutoApp.Web.Infrastructure\RentAutoApp.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\RentAutoApp.Web.ViewModels\RentAutoApp.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\Users\lppen\Documents\C# Projekts\Projects\RentAutoApp\src\RentAutoApp.Web\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\Home\Index.de.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\Users\lppen\Documents\C# Projekts\Projects\RentAutoApp\src\RentAutoApp.Web\.editorconfig" />
+    <None Include="Resources\Views\Home\Index.de.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\Views\Home\Index.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Index.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Views\Home\Index.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Localization\" />
+    <Folder Include="Resources\Localization\" />
   </ItemGroup>
 
 </Project>

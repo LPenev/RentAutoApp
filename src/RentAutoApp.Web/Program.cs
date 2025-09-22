@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Localization.Routing;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using RentAutoApp.Data.Models;
 using RentAutoApp.Data.Seeding;
-using Microsoft.EntityFrameworkCore;
 using RentAutoApp.Services.Core;
 using RentAutoApp.Services.Core.Admin;
 using RentAutoApp.Services.Core.Admin.Contracts;
@@ -14,6 +17,7 @@ using RentAutoApp.Web.Features.UserPanel;
 using RentAutoApp.Web.Infrastructure;
 using RentAutoApp.Web.Infrastructure.Contracts;
 using RentAutoApp.Web.Infrastructure.Email;
+using System.Globalization;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,16 +32,40 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<RentAutoAppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
+// Localization
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services
+    .AddControllersWithViews()
+    .AddViewLocalization()
+    .AddDataAnnotationsLocalization();
+
+var supportedCultures = new[]
+{
+    new CultureInfo("bg"),
+    new CultureInfo("en"),
+    new CultureInfo("de")
+};
+
+builder.Services.Configure<RequestLocalizationOptions>(opts =>
+{
+    opts.DefaultRequestCulture = new RequestCulture("bg");
+    opts.SupportedCultures = supportedCultures;
+    opts.SupportedUICultures = supportedCultures;
+
+    // order directory of culture:
+    opts.RequestCultureProviders = new IRequestCultureProvider[]
+    {
+        new RouteDataRequestCultureProvider() { RouteDataStringKey = "culture", UIRouteDataStringKey = "culture" },
+        new QueryStringRequestCultureProvider(),
+        new CookieRequestCultureProvider()
+    };
+});
+
+//
 var emailSenderEnabled = builder.Configuration.GetValue<bool>("EmailSettings:EmailSenderEnabled");
 
 // disable or enable EmailSender into appsettings.json
 builder.Services.AddEmailSender(builder.Configuration, emailSenderEnabled);
-if (emailSenderEnabled && builder.Environment.IsDevelopment())
-{
-    builder.Services.AddEmailTestOptions(builder.Configuration);
-}
-
-// Test Email Service nur in Development and EmailSender is enabled.
 if (emailSenderEnabled && builder.Environment.IsDevelopment())
 {
     builder.Services.AddEmailTestOptions(builder.Configuration);
@@ -191,6 +219,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// localization
+var locOpts = app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>();
+app.UseRequestLocalization(locOpts.Value);
+
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -198,8 +230,17 @@ app.UseAuthorization();
 app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
 app.MapControllerRoute(
+    name: "localized",
+pattern: "{culture:regex(^(?:bg|en|de)$)}/{controller=Home}/{action=Index}/{id?}");
+
+// redirect root "/" to the default culture (currently "en")
+app.MapGet("/", (IOptions<RequestLocalizationOptions> opt) =>
+    Results.Redirect($"/{opt.Value.DefaultRequestCulture.Culture.TwoLetterISOLanguageName}/"));
+
+// fallback (optional) route without culture
+app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
 
