@@ -1,6 +1,31 @@
 @using System.Globalization
 @using RentAutoApp.Web
 @inject Microsoft.Extensions.Localization.IStringLocalizer<SharedResource> L
+
+@functions {
+	string SwitchCulture(string culture)
+	{
+		var path = Context.Request.Path.ToString();
+		var qs = Context.Request.QueryString.HasValue ? Context.Request.QueryString.Value : "";
+		var segments = path.Split('/', StringSplitOptions.RemoveEmptyEntries).ToList();
+
+		var supported = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+		{ "bg","en","de","bg-BG","en-US","de-DE" };
+
+		if (segments.Count == 0)
+		{
+			return "/" + culture + "/" + qs;
+		}
+
+		if (supported.Contains(segments[0]))
+			segments[0] = culture;
+		else
+			segments.Insert(0, culture);
+
+		return "/" + string.Join('/', segments) + qs;
+	}
+}
+
 <!DOCTYPE html>
 <html lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName">
 <head>
@@ -80,9 +105,9 @@
 							@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName.ToUpper()
 						</button>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="/bg/">@L["Nav.Lang.Bg"]</a></li>
-							<li><a class="dropdown-item" href="/en/">@L["Nav.Lang.En"]</a></li>
-							<li><a class="dropdown-item" href="/de/">@L["Nav.Lang.De"]</a></li>
+							<li><a class="dropdown-item" href="@SwitchCulture("bg")">@L["Nav.Lang.Bg"]</a></li>
+							<li><a class="dropdown-item" href="@SwitchCulture("en")">@L["Nav.Lang.En"]</a></li>
+							<li><a class="dropdown-item" href="@SwitchCulture("de")">@L["Nav.Lang.De"]</a></li>
 						</ul>
 					</div>
 				</div>
