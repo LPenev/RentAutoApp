@@ -1,54 +1,50 @@
-﻿@{
-	ViewData["Title"] = "Политика за поверителност";
-	var returnUrl = Context.Request.Headers["Referer"].ToString();
-	if (string.IsNullOrWhiteSpace(returnUrl))
-	{
-		returnUrl = Url.Action("Index", "Home");
-	}
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer T
+
+@{
+    ViewData["Title"] = T["Privacy.Title"];
+    var returnUrl = Context.Request.Headers["Referer"].ToString();
+    if (string.IsNullOrWhiteSpace(returnUrl))
+    {
+        returnUrl = Url.Action("Index", "Home");
+    }
 }
 
 <div class="container my-5">
-	<h1 class="mb-4">Политика за поверителност</h1>
+    <h1 class="mb-4">@T["Privacy.Heading"]</h1>
 
-	<p>Настоящата Политика за поверителност описва как „RentAuto“ събира, използва и защитава личните данни на своите потребители.</p>
+    <p>@T["Privacy.Intro"]</p>
 
-	<h4>1. Събирани данни</h4>
-	<ul>
-		<li>Име, фамилия и ЕГН (само когато е необходимо за договор).</li>
-		<li>Данни от шофьорска книжка и лична карта.</li>
-		<li>Телефон, имейл и адрес за контакт.</li>
-		<li>Данни за извършени резервации и наемани автомобили.</li>
-	</ul>
+    <h4>@T["Privacy.S1.Title"]</h4>
+    <ul>
+        <li>@T["Privacy.S1.Item1"]</li>
+        <li>@T["Privacy.S1.Item2"]</li>
+        <li>@T["Privacy.S1.Item3"]</li>
+    </ul>
 
-	<h4>2. Цели на обработка</h4>
-	<ul>
-		<li>Осигуряване на резервация и наем на автомобил.</li>
-		<li>Изготвяне на договори и фактури.</li>
-		<li>Контакт с клиента при въпроси или проблеми.</li>
-	</ul>
+    <h4>@T["Privacy.S2.Title"]</h4>
+    <p>@T["Privacy.S2.Text"]</p>
 
-	<h4>3. Съхранение на данните</h4>
-	<ul>
-		<li>Данните се съхраняват в съответствие с изискванията на приложимото законодателство.</li>
-		<li>Данните се изтриват или анонимизират след изтичане на законово установените срокове.</li>
-	</ul>
+    <h4>@T["Privacy.S3.Title"]</h4>
+    <p>@T["Privacy.S3.Text"]</p>
 
-	<h4>4. Споделяне на данни</h4>
-	<ul>
-		<li>Данни могат да бъдат предоставяни на държавни органи само в рамките на закона.</li>
-		<li>Не предоставяме лични данни на трети страни за маркетингови цели без изричното Ви съгласие.</li>
-	</ul>
+    <h4>@T["Privacy.S4.Title"]</h4>
+    <ul>
+        <li>@T["Privacy.S4.Item1"]</li>
+        <li>@T["Privacy.S4.Item2"]</li>
+        <li>@T["Privacy.S4.Item3"]</li>
+    </ul>
 
-	<h4>5. Права на потребителите</h4>
-	<ul>
-		<li>Право на достъп до личните Ви данни.</li>
-		<li>Право на коригиране или изтриване.</li>
-		<li>Право на възражение срещу обработка.</li>
-	</ul>
-	
-	<div class="mt-5">
-		<a href="@returnUrl" class="btn btn-outline-secondary">← Обратно</a>
-	</div>
+    <h4>@T["Privacy.S5.Title"]</h4>
+    <ul>
+        <li>@T["Privacy.S5.Item1"]</li>
+        <li>@T["Privacy.S5.Item2"]</li>
+        <li>@T["Privacy.S5.Item3"]</li>
+    </ul>
 
-	<p class="mt-4"><strong>Последна актуализация:</strong> 13.08.2025</p>
+    <div class="mt-5">
+        <a href="@returnUrl" class="btn btn-outline-secondary">← @T["Privacy.Back"]</a>
+    </div>
+
+    <p class="mt-4"><strong>@T["Privacy.LastUpdated.Label"]</strong> @T["Privacy.LastUpdated.Value"]</p>
 </div>
