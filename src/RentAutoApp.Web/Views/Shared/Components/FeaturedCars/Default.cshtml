@@ -1,5 +1,6 @@
 ﻿@using RentAutoApp.Web.ViewModels.Vehicles
 @model IEnumerable<FeaturedCarViewModel>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer T
 
 <div class="row g-4">
 	@foreach (var car in Model)
@@ -19,7 +20,7 @@
 					</p>
 					<a href="@Url.Action("Details", "Vehicle", new { id = car.Id })"
 					   class="btn btn-primary mt-auto">
-						Виж повече
+						@T["Details"]
 					</a>
 				</div>
 			</div>
