@@ -19,6 +19,7 @@ using RentAutoApp.Web.Infrastructure.Contracts;
 using RentAutoApp.Web.Infrastructure.Email;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using RentAutoApp.Web;
 using static RentAutoApp.GCommon.Constants;
 
 
@@ -39,7 +40,12 @@ builder.Services.AddLocalization(options => options.ResourcesPath = "Resources")
 builder.Services
     .AddControllersWithViews()
     .AddViewLocalization()
-    .AddDataAnnotationsLocalization();
+    .AddDataAnnotationsLocalization(o =>
+    {
+        //read DataAnnotations from SharedResource.*.resx
+        o.DataAnnotationLocalizerProvider = (type, factory) =>
+            factory.Create(typeof(SharedResource));
+    });
 
 var supportedCultures = new[]
 {
