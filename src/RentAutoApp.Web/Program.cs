@@ -18,6 +18,7 @@ using RentAutoApp.Web.Infrastructure;
 using RentAutoApp.Web.Infrastructure.Contracts;
 using RentAutoApp.Web.Infrastructure.Email;
 using System.Globalization;
+using static RentAutoApp.GCommon.Constants;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,14 +42,14 @@ builder.Services
 
 var supportedCultures = new[]
 {
-    new CultureInfo("bg"),
-    new CultureInfo("en"),
-    new CultureInfo("de")
+    new CultureInfo(CultureBulgarian),
+    new CultureInfo(CultureEnglish),
+    new CultureInfo(CultureGerman)
 };
 
 builder.Services.Configure<RequestLocalizationOptions>(opts =>
 {
-    opts.DefaultRequestCulture = new RequestCulture("en");
+    opts.DefaultRequestCulture = new RequestCulture(DefaultCulture);
     opts.SupportedCultures = supportedCultures;
     opts.SupportedUICultures = supportedCultures;
 

@@ -16,5 +16,11 @@ public class Constants
         public const string LabelNewRequestFromSite = "Ново запитване от сайта";
         public const string LabelContactOK = "Благодарим за съобщението! Ще се свържем с вас скоро.";
     }
+
+    public const string CultureBulgarian = "bg";
+    public const string CultureEnglish = "en";
+    public const string CultureGerman = "de";
+
+    public const string DefaultCulture = CultureEnglish;
 }
 
