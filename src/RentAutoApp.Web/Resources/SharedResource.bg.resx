@@ -213,4 +213,13 @@
   <data name="Nav.Register" xml:space="preserve">
     <value>Регистрирай се</value>
   </data>
+  <data name="Validation.Phone" xml:space="preserve">
+    <value>Невалиден телефонен номер.</value>
+  </data>
+  <data name="Validation.StringLengthMax" xml:space="preserve">
+    <value>Полето {0} трябва да е най-много {1} символа.</value>
+  </data>
+  <data name="Validation.StringLengthRange" xml:space="preserve">
+    <value>Полето {0} трябва да е между {2} и {1} символа.</value>
+  </data>
 </root>

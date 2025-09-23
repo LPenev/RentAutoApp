@@ -4,24 +4,24 @@ namespace RentAutoApp.Web.ViewModels.Contact;
 
 public class ContactFormViewModel
 {
-    [Required(ErrorMessage = "Име е задължително")]
-    [StringLength(80, ErrorMessage = "Името е твърде дълго")]
+    [Required(ErrorMessage = "Validation.Required")]
+    [StringLength(80, ErrorMessage = "Validation.StringLengthMax")]
     public string Name { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "Email е задължителен")]
-    [EmailAddress(ErrorMessage = "Невалиден email")]
-    [StringLength(256)]
+    [Required(ErrorMessage = "Validation.Required")]
+    [EmailAddress(ErrorMessage = "Validation.Email")]
+    [StringLength(256, ErrorMessage = "Validation.StringLengthMax")]
     public string Email { get; set; } = string.Empty;
 
-    [Phone(ErrorMessage = "Невалиден телефон")]
-    [StringLength(32)]
+    [Phone(ErrorMessage = "Validation.Phone")]
+    [StringLength(32, ErrorMessage = "Validation.StringLengthMax")]
     public string? Phone { get; set; }
 
-    [StringLength(120)]
+    [StringLength(120, ErrorMessage = "Validation.StringLengthMax")]
     public string? Subject { get; set; }
 
-    [Required(ErrorMessage = "Съобщението е задължително")]
-    [StringLength(4000, MinimumLength = 5, ErrorMessage = "Съобщението е твърде кратко")]
+    [Required(ErrorMessage = "Validation.Required")]
+    [StringLength(4000, MinimumLength = 5, ErrorMessage = "Validation.StringLengthRange")]
     public string Message { get; set; } = string.Empty;
 }
 

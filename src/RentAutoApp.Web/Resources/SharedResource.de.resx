@@ -213,4 +213,13 @@
   <data name="Nav.Register" xml:space="preserve">
     <value>Registrieren</value>
   </data>
+  <data name="Validation.Phone" xml:space="preserve">
+    <value>Ungültige Telefonnummer.</value>
+  </data>
+  <data name="Validation.StringLengthMax" xml:space="preserve">
+    <value>{0} darf höchstens {1} Zeichen lang sein.</value>
+  </data>
+  <data name="Validation.StringLengthRange" xml:space="preserve">
+    <value>{0} muss zwischen {2} und {1} Zeichen lang sein.</value>
+  </data>
 </root>
