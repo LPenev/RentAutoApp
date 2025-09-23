@@ -18,6 +18,7 @@ using RentAutoApp.Web.Infrastructure;
 using RentAutoApp.Web.Infrastructure.Contracts;
 using RentAutoApp.Web.Infrastructure.Email;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using static RentAutoApp.GCommon.Constants;
 
 
@@ -230,9 +231,15 @@ app.UseAuthorization();
 // Custom pages for status codes (404, 403, 500, ...)
 app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
+// Set MapControllerRoute
+var cultureAlternation = string.Join("|",
+     SupportedCultures.Select(Regex.Escape));
+var localizedPattern =
+    $"{{culture:regex(^(?:{cultureAlternation})$)}}/{{controller=Home}}/{{action=Index}}/{{id?}}";
+
 app.MapControllerRoute(
     name: "localized",
-pattern: "{culture:regex(^(?:bg|en|de)$)}/{controller=Home}/{action=Index}/{id?}");
+    pattern: localizedPattern);
 
 // redirect root "/" to the default culture (currently "en")
 app.MapGet("/", (IOptions<RequestLocalizationOptions> opt) =>
