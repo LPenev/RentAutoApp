@@ -48,7 +48,7 @@ var supportedCultures = new[]
 
 builder.Services.Configure<RequestLocalizationOptions>(opts =>
 {
-    opts.DefaultRequestCulture = new RequestCulture("bg");
+    opts.DefaultRequestCulture = new RequestCulture("en");
     opts.SupportedCultures = supportedCultures;
     opts.SupportedUICultures = supportedCultures;
 
