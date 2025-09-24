@@ -202,7 +202,7 @@
     <value>Моят профил</value>
   </data>
   <data name="Nav.HelloUser" xml:space="preserve">
-    <value>Здравей {0}!</value>
+    <value>Здравей, {0}!</value>
   </data>
   <data name="Nav.Logout" xml:space="preserve">
     <value>Изход</value>
@@ -287,5 +287,26 @@
   </data>
   <data name="Label.NoCarsFoundAccordingToSpecifiedCriteria" xml:space="preserve">
     <value>Няма намерени автомобили по зададените критерии.</value>
+  </data>
+  <data name="Label.LogIn" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="Label.RememberMe" xml:space="preserve">
+    <value>Запомни ме</value>
+  </data>
+  <data name="Label.CreateNewAccount" xml:space="preserve">
+    <value>Създайте нов акаунт</value>
+  </data>
+  <data name="Btn.Register" xml:space="preserve">
+    <value>Регистрирай</value>
+  </data>
+  <data name="Label.FirstName" xml:space="preserve">
+    <value>Собствено име</value>
+  </data>
+  <data name="Label.LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="Label.ConfirmPassword" xml:space="preserve">
+    <value>Потвърдете паролата</value>
   </data>
 </root>

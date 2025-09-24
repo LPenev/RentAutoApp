@@ -202,7 +202,7 @@
     <value>Mein Profil</value>
   </data>
   <data name="Nav.HelloUser" xml:space="preserve">
-    <value>Hello {0}!</value>
+    <value>Hello, {0}!</value>
   </data>
   <data name="Nav.Logout" xml:space="preserve">
     <value>Abmelden</value>
@@ -287,5 +287,26 @@
   </data>
   <data name="Label.NoCarsFoundAccordingToSpecifiedCriteria" xml:space="preserve">
     <value>Es wurden keine Autos entsprechend den angegebenen Kriterien gefunden.</value>
+  </data>
+  <data name="Label.LogIn" xml:space="preserve">
+    <value>Einloggen</value>
+  </data>
+  <data name="Label.RememberMe" xml:space="preserve">
+    <value>Angemeldet bleiben</value>
+  </data>
+  <data name="Label.CreateNewAccount" xml:space="preserve">
+    <value>Erstellen Sie ein neues Konto</value>
+  </data>
+  <data name="Btn.Register" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="Label.FirstName" xml:space="preserve">
+    <value>Vorname</value>
+  </data>
+  <data name="Label.LastName" xml:space="preserve">
+    <value>Nachname</value>
+  </data>
+  <data name="Label.ConfirmPassword" xml:space="preserve">
+    <value>Bestätigen Sie das Passwort</value>
   </data>
 </root>

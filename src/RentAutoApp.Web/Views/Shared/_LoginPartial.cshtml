@@ -1,8 +1,8 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Identity
 @using RentAutoApp.Data.Models
 @using RentAutoApp.Web
 @inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
 @inject Microsoft.Extensions.Localization.IStringLocalizer<SharedResource> L
 
 
@@ -11,31 +11,35 @@
 	{
 		<li class="nav-item">
 			<a class="nav-link"
-			   asp-controller="Reservation"
+               asp-controller="Reservation"
+               asp-route-culture="@CultureInfo.CurrentUICulture.Name"
 			   asp-action="Index">@L["Nav.Reservations"]</a>
 		</li>
 
 		<li class="nav-item">
 			<a class="nav-link"
 			   asp-area="User"
-			   asp-controller="Profile"
+               asp-controller="Profile"
+               asp-route-culture="@CultureInfo.CurrentUICulture.Name"
 			   asp-action="Index">@L["Nav.Profile"]</a>
 		</li>
 
-		<li class="nav-item">
-			<a class="nav-link"
-			   asp-area="User"
-			   asp-controller="Profile"
-			   asp-action="Index">
-				@string.Format(L["Nav.HelloUser"], User.Identity?.Name)
-			</a>
-		</li>
+@* 		<li class="nav-item">
+            <a class="nav-link"
+               asp-area="User"
+               asp-controller="Profile"
+               asp-action="Index"
+               asp-route-culture="@CultureInfo.CurrentUICulture.Name">
+                @string.Format(L["Nav.HelloUser"], User.Identity?.Name)
+            </a>
+		</li> *@
 
 		<li class="nav-item">
 			<form class="form-inline"
 				  asp-area="Identity"
 				  asp-page="/Account/Logout"
-				  asp-route-returnUrl="@Url.Action("Index","Home", new { area = "" })"
+                  asp-route-returnUrl="@Url.Action("Index","Home", new { area = "" })"
+                  asp-route-culture="@CultureInfo.CurrentUICulture.Name"
 				  method="post">
 				@Html.AntiForgeryToken()
 				<button type="submit" class="nav-link btn btn-link">@L["Nav.Logout"]</button>
@@ -45,10 +49,11 @@
 	else
 	{
 		<li class="nav-item">
-			<a class="nav-link" asp-area="Identity" asp-page="/Account/Login">@L["Nav.Login"]</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" asp-area="Identity" asp-page="/Account/Register">@L["Nav.Register"]</a>
+            <a class="nav-link" 
+               asp-area="Identity" 
+               asp-page="/Account/Login"
+               asp-route-culture="@CultureInfo.CurrentUICulture.Name"
+               >@L["Nav.Login"]</a>
 		</li>
 	}
 </ul>

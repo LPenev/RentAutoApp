@@ -1,45 +1,52 @@
 ﻿@page
+@using RentAutoApp.Web
 @model LoginModel
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SharedResource> L
 
 @{
-    ViewData["Title"] = "Вход";
+	ViewData["Title"] = @L["Label.LogIn"];
 }
 
 <h1>@ViewData["Title"]</h1>
 <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
     <div class="col-md-4">
         <section>
-            <form id="account" method="post">
+			<form id="account" asp-route-culture="@(RouteData.Values["culture"]?.ToString())" method="post">
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div class="form-floating mb-3">
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                    <label asp-for="Input.Email" class="form-label">Имейл</label>
+                    <label asp-for="Input.Email" class="form-label">@L["Label.Email"]</label>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="form-floating mb-3">
                     <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                    <label asp-for="Input.Password" class="form-label">Парола</label>
+                    <label asp-for="Input.Password" class="form-label">@L["Label.Password"]</label>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
                 <div class="checkbox mb-3">
                     <label asp-for="Input.RememberMe" class="form-label">
                         <input class="form-check-input" asp-for="Input.RememberMe" />
-                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        @L["Label.RememberMe"]
                     </label>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">@L["Label.LogIn"]</button>
                 </div>
                 <div>
-	                @* <p class="mt-4">
-                        <a id="forgot-password" asp-page="./ForgotPassword">Забравена парола?</a>
+                    @* <p class="mt-4">
+                        <a id="forgot-password" asp-page="./ForgotPassword" 
+						    asp-route-culture="@(RouteData.Values["culture"]?.ToString())">Забравена парола?</a>
                     </p> *@
+					<p class="d-flex justify-content-center align-items-center pt-2">
+                        <a asp-page="./Register" 
+                           asp-route-returnUrl="@Model.ReturnUrl"
+						   asp-route-culture="@(RouteData.Values["culture"]?.ToString())">@L["Label.CreateNewAccount"]</a>
+                    </p>
                     @* <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Създай нов акаунт</a>
-                    </p> *@
-                    @* <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Изпрати отново потвърждение по имейл</a>
+                        <a id="resend-confirmation" 
+						   asp-page="./ResendEmailConfirmation"
+						   asp-route-culture="@(RouteData.Values["culture"]?.ToString())">Изпрати отново потвърждение по имейл</a>
                     </p> *@
                 </div>
             </form>

@@ -36,7 +36,7 @@ internal sealed class CarSearchFormViewModel
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
 
-    public IEnumerable<SelectListItem> Locations { get; set; }
-    public IEnumerable<SelectListItem> CarTypes { get; set; }
+    public required IEnumerable<SelectListItem> Locations { get; set; }
+    public required IEnumerable<SelectListItem> CarTypes { get; set; }
 }
 

@@ -19,6 +19,7 @@ using RentAutoApp.Web.Infrastructure.Contracts;
 using RentAutoApp.Web.Infrastructure.Email;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using RentAutoApp.Web;
 using static RentAutoApp.GCommon.Constants;
 
@@ -98,9 +99,45 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     options.SlidingExpiration = true;
+
+    options.Events = new CookieAuthenticationEvents
+    {
+        OnRedirectToLogin = rtl =>
+        {
+            var culture = rtl.HttpContext.Features
+                .Get<IRequestCultureFeature>()?
+                .RequestCulture.UICulture.TwoLetterISOLanguageName ?? DefaultCulture;
+
+            // current URL als returnUrl / текущия URL като returnUrl
+            var returnUrl = Uri.EscapeDataString(rtl.Request.Path + rtl.Request.QueryString);
+            rtl.Response.Redirect($"/{culture}/identity/account/login?returnUrl={returnUrl}");
+            return Task.CompletedTask;
+        },
+        OnRedirectToAccessDenied = rtad =>
+        {
+            var culture = rtad.HttpContext.Features
+                .Get<IRequestCultureFeature>()?
+                .RequestCulture.UICulture.TwoLetterISOLanguageName ?? DefaultCulture;
+
+            rtad.Response.Redirect($"/{culture}/identity/account/accessdenied");
+            return Task.CompletedTask;
+        }
+    };
 });
 
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages().AddRazorPagesOptions(o =>
+{
+    // Identity (Area) pages
+    o.Conventions.AddAreaPageRoute("Identity", "/Account/Login",
+        "{culture}/identity/account/login");
+    o.Conventions.AddAreaPageRoute("Identity", "/Account/Register",
+        "{culture}/identity/account/register");
+    o.Conventions.AddAreaPageRoute("Identity", "/Account/AccessDenied",
+        "{culture}/identity/account/accessdenied");
+
+    // Home page
+    o.Conventions.AddPageRoute("/Index", "{culture}/");
+}); ;
 
 builder.Services.AddRouting(o => o.LowercaseUrls = true);
 
