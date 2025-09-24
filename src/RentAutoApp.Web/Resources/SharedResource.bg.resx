@@ -225,13 +225,67 @@
   <data name="Currency.BGN" xml:space="preserve">
     <value>лв.</value>
   </data>
-  <data name="Day" xml:space="preserve">
+  <data name="Label.Day" xml:space="preserve">
     <value>ден</value>
   </data>
   <data name="Btn.Details" xml:space="preserve">
     <value>подробности</value>
   </data>
-  <data name="From" xml:space="preserve">
+  <data name="Label.From" xml:space="preserve">
     <value>От</value>
+  </data>
+  <data name="Label.Price" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="Btn.Back" xml:space="preserve">
+    <value>Обратно</value>
+  </data>
+  <data name="Btn.Booking" xml:space="preserve">
+    <value>Резервирай</value>
+  </data>
+  <data name="Label.Vehicle.IsAvailable" xml:space="preserve">
+    <value>Налична</value>
+  </data>
+  <data name="Label.NoCarsToDisplay" xml:space="preserve">
+    <value>Няма автомобили за показване.</value>
+  </data>
+  <data name="Label.Vehicle.NotAvailable" xml:space="preserve">
+    <value>Не е налична</value>
+  </data>
+  <data name="Label.Vehicle.NotAvailableForRent" xml:space="preserve">
+    <value>Не е налична под наем</value>
+  </data>
+  <data name="Label.BrandModel" xml:space="preserve">
+    <value>Марка/Модел</value>
+  </data>
+  <data name="Label.Year" xml:space="preserve">
+    <value>Година</value>
+  </data>
+  <data name="Label.Transmission" xml:space="preserve">
+    <value>Скоростна кутия</value>
+  </data>
+  <data name="Label.Fuel" xml:space="preserve">
+    <value>Гориво</value>
+  </data>
+  <data name="Label.NumberOfSeats" xml:space="preserve">
+    <value>Брой места</value>
+  </data>
+  <data name="Label.NumberOfDoors" xml:space="preserve">
+    <value>Брой врати</value>
+  </data>
+  <data name="Btn.Next" xml:space="preserve">
+    <value>Следваща</value>
+  </data>
+  <data name="Btn.Previous" xml:space="preserve">
+    <value>Предишна</value>
+  </data>
+  <data name="Label.SearchResults" xml:space="preserve">
+    <value>Резултати от търсенето</value>
+  </data>
+  <data name="Label.ShowingAvailableCarsForPeriod" xml:space="preserve">
+    <value>Показват се налични автомобили за периода</value>
+  </data>
+  <data name="Label.NoCarsFoundAccordingToSpecifiedCriteria" xml:space="preserve">
+    <value>Няма намерени автомобили по зададените критерии.</value>
   </data>
 </root>

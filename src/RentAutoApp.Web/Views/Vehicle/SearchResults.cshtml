@@ -1,25 +1,26 @@
-﻿@using RentAutoApp.Web.ViewModels.Vehicles
-@using static RentAutoApp.GCommon.Constants.Vehicle;
+﻿@using RentAutoApp.Web
+@using RentAutoApp.Web.ViewModels.Vehicles
 @model List<VehicleListItemViewModel>
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SharedResource> L
 @{
-	ViewData["Title"] = "Резултати от търсенето";
+	ViewData["Title"] = @L["Label.SearchResults"];
 	var sd = ViewBag.StartDate as DateTime?;
 	var ed = ViewBag.EndDate as DateTime?;
 }
 
-<h2 class="mb-3">Резултати от търсенето</h2>
+<h2 class="mb-3">@L["Label.SearchResults"]</h2>
 
 @if (sd.HasValue && ed.HasValue)
 {
 	<p class="text-muted">
-		Показват се налични автомобили за периода
+		@L["Label.ShowingAvailableCarsForPeriod"]
 		<strong>@sd.Value.ToString("dd.MM.yyyy")</strong> – <strong>@ed.Value.ToString("dd.MM.yyyy")</strong>.
 	</p>
 }
 
 @if (!Model.Any())
 {
-	<div class="alert alert-info">Няма намерени автомобили по зададените критерии.</div>
+	<div class="alert alert-info">@L["Label.NoCarsFoundAccordingToSpecifiedCriteria"]</div>
 }
 else
 {
@@ -31,8 +32,8 @@ else
 					<img src="@car.ImageUrl" class="card-img-top" alt="@car.Title" style="height:200px; object-fit:cover;" />
 					<div class="card-body d-flex flex-column">
 						<h5 class="card-title">@car.Title</h5>
-						<p class="text-muted">Цена: @car.PricePerDay лв/ден</p>
-						<a asp-action="Details" asp-route-id="@car.Id" class="btn btn-primary mt-auto">Виж детайли</a>
+						<p class="text-muted">@L["Label.Price"] @car.PricePerDay @L["Currency.BGN"]/@L["Label.Day"]</p>
+						<a asp-action="Details" asp-route-id="@car.Id" class="btn btn-primary mt-auto">@L["Btn.Details"]</a>
 					</div>
 				</div>
 			</div>
@@ -40,4 +41,4 @@ else
 	</div>
 }
 
-<a class="btn btn-outline-secondary" asp-action="Index" asp-controller="Home">← @LabelBack</a>
+<a class="btn btn-outline-secondary" asp-action="Index" asp-controller="Home">← @L["Btn.Back"]</a>

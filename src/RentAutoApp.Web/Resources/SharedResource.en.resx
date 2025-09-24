@@ -225,13 +225,67 @@
   <data name="Currency.BGN" xml:space="preserve">
     <value>BGN</value>
   </data>
-  <data name="Day" xml:space="preserve">
+  <data name="Label.Day" xml:space="preserve">
     <value>day</value>
   </data>
   <data name="Btn.Details" xml:space="preserve">
     <value>Details</value>
   </data>
-  <data name="From" xml:space="preserve">
+  <data name="Label.From" xml:space="preserve">
     <value>From</value>
+  </data>
+  <data name="Label.Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Btn.Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Btn.Booking" xml:space="preserve">
+    <value>Booking</value>
+  </data>
+  <data name="Label.Vehicle.IsAvailable" xml:space="preserve">
+    <value>Available</value>
+  </data>
+  <data name="Label.NoCarsToDisplay" xml:space="preserve">
+    <value>No cars to display.</value>
+  </data>
+  <data name="Label.Vehicle.NotAvailable" xml:space="preserve">
+    <value>Not available</value>
+  </data>
+  <data name="Label.Vehicle.NotAvailableForRent" xml:space="preserve">
+    <value>Not available for rent</value>
+  </data>
+  <data name="Label.BrandModel" xml:space="preserve">
+    <value>Brand/Model</value>
+  </data>
+  <data name="Label.Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="Label.Transmission" xml:space="preserve">
+    <value>Transmission</value>
+  </data>
+  <data name="Label.Fuel" xml:space="preserve">
+    <value>Fuel</value>
+  </data>
+  <data name="Label.NumberOfSeats" xml:space="preserve">
+    <value>Number of seats</value>
+  </data>
+  <data name="Label.NumberOfDoors" xml:space="preserve">
+    <value>Number of doors</value>
+  </data>
+  <data name="Btn.Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Btn.Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="Label.SearchResults" xml:space="preserve">
+    <value>Search results</value>
+  </data>
+  <data name="Label.ShowingAvailableCarsForPeriod" xml:space="preserve">
+    <value>Showing available cars for the period</value>
+  </data>
+  <data name="Label.NoCarsFoundAccordingToSpecifiedCriteria" xml:space="preserve">
+    <value>No cars found according to the specified criteria.</value>
   </data>
 </root>

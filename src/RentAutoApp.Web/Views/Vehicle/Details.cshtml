@@ -1,14 +1,17 @@
-﻿@using RentAutoApp.Web.ViewModels.Vehicles;
-@using static RentAutoApp.GCommon.Constants.Vehicle;
+﻿@using System.Globalization
+@using RentAutoApp.Web
+@using RentAutoApp.Web.ViewModels.Vehicles;
 @model VehicleDetailsViewModel
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SharedResource> L
 @{
     ViewData["Title"] = Model.Title;
     var images = (Model.ImageUrls?.Count > 0 ? Model.ImageUrls : new[] { "/images/placeholder.jpg" });
     
     var returnUrl = Context.Request.Headers["Referer"].ToString();
-    if (string.IsNullOrWhiteSpace(returnUrl))
+	if (string.IsNullOrWhiteSpace(returnUrl) || !Url.IsLocalUrl(returnUrl) || returnUrl.Contains("details"))
     {
-	    returnUrl = Url.Action("Index", "Vehicle");
+        var culture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+		returnUrl = Url.Action("Index", "Vehicle", new { culture });
     }
 }
 
@@ -30,11 +33,11 @@
 	            {
 		            <button class="carousel-control-prev" type="button" data-bs-target="#vehicleGallery" data-bs-slide="prev">
 			            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			            <span class="visually-hidden">Назад</span>
+			            <span class="visually-hidden">@L["Btn.Previous"]</span>
 		            </button>
 		            <button class="carousel-control-next" type="button" data-bs-target="#vehicleGallery" data-bs-slide="next">
 			            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			            <span class="visually-hidden">Напред</span>
+						<span class="visually-hidden">@L["Btn.Next"]</span>
 		            </button>
 	            }
             </div>
@@ -45,26 +48,26 @@
             <div class="d-flex align-items-center mb-2">
                 <h1 class="h3 mb-0">@Model.Title</h1>
                 <span class="ms-3 badge @(Model.IsAvailable ? "bg-success" : "bg-secondary")">
-                    @(Model.IsAvailable? VehicleIsAvailable : VehicleNotAvailable)
+					@(Model.IsAvailable? @L["Label.Vehicle.IsAvailable"] : @L["Label.Vehicle.NotAvailable"])
                 </span>
             </div>
 
             <div class="fs-5 mb-3">
-                <strong>@Model.PricePerDay</strong> лв/ден
+                @L["Label.Price"] <strong>@Model.PricePerDay</strong> @L["Currency.BGN"]/@L["Label.Day"]
             </div>
 
             <dl class="row small">
-                <dt class="col-6">Марка/Модел</dt>
+				<dt class="col-6">@L["Label.BrandModel"]</dt>
                 <dd class="col-6">@Model.Brand @Model.Model</dd>
-                <dt class="col-6">Година</dt>
+				<dt class="col-6">@L["Label.Year"]</dt>
                 <dd class="col-6">@Model.Year</dd>
-                <dt class="col-6">Скорости</dt>
+				<dt class="col-6">@L["Label.Transmission"]</dt>
                 <dd class="col-6">@Model.Transmission</dd>
-                <dt class="col-6">Гориво</dt>
+				<dt class="col-6">@L["Label.Fuel"]</dt>
                 <dd class="col-6">@Model.Fuel</dd>
-                <dt class="col-6">Брой места</dt>
+				<dt class="col-6">@L["Label.NumberOfSeats"]</dt>
                 <dd class="col-6">@Model.Seats</dd>
-                <dt class="col-6">Врати</dt>
+				<dt class="col-6">@L["Label.NumberOfDoors"]</dt>
                 <dd class="col-6">@Model.Doors</dd>
             </dl>
 
@@ -73,14 +76,14 @@
                 {
                     <a class="btn btn-primary btn-lg"
                        href="@Url.Action("Create", "Reservation", new { vehicleId = Model.Id })">
-                        Резервирай
+                        @L["Btn.Booking"]
                     </a>
                 }
                 else
                 {
-                    <button class="btn btn-secondary btn-lg" disabled>@NotAvailableForRent</button>
+					<button class="btn btn-secondary btn-lg" disabled>@L["Label.Vehicle.NotAvailableForRent"]</button>
                 }
-                <a class="btn btn-outline-secondary" href="@returnUrl">← @LabelBack</a>
+                <a class="btn btn-outline-secondary" href="@returnUrl">← @L["Btn.Back"]</a>
             </div>
         </div>
     </div>

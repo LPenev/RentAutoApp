@@ -1,14 +1,15 @@
 ﻿@using RentAutoApp.Web.ViewModels.Vehicles
 @model List<VehicleListItemViewModel>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer T
 
 @{
-	ViewData["Title"] = "Автомобили";
+	ViewData["Title"] = T["Cars"];
 }
 
-<h1 class="mb-3">Автомобили</h1>
+<h1 class="mb-3">@T["Cars"]</h1>
 
-<!-- Търсачка -->
+<!-- Search engine / Търсачка -->
 @await Component.InvokeAsync("CarSearch")
 
-<!-- Резултати (всички автомобили по подразбиране) -->
+<!-- Results (all cars by default)/ Резултати (всички автомобили по подразбиране) -->
 <partial name="_VehicleGrid" model="Model" />
