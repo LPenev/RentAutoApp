@@ -1,6 +1,7 @@
-﻿@using RentAutoApp.Web.ViewModels.Vehicles
+﻿@using RentAutoApp.Web
+@using RentAutoApp.Web.ViewModels.Vehicles
 @model IEnumerable<FeaturedCarViewModel>
-@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer T
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SharedResource> L
 
 <div class="row g-4">
 	@foreach (var car in Model)
@@ -16,11 +17,11 @@
 				<div class="card-body d-flex flex-column">
 					<h5 class="card-title">@car.Title</h5>
 					<p class="card-text text-muted mb-4">
-						От <strong>@car.PricePerDay @T["Lv"]</strong> / @T["day"]
+                        @L["From"] <strong>@car.PricePerDay @L["Currency.BGN"]</strong> / @L["Day"]
 					</p>
 					<a href="@Url.Action("Details", "Vehicle", new { id = car.Id })"
 					   class="btn btn-primary mt-auto">
-						@T["Details"]
+						@L["Details"]
 					</a>
 				</div>
 			</div>

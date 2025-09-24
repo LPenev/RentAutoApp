@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppName" xml:space="preserve">
-    <value>RentAutoApp</value>
+    <value>RentAuto</value>
   </data>
   <data name="WelcomeTitle" xml:space="preserve">
     <value>Willkommen</value>
@@ -136,7 +136,7 @@
     <value>Benutzer</value>
   </data>
   <data name="Btn.Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Speichern</value>
   </data>
   <data name="Btn.Cancel" xml:space="preserve">
     <value>Abbrechen</value>
@@ -172,10 +172,10 @@
     <value>Ungültige E-Mail-Adresse.</value>
   </data>
   <data name="Email.Confirm.Subject" xml:space="preserve">
-    <value>Email confirmation</value>
+    <value>E-Mail-Bestätigung</value>
   </data>
   <data name="Email.Reset.Subject" xml:space="preserve">
-    <value>Password reset</value>
+    <value>Passwort zurücksetzen</value>
   </data>
   <data name="Footer.Copy" xml:space="preserve">
     <value>© 2025 RentAuto. Alle Rechte vorbehalten.</value>
@@ -221,5 +221,17 @@
   </data>
   <data name="Validation.StringLengthRange" xml:space="preserve">
     <value>{0} muss zwischen {2} und {1} Zeichen lang sein.</value>
+  </data>
+  <data name="Currency.BGN" xml:space="preserve">
+    <value>BGN</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Tag</value>
+  </data>
+  <data name="Btn.Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Ab</value>
   </data>
 </root>
