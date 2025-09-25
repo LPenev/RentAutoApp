@@ -7,7 +7,8 @@ namespace RentAutoApp.Web.Areas.User.Controllers;
 
 [Area("User")]
 [Authorize]
-[Route("user/[controller]/[action]")]
+//[Route("user/[controller]/[action]")]
+//[Route("{culture:regex(^bg|de|en$)}/user/[controller]/[action]")]
 public class ProfileController : Controller
 {
     private readonly IUserPanelService _svc;

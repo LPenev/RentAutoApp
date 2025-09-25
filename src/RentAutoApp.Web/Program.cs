@@ -48,18 +48,15 @@ builder.Services
             factory.Create(typeof(SharedResource));
     });
 
-var supportedCultures = new[]
-{
-    new CultureInfo(CultureBulgarian),
-    new CultureInfo(CultureEnglish),
-    new CultureInfo(CultureGerman)
-};
+var supportedCultureInfos = SupportedCultures
+    .Select(CultureInfo.GetCultureInfo)
+    .ToArray();
 
 builder.Services.Configure<RequestLocalizationOptions>(opts =>
 {
     opts.DefaultRequestCulture = new RequestCulture(DefaultCulture);
-    opts.SupportedCultures = supportedCultures;
-    opts.SupportedUICultures = supportedCultures;
+    opts.SupportedCultures = supportedCultureInfos;
+    opts.SupportedUICultures = supportedCultureInfos;
 
     // order directory of culture:
     opts.RequestCultureProviders = new IRequestCultureProvider[]
@@ -134,7 +131,7 @@ builder.Services.AddRazorPages().AddRazorPagesOptions(o =>
         "{culture}/identity/account/register");
     o.Conventions.AddAreaPageRoute("Identity", "/Account/AccessDenied",
         "{culture}/identity/account/accessdenied");
-
+    
     // Home page
     o.Conventions.AddPageRoute("/Index", "{culture}/");
 }); ;
@@ -274,11 +271,16 @@ app.UseAuthorization();
 // Custom pages for status codes (404, 403, 500, ...)
 app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
+//
+var cultureAlternation = string.Join("|", SupportedCultures.Select(Regex.Escape));
+
+app.MapControllerRoute(
+    name: "localized_areas2",
+    pattern: $"{{culture:regex(^(?:{cultureAlternation})$)}}/{{area:exists}}/{{controller=Home}}/{{action=Index}}/{{id?}}"
+);
+
 // Set MapControllerRoute
-var cultureAlternation = string.Join("|",
-     SupportedCultures.Select(Regex.Escape));
-var localizedPattern =
-    $"{{culture:regex(^(?:{cultureAlternation})$)}}/{{controller=Home}}/{{action=Index}}/{{id?}}";
+var localizedPattern = $"{{culture:regex(^(?:{cultureAlternation})$)}}/{{controller=Home}}/{{action=Index}}/{{id?}}";
 
 app.MapControllerRoute(
     name: "localized",
