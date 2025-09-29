@@ -1,6 +1,10 @@
 ﻿@model RentAutoApp.Web.ViewComponents.CarSearchFormViewModel
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer T
 
+@if (TempData["ErrorMessage"] != null)
+{
+	<div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
 
 <form method="get" asp-controller="Vehicle" asp-action="Search" class="row g-3">
 	<div class="col-md-4">

@@ -1,15 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RentAutoApp.Services.Core.Contracts;
+using Microsoft.Extensions.Localization;
 
 namespace RentAutoApp.Web.Controllers
 {
     public class VehicleController : Controller
     {
         private readonly IVehicleService _vehicleService;
+        private readonly IStringLocalizer<SharedResource> _localizer;
 
-        public VehicleController(IVehicleService vehicleService)
+        public VehicleController(IVehicleService vehicleService, IStringLocalizer<SharedResource> localizer)
         {
-            _vehicleService = vehicleService;
+            _vehicleService = vehicleService ?? throw new ArgumentNullException(nameof(vehicleService));
+            _localizer = localizer ?? throw new ArgumentNullException(nameof(localizer));
         }
 
         [HttpGet]
@@ -35,6 +38,21 @@ namespace RentAutoApp.Web.Controllers
             DateTime? endDate,
             CancellationToken ct)
         {
+
+            var referer = Request.Headers["Referer"].ToString();
+
+            if (!startDate.HasValue || !endDate.HasValue)
+            {
+                TempData["ErrorMessage"] = _localizer["Error_MissingDates"].Value;
+                return Redirect(referer);
+            }
+
+            if (startDate.Value >= endDate.Value)
+            {
+                TempData["ErrorMessage"] = _localizer["Error_StartDateBeforeEndDate"].Value;
+                return Redirect(referer);
+            }
+
             var results = await _vehicleService.SearchAsync(
                 selectedLocationId,
                 SelectedSubCategoryId,
