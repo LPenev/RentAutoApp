@@ -11,7 +11,10 @@
 <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
     <div class="col-md-4">
         <section>
-			<form id="account" asp-route-culture="@(RouteData.Values["culture"]?.ToString())" method="post">
+            <form id="account"
+                  method="post"
+                  asp-route-culture="@(RouteData.Values["culture"]?.ToString())" 
+                  asp-route-returnUrl="@Model.ReturnUrl">
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div class="form-floating mb-3">
