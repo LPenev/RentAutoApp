@@ -1,21 +1,24 @@
-﻿@model RentAutoApp.Web.ViewModels.UserPanel.ChangeEmailViewModel
+﻿@using RentAutoApp.Web
+@model RentAutoApp.Web.ViewModels.UserPanel.ChangeEmailViewModel
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SharedResource> L
+
 @{
-	ViewData["Title"] = "Смяна на имейл";
+	ViewData["Title"] = @L["Label.ChangeEmail"];
 }
 @await Html.PartialAsync("~/Areas/User/Views/Shared/_ProfileMenu.cshtml")
-<h2>Смяна на имейл</h2>
+<h2>@L["Label.ChangeEmail"]</h2>
 
 <form asp-action="Email" method="post">
 	@Html.AntiForgeryToken()
 	<div class="mb-3">
-		<label asp-for="NewEmail"></label>
+		<label asp-for="NewEmail">@L["Label.NewEmail"]</label>
 		<input asp-for="NewEmail" class="form-control" />
 		<span asp-validation-for="NewEmail" class="text-danger"></span>
 	</div>
 	<div class="mb-3">
-		<label asp-for="Password"></label>
+		<label asp-for="Password">@L["Label.YourPassword"]</label>
 		<input asp-for="Password" class="form-control" />
 		<span asp-validation-for="Password" class="text-danger"></span>
 	</div>
-	<button class="btn btn-primary" type="submit">Смени имейла</button>
+	<button class="btn btn-primary" type="submit">@L["Btn.Save"]</button>
 </form>

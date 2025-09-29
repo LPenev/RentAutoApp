@@ -1,23 +1,26 @@
-﻿@model RentAutoApp.Web.ViewModels.UserPanel.ProfileViewModel
+﻿@using RentAutoApp.Web
+@model RentAutoApp.Web.ViewModels.UserPanel.ProfileViewModel
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SharedResource> L
 @{
-	ViewData["Title"] = "Моят профил";
+	ViewData["Title"] = @L["Label.MyProfile"];
 }
 @await Html.PartialAsync("~/Areas/User/Views/Shared/_ProfileMenu.cshtml")
-<h2>Моят профил</h2>
+<h2>@L["Label.MyProfile"]</h2>
 
 @if (ViewBag.StatusMessage is string msg && !string.IsNullOrWhiteSpace(msg)) {
 	<div class="alert alert-success">@msg</div>
 }
 
 <dl class="row">
-	<dt class="col-sm-3">Имена</dt>
-	<dd class="col-sm-9">@($"{Model.FirstName} {Model.LastName}".Trim())</dd>
+	<dt class="col-sm-3">@L["Label.FirstName"], @L["Label.LastName"]</dt>
+	<dd class="col-sm-9">@($"{Model.FirstName}, {Model.LastName}".Trim())</dd>
 
-	<dt class="col-sm-3">Имейл</dt>
+	<dt class="col-sm-3">@L["Label.Email"]</dt>
 	<dd class="col-sm-9">@Model.Email</dd>
 
-	@if (!string.IsNullOrWhiteSpace(Model.PhoneNumber)) {
-		<dt class="col-sm-3">Телефон</dt>
+	@if (!string.IsNullOrWhiteSpace(Model.PhoneNumber))
+    {
+		<dt class="col-sm-3">@L["Label.PhoneNumber"]</dt>
 		<dd class="col-sm-9">@Model.PhoneNumber</dd>
 	}
 </dl>

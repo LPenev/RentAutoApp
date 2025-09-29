@@ -315,4 +315,43 @@
   <data name="Error_MissingDates" xml:space="preserve">
     <value>Моля, въведете начална и крайна дата.</value>
   </data>
+  <data name="Label.MyProfile" xml:space="preserve">
+    <value>Моят профил</value>
+  </data>
+  <data name="Nav.MyProfile" xml:space="preserve">
+    <value>Mein Profil</value>
+  </data>
+  <data name="Label.PhoneNumber" xml:space="preserve">
+    <value>Телефонен номер</value>
+  </data>
+  <data name="Label.PersonalData" xml:space="preserve">
+    <value>Лични данни</value>
+  </data>
+  <data name="Nav.PersonalData" xml:space="preserve">
+    <value>Лични данни</value>
+  </data>
+  <data name="Label.ChangeEmail" xml:space="preserve">
+    <value>Промяна на имейл</value>
+  </data>
+  <data name="Nav.ChangeEmail" xml:space="preserve">
+    <value>Промяна на имейл</value>
+  </data>
+  <data name="Label.NewEmail" xml:space="preserve">
+    <value>Нов имейл</value>
+  </data>
+  <data name="Label.YourPassword" xml:space="preserve">
+    <value>Вашата парола</value>
+  </data>
+  <data name="Label.NewPassword" xml:space="preserve">
+    <value>Нова парола</value>
+  </data>
+  <data name="Label.CurrentPassword" xml:space="preserve">
+    <value>Текуща парола</value>
+  </data>
+  <data name="Label.ChangePassword" xml:space="preserve">
+    <value>Промяна на паролата</value>
+  </data>
+  <data name="Nav.ChangePassword" xml:space="preserve">
+    <value>Промяна на паролата</value>
+  </data>
 </root>

@@ -1,14 +1,17 @@
-﻿@{
+﻿@using RentAutoApp.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SharedResource> L
+
+@{
 	var action = (ViewContext.RouteData.Values["action"]?.ToString() ?? "").ToLowerInvariant();
 	string active(string a) => action == a.ToLowerInvariant() ? "active" : "";
 }
-<div class="btn-group mb-3" role="group" aria-label="Навигация в профила">
+<div class="btn-group mb-3" role="group" aria-label="Navigation of User Profile">
 	<a class="btn btn-outline-primary @active("index")"
-	   asp-area="User" asp-controller="Profile" asp-action="Index">Моят профил</a>
+	   asp-area="User" asp-controller="Profile" asp-action="Index">@L["Nav.MyProfile"]</a>
 	<a class="btn btn-outline-primary @active("personal")"
-	   asp-area="User" asp-controller="Profile" asp-action="Personal">Лични данни</a>
+	   asp-area="User" asp-controller="Profile" asp-action="Personal">@L["Nav.PersonalData"]</a>
 	<a class="btn btn-outline-primary @active("email")"
-	   asp-area="User" asp-controller="Profile" asp-action="Email">Смяна на имейл</a>
+	   asp-area="User" asp-controller="Profile" asp-action="Email">@L["Nav.ChangeEmail"]</a>
 	<a class="btn btn-outline-primary @active("password")"
-	   asp-area="User" asp-controller="Profile" asp-action="Password">Смяна на парола</a>
+	   asp-area="User" asp-controller="Profile" asp-action="Password">@L["Label.ChangePassword"]</a>
 </div>

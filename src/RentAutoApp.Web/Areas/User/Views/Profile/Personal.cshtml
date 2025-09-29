@@ -1,26 +1,29 @@
-﻿@model RentAutoApp.Web.ViewModels.UserPanel.ProfileViewModel
+﻿@using RentAutoApp.Web
+@model RentAutoApp.Web.ViewModels.UserPanel.ProfileViewModel
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SharedResource> L
+
 @{
-	ViewData["Title"] = "Лични данни";
+	ViewData["Title"] = @L["Label.PersonalData"];
 }
 @await Html.PartialAsync("~/Areas/User/Views/Shared/_ProfileMenu.cshtml")
-<h2>Лични данни</h2>
+<h2>@L["Label.PersonalData"]</h2>
 
 <form asp-action="Personal" method="post">
 	@Html.AntiForgeryToken()
 	<div class="mb-3">
-		<label asp-for="FirstName"></label>
+		<label asp-for="FirstName">@L["Label.FirstName"]</label>
 		<input asp-for="FirstName" class="form-control" />
 		<span asp-validation-for="FirstName" class="text-danger"></span>
 	</div>
 	<div class="mb-3">
-		<label asp-for="LastName"></label>
+		<label asp-for="LastName">@L["Label.LastName"]</label>
 		<input asp-for="LastName" class="form-control" />
 		<span asp-validation-for="LastName" class="text-danger"></span>
 	</div>
 	<div class="mb-3">
-		<label asp-for="PhoneNumber"></label>
+		<label asp-for="PhoneNumber">@L["Label.PhoneNumber"]</label>
 		<input asp-for="PhoneNumber" class="form-control" />
 		<span asp-validation-for="PhoneNumber" class="text-danger"></span>
 	</div>
-	<button class="btn btn-primary" type="submit">Запази</button>
+	<button class="btn btn-primary" type="submit">@L["Btn.Save"]</button>
 </form>

@@ -199,7 +199,7 @@
     <value>Contacts</value>
   </data>
   <data name="Nav.Profile" xml:space="preserve">
-    <value>My Profile</value>
+    <value>My profile</value>
   </data>
   <data name="Nav.HelloUser" xml:space="preserve">
     <value>Hallo, {0}!</value>
@@ -314,5 +314,44 @@
   </data>
   <data name="Error_MissingDates" xml:space="preserve">
     <value>Please enter a start and end date.</value>
+  </data>
+  <data name="Label.MyProfile" xml:space="preserve">
+    <value>My profile</value>
+  </data>
+  <data name="Nav.MyProfile" xml:space="preserve">
+    <value>Mein Profil</value>
+  </data>
+  <data name="Label.PhoneNumber" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="Label.PersonalData" xml:space="preserve">
+    <value>Personal data</value>
+  </data>
+  <data name="Nav.PersonalData" xml:space="preserve">
+    <value>Personal data</value>
+  </data>
+  <data name="Label.ChangeEmail" xml:space="preserve">
+    <value>Change email</value>
+  </data>
+  <data name="Nav.ChangeEmail" xml:space="preserve">
+    <value>Change email</value>
+  </data>
+  <data name="Label.NewEmail" xml:space="preserve">
+    <value>New email</value>
+  </data>
+  <data name="Label.YourPassword" xml:space="preserve">
+    <value>Your password</value>
+  </data>
+  <data name="Label.NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="Label.CurrentPassword" xml:space="preserve">
+    <value>Current password</value>
+  </data>
+  <data name="Label.ChangePassword" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="Nav.ChangePassword" xml:space="preserve">
+    <value>Change password</value>
   </data>
 </root>
