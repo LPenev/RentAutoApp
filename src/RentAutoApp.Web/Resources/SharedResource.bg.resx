@@ -354,4 +354,91 @@
   <data name="Nav.ChangePassword" xml:space="preserve">
     <value>Промяна на паролата</value>
   </data>
+  <data name="Nav.AdminPanel" xml:space="preserve">
+    <value>Административен панел</value>
+  </data>
+  <data name="Label.Cars" xml:space="preserve">
+    <value>Автомобили</value>
+  </data>
+  <data name="Nav.Dashboard" xml:space="preserve">
+    <value>Табло за управление</value>
+  </data>
+  <data name="Label.Dashboard" xml:space="preserve">
+    <value>Табло за управление</value>
+  </data>
+  <data name="Label.WellcomeToAdminPanel" xml:space="preserve">
+    <value>Добре дошли в админ панела.</value>
+  </data>
+  <data name="Label.Reservations" xml:space="preserve">
+    <value>Резервации</value>
+  </data>
+  <data name="Label.Admin" xml:space="preserve">
+    <value>Админ</value>
+  </data>
+  <data name="Label.User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Label.Paid" xml:space="preserve">
+    <value>Платено</value>
+  </data>
+  <data name="Label.Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Label.To" xml:space="preserve">
+    <value>До</value>
+  </data>
+  <data name="Btn.Confirm" xml:space="preserve">
+    <value>Потвърди</value>
+  </data>
+  <data name="Btn.PickedUp" xml:space="preserve">
+    <value>Взето</value>
+  </data>
+  <data name="Btn.Returned" xml:space="preserve">
+    <value>Върнат</value>
+  </data>
+  <data name="Btn.Expired" xml:space="preserve">
+    <value>Изтекла</value>
+  </data>
+  <data name="Btn.MarkUnpaid" xml:space="preserve">
+    <value>Маркирай  неплатено</value>
+  </data>
+  <data name="Btn.MarkPaid" xml:space="preserve">
+    <value>Маркирай платено</value>
+  </data>
+  <data name="Label.IsPaid.Yes" xml:space="preserve">
+    <value>Платено</value>
+  </data>
+  <data name="Label.IsPaid.No" xml:space="preserve">
+    <value>Не е патено</value>
+  </data>
+  <data name="Btn.ShowArchived.Yes" xml:space="preserve">
+    <value>Покажи архивираните</value>
+  </data>
+  <data name="Btn.ShowArchived.No" xml:space="preserve">
+    <value>Скрий архивираните</value>
+  </data>
+  <data name="Btn.AddNewCar" xml:space="preserve">
+    <value>Добави нов автомобил</value>
+  </data>
+  <data name="Label.RegNumber" xml:space="preserve">
+    <value>Рег.№</value>
+  </data>
+  <data name="Label.PricePerDay" xml:space="preserve">
+    <value>Цена/ден</value>
+  </data>
+  <data name="Label.Archived" xml:space="preserve">
+    <value>Архивиран</value>
+  </data>
+  <data name="Label.Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="Label.No" xml:space="preserve">
+    <value>Не</value>
+  </data>
+  <data name="Btn.Archiving" xml:space="preserve">
+    <value>Архивиране</value>
+  </data>
+  <data name="Btn.Recovery" xml:space="preserve">
+    <value>Възстановяване</value>
+  </data>
 </root>

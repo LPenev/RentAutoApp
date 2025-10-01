@@ -354,4 +354,91 @@
   <data name="Nav.ChangePassword" xml:space="preserve">
     <value>Change password</value>
   </data>
+  <data name="Nav.AdminPanel" xml:space="preserve">
+    <value>Admin panel</value>
+  </data>
+  <data name="Label.Cars" xml:space="preserve">
+    <value>Cars</value>
+  </data>
+  <data name="Nav.Dashboard" xml:space="preserve">
+    <value>Armaturenbrett</value>
+  </data>
+  <data name="Label.Dashboard" xml:space="preserve">
+    <value>Armaturenbrett</value>
+  </data>
+  <data name="Label.WellcomeToAdminPanel" xml:space="preserve">
+    <value>Welcome to the admin panel.</value>
+  </data>
+  <data name="Label.Reservations" xml:space="preserve">
+    <value>Reservierungen</value>
+  </data>
+  <data name="Label.Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Label.User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Label.Paid" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="Label.Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Label.To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Btn.Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Btn.PickedUp" xml:space="preserve">
+    <value>Picked Up</value>
+  </data>
+  <data name="Btn.Returned" xml:space="preserve">
+    <value>Returned</value>
+  </data>
+  <data name="Btn.Expired" xml:space="preserve">
+    <value>Expired</value>
+  </data>
+  <data name="Btn.MarkUnpaid" xml:space="preserve">
+    <value>Mark unpaid</value>
+  </data>
+  <data name="Btn.MarkPaid" xml:space="preserve">
+    <value>Mark paid</value>
+  </data>
+  <data name="Label.IsPaid.Yes" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="Label.IsPaid.No" xml:space="preserve">
+    <value>Not Paid</value>
+  </data>
+  <data name="Btn.ShowArchived.Yes" xml:space="preserve">
+    <value>Show archived</value>
+  </data>
+  <data name="Btn.ShowArchived.No" xml:space="preserve">
+    <value>Hide archived</value>
+  </data>
+  <data name="Btn.AddNewCar" xml:space="preserve">
+    <value>Add a new car</value>
+  </data>
+  <data name="Label.RegNumber" xml:space="preserve">
+    <value>Reg. No.</value>
+  </data>
+  <data name="Label.PricePerDay" xml:space="preserve">
+    <value>Price/Day</value>
+  </data>
+  <data name="Label.Archived" xml:space="preserve">
+    <value>Archived</value>
+  </data>
+  <data name="Label.Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Label.No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Btn.Archiving" xml:space="preserve">
+    <value>Archiving</value>
+  </data>
+  <data name="Btn.Recovery" xml:space="preserve">
+    <value>Recovery</value>
+  </data>
 </root>
