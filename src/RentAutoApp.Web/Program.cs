@@ -275,7 +275,7 @@ app.UseStatusCodePagesWithReExecute("/Error/{0}");
 var cultureAlternation = string.Join("|", SupportedCultures.Select(Regex.Escape));
 
 app.MapControllerRoute(
-    name: "localized_areas2",
+    name: "localized_areas",
     pattern: $"{{culture:regex(^(?:{cultureAlternation})$)}}/{{area:exists}}/{{controller=Home}}/{{action=Index}}/{{id?}}"
 );
 
