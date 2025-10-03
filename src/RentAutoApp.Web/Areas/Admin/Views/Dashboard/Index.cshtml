@@ -1,6 +1,9 @@
-﻿@{
-	ViewData["Title"] = "Админ табло";
+﻿@using RentAutoApp.Web
+@inject Microsoft.Extensions.Localization.IStringLocalizer<SharedResource> L
+
+@{
+	ViewData["Title"] = @L["Label.Dashboard"];
 }
 @await Html.PartialAsync("~/Areas/Admin/Views/Shared/_AdminMenu.cshtml")
-<h2>Админ табло</h2>
-<p>Добре дошли в админ панела.</p>
+<h2>@L["Label.Dashboard"]</h2>
+<p>@L["Label.WellcomeToAdminPanel"]</p>
