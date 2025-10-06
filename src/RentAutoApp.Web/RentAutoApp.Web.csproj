@@ -57,9 +57,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Localization\" />
-    <Folder Include="Resources\Localization\" />
-  </ItemGroup>
-
 </Project>

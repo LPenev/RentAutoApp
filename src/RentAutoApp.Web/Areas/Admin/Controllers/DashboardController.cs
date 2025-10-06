@@ -5,7 +5,6 @@ namespace RentAutoApp.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
 [Authorize(Roles = "Administrator")]
-[Route("admin/[controller]/[action]")]
 public class DashboardController : Controller
 {
     [HttpGet]

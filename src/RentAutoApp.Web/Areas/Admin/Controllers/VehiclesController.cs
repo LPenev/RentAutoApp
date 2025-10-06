@@ -7,7 +7,6 @@ namespace RentAutoApp.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
 [Authorize(Roles = "Administrator")]
-[Route("admin/[controller]/[action]")]
 public class VehiclesController : Controller
 {
     private readonly IAdminVehicleService _svc;
