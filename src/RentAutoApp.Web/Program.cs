@@ -274,17 +274,19 @@ app.UseStatusCodePagesWithReExecute("/Error/{0}");
 //
 var cultureAlternation = string.Join("|", SupportedCultures.Select(Regex.Escape));
 
+var localizedPatternAreas = $"{{culture:regex(^(?:{cultureAlternation})$)}}/{{controller=Home}}/{{action=Index}}/{{id?}}";
 app.MapControllerRoute(
     name: "localized_areas",
-    pattern: $"{{culture:regex(^(?:{cultureAlternation})$)}}/{{area:exists}}/{{controller=Home}}/{{action=Index}}/{{id?}}"
-);
+    pattern: localizedPatternAreas
+    );
 
 // Set MapControllerRoute
 var localizedPattern = $"{{culture:regex(^(?:{cultureAlternation})$)}}/{{controller=Home}}/{{action=Index}}/{{id?}}";
 
 app.MapControllerRoute(
     name: "localized",
-    pattern: localizedPattern);
+    pattern: localizedPattern
+    );
 
 // redirect root "/" to the default culture (currently "en")
 app.MapGet("/", (IOptions<RequestLocalizationOptions> opt) =>
