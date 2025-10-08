@@ -47,6 +47,13 @@ namespace RentAutoApp.Web.Controllers
                 return Redirect(referer);
             }
 
+
+            if (startDate.Value < DateTime.Today)
+            {
+                TempData["ErrorMessage"] = _localizer["Error_StartBeforToday"].Value;
+                return Redirect(referer);
+            }
+
             if (startDate.Value >= endDate.Value)
             {
                 TempData["ErrorMessage"] = _localizer["Error_StartDateBeforeEndDate"].Value;

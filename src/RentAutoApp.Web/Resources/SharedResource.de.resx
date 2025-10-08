@@ -441,4 +441,7 @@
   <data name="Btn.Recovery" xml:space="preserve">
     <value>Erholung</value>
   </data>
+  <data name="Error_StartBeforToday" xml:space="preserve">
+    <value>Bitte wählen Sie ein Startdatum, das nicht in der Vergangenheit liegt.</value>
+  </data>
 </root>
