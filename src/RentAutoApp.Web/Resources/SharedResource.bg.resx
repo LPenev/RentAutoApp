@@ -444,4 +444,46 @@
   <data name="Error_StartBeforToday" xml:space="preserve">
     <value>Моля, изберете начална дата, която не е в миналото.</value>
   </data>
+  <data name="Error.404.Title" xml:space="preserve">
+    <value>Страницата не е намерена</value>
+  </data>
+  <data name="Error.404.Message" xml:space="preserve">
+    <value>Линкът е невалиден или ресурсът липсва.</value>
+  </data>
+  <data name="Error.400.Title" xml:space="preserve">
+    <value>Невалидна заявка</value>
+  </data>
+  <data name="Error.400.Message" xml:space="preserve">
+    <value>Заявката не може да бъде обработена. Моля, проверете въведените данни и опитайте отново.</value>
+  </data>
+  <data name="Error.401.Title" xml:space="preserve">
+    <value>Неоторизиран достъп</value>
+  </data>
+  <data name="Error.401.Message" xml:space="preserve">
+    <value>За да видите тази страница, трябва да влезете в системата.</value>
+  </data>
+  <data name="Error.403.Title" xml:space="preserve">
+    <value>Забранен достъп</value>
+  </data>
+  <data name="Error.403.Message" xml:space="preserve">
+    <value>Нямате права за достъп до тази страница.</value>
+  </data>
+  <data name="Error.410.Title" xml:space="preserve">
+    <value>Линкът е изтекъл</value>
+  </data>
+  <data name="Error.410.Message" xml:space="preserve">
+    <value>Линкът е изтекъл (Gone).</value>
+  </data>
+  <data name="Error.500.Title" xml:space="preserve">
+    <value>Вътрешна грешка</value>
+  </data>
+  <data name="Error.500.Message" xml:space="preserve">
+    <value>Опа! Нещо се обърка.</value>
+  </data>
+  <data name="Error.Generic.Title" xml:space="preserve">
+    <value>Грешка</value>
+  </data>
+  <data name="Error.Generic.Message" xml:space="preserve">
+    <value>Възникна грешка.</value>
+  </data>
 </root>

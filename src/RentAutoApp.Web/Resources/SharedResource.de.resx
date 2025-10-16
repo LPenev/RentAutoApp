@@ -444,4 +444,46 @@
   <data name="Error_StartBeforToday" xml:space="preserve">
     <value>Bitte wählen Sie ein Startdatum, das nicht in der Vergangenheit liegt.</value>
   </data>
+  <data name="Error.404.Title" xml:space="preserve">
+    <value>Seite nicht gefunden</value>
+  </data>
+  <data name="Error.404.Message" xml:space="preserve">
+    <value>Der Link ist ungültig oder die Ressource fehlt.</value>
+  </data>
+  <data name="Error.400.Title" xml:space="preserve">
+    <value>Ungültige Anfrage</value>
+  </data>
+  <data name="Error.400.Message" xml:space="preserve">
+    <value>Die Anfrage konnte nicht verarbeitet werden. Bitte überprüfen Sie die eingegebenen Daten und versuchen Sie es erneut.</value>
+  </data>
+  <data name="Error.401.Title" xml:space="preserve">
+    <value>Unbefugter Zugriff</value>
+  </data>
+  <data name="Error.401.Message" xml:space="preserve">
+    <value>Um diese Seite anzuzeigen, müssen Sie angemeldet sein.</value>
+  </data>
+  <data name="Error.403.Title" xml:space="preserve">
+    <value>Zugriff verweigert</value>
+  </data>
+  <data name="Error.403.Message" xml:space="preserve">
+    <value>Sie haben keine Berechtigung, auf diese Seite zuzugreifen.</value>
+  </data>
+  <data name="Error.410.Title" xml:space="preserve">
+    <value>Der Link ist abgelaufen.</value>
+  </data>
+  <data name="Error.410.Message" xml:space="preserve">
+    <value>Der Link ist abgelaufen (weg).</value>
+  </data>
+  <data name="Error.500.Title" xml:space="preserve">
+    <value>Interner Fehler</value>
+  </data>
+  <data name="Error.500.Message" xml:space="preserve">
+    <value>Hoppla! Da ist etwas schiefgelaufen.</value>
+  </data>
+  <data name="Error.Generic.Title" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="Error.Generic.Message" xml:space="preserve">
+    <value>Ein Fehler ist aufgetreten.</value>
+  </data>
 </root>
