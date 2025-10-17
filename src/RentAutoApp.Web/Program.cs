@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.DataProtection;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -12,6 +14,7 @@ using RentAutoApp.Services.Core;
 using RentAutoApp.Services.Core.Admin;
 using RentAutoApp.Services.Core.Admin.Contracts;
 using RentAutoApp.Services.Core.Contracts;
+using RentAutoApp.Web;
 using RentAutoApp.Web.Data;
 using RentAutoApp.Web.Features.UserPanel;
 using RentAutoApp.Web.Infrastructure;
@@ -19,8 +22,6 @@ using RentAutoApp.Web.Infrastructure.Contracts;
 using RentAutoApp.Web.Infrastructure.Email;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using RentAutoApp.Web;
 using static RentAutoApp.GCommon.Constants;
 
 
@@ -236,7 +237,7 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseExceptionHandler("/Error/500");
+    app.UseExceptionHandler("/{culture}/Error/500");
 
     // Hsts is only disabled when the web server is behind a reverse proxy.
     // disabled for now, i've reverse proxy
@@ -257,19 +258,44 @@ if (seedDemoData)
 
 }
 
+
+// Custom pages for status codes wit localization(404, 403, 500, ...)
+app.UseStatusCodePages(async context =>
+{
+    var http = context.HttpContext;
+    var code = http.Response.StatusCode;
+
+    // save original URL for ErrorPageService
+    var origPath = http.Request.Path.Value ?? "/";
+    var origQuery = http.Request.QueryString.HasValue ? http.Request.QueryString.Value : null;
+
+    http.Features.Set<IStatusCodeReExecuteFeature>(new StatusCodeReExecuteFeature
+    {
+        OriginalPath = origPath,
+        OriginalQueryString = origQuery
+    });
+
+    // When culture missed into RouteData => get from path
+    var m = System.Text.RegularExpressions.Regex.Match(origPath, @"^/([a-z]{2})(/|$)", RegexOptions.IgnoreCase);
+    var candidate = m.Success ? m.Groups[1].Value.ToLowerInvariant() : null;
+    var supported = SupportedCultures.Select(c => c.ToLowerInvariant()).ToHashSet();
+    var culture = supported.Contains(candidate ?? "") ? candidate! : DefaultCulture.ToLowerInvariant();
+
+    // Re-execute to page
+    http.Request.Path = $"/{culture}/Error/{code}";
+    await context.Next(http);
+});
+
+
 app.UseStaticFiles();
 
 app.UseRouting();
 
-// localization
 var locOpts = app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>();
 app.UseRequestLocalization(locOpts.Value);
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-// Custom pages for status codes (404, 403, 500, ...)
-app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
 //
 var cultureAlternation = string.Join("|", SupportedCultures.Select(Regex.Escape));

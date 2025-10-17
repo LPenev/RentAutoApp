@@ -3,12 +3,11 @@
 public sealed class WebErrorViewModel
 {
     public int Code { get; set; }
-    public string Title { get; set; } = "";
-    public string Message { get; set; } = "";
+    public string ResourceKeyPrefix { get; set; } = String.Empty;
     public string? Details { get; set; }
 
     public string HomeUrl { get; set; } = "/";
-    public string? ContactUrl { get; set; } = "/Contact";
+    public string? ContactUrl { get; set; } = String.Empty;
     public bool ShowBackButton { get; set; } = true;
 
 

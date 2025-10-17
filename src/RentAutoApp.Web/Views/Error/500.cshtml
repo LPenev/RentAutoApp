@@ -1,8 +1,3 @@
 ﻿@using RentAutoApp.Web.ViewModels
 @model WebErrorViewModel
-@{
-	ViewData["Title"] = Model?.Title ?? "Грешка";
-}
-@* Disallow crawlers from indexing *@
-<meta name="robots" content="noindex, nofollow" />
 @await Html.PartialAsync("_WebErrorPage", Model)

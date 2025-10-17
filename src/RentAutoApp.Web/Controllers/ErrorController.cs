@@ -5,7 +5,7 @@ namespace RentAutoApp.Web.Controllers;
 
 public class ErrorController : Controller
 {
-    [Route("Error/{code}")]
+    [HttpGet("{culture}/Error/{code:int}")]
     public IActionResult HttpStatusCodeHandler(
         int code,
         [FromServices] IErrorPageService errorSvc)
@@ -14,7 +14,7 @@ public class ErrorController : Controller
         return View(view, model);
     }
 
-    [Route("Error/500")]
+    [HttpGet("{culture}/Error/500")]
     public IActionResult ExceptionHandler(
         [FromServices] IErrorPageService errorSvc)
     {

@@ -486,4 +486,7 @@
   <data name="Error.Generic.Message" xml:space="preserve">
     <value>Ein Fehler ist aufgetreten.</value>
   </data>
+  <data name="Btn.Home" xml:space="preserve">
+    <value>Anfang</value>
+  </data>
 </root>

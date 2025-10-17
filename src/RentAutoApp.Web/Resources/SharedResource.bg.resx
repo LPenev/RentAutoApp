@@ -486,4 +486,7 @@
   <data name="Error.Generic.Message" xml:space="preserve">
     <value>Възникна грешка.</value>
   </data>
+  <data name="Btn.Home" xml:space="preserve">
+    <value>Начало</value>
+  </data>
 </root>

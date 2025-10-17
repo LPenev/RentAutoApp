@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using RentAutoApp.Services.Core.Contracts;
 using RentAutoApp.Web.ViewModels;
+using System.Globalization;
 
 namespace RentAutoApp.Services.Core;
 
@@ -12,24 +13,28 @@ public sealed class ErrorPageService(ILogger<ErrorPageService> logger) : IErrorP
     {
         var reexec = http.Features.Get<IStatusCodeReExecuteFeature>();
 
-        var (title, message, view) = code switch
+        var culture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+
+
+        var view = code switch
         {
-            400 => ("Невалидна заявка", "Заявката не може да бъде обработена. Моля, проверете въведените данни и опитайте отново.", "400"),
-            401 => ("Неоторизиран достъп", "За да видите тази страница, трябва да влезете в системата.", "401"),
-            404 => ("Страницата не е намерена", "Линкът е невалиден или ресурсът липсва.", "404"),
-            403 => ("Забранен достъп", "Достъпът е забранен.", "403"),
-            410 => ("Линкът е изтекъл", "Линкът е изтекъл (Gone).", "410"),
-            500 => ("Вътрешна грешка", "Възникна вътрешна грешка.", "500"),
-            _ => ("Грешка", "Възникна грешка.", "Generic")
+            400 => "400",
+            401 => "401",
+            403 => "403",
+            404 => "404",
+            410 => "410",
+            500 => "500",
+            _ => "Generic"
         };
 
         var model = new WebErrorViewModel
         {
             Code = code,
-            Title = title,
-            Message = message,
+            ResourceKeyPrefix = $"Error.{code}",
             OriginalPath = reexec?.OriginalPath,
-            OriginalQuery = reexec?.OriginalQueryString
+            OriginalQuery = reexec?.OriginalQueryString,
+            HomeUrl = $"/{culture}/",
+            ContactUrl = $"/{culture}/Contact"
         };
 
         logger.LogWarning("HTTP {Code} at {Path}{Query}", code, model.OriginalPath, model.OriginalQuery);
@@ -40,13 +45,15 @@ public sealed class ErrorPageService(ILogger<ErrorPageService> logger) : IErrorP
     {
         var ex = http.Features.Get<IExceptionHandlerPathFeature>();
 
+        var culture = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+
         var model = new WebErrorViewModel
         {
             Code = 500,
-            Title = "Вътрешна грешка",
-            Message = "Опа! Нещо се обърка.",
             ExceptionPath = ex?.Path,
-            ExceptionMessage = ex?.Error.Message
+            ExceptionMessage = ex?.Error.Message,
+            HomeUrl = $"/{culture}/",
+            ContactUrl = $"/{culture}/Contact"
         };
 
         if (ex?.Error is not null)
