@@ -1,6 +1,6 @@
 # 🚗 RentAutoApp – Vehicle Rental Management System
 
-**RentAutoApp** is a modern, full-stack web application built with **ASP.NET Core 8 MVC** for managing rental fleets of cars, SUVs, and motorcycles. It streamlines reservations, contracts, vehicle servicing, pricing, notifications, and document management — all in a clean, extensible architecture.
+**RentAutoApp** is a modern, full-stack web application built with **ASP.NET Core 8 MVC** for managing rental fleets of cars. It streamlines reservations, contracts, vehicle servicing, pricing, notifications, and document management — all in a clean, extensible architecture.
 
 ---
 
@@ -8,23 +8,24 @@
 
 - **Fleet Management**: Categorized vehicles with availability and maintenance status
 - **Reservation Engine**: Full contract flow with pickup/drop-off locations and calendar views
-- **Documents & Notifications**: Track technical inspections, insurance, service history, and reminders
 - **Pricing & Discounts**: Flexible pricing rules, coupons, and long-term rental offers
-- **Multilingual Support**: UI in Bulgarian 🇧🇬 and English 🇬🇧
-- **Admin Dashboard**: Stats, client history, most rented vehicles, pending actions
+- **Multilingual Support**: UI in Bulgarian 🇧🇬, German DE and English EN
 
+## 📦Future features
+- **Documents & Notifications**: Track technical inspections, insurance, service history, and reminders
+- **Admin Dashboard**: Stats, client history, most rented vehicles, pending actions
 ---
 
 ## 🛠️ Tech Stack
 
 | Layer            | Technology                                              |
-|------------------|----------------------------------------------------------|
+|------------------|---------------------------------------------------------|
 | Backend          | ASP.NET Core 8 MVC, C#, Entity Framework Core 8         |
 | Frontend         | Razor Views, Bootstrap 5, **AJAX** (jQuery/Fetch)       |
 | Database         | **Microsoft SQL Server (MSSQL)**                        |
-| Mapping / Validation | AutoMapper, FluentValidation                       |
+| Mapping / Validation | FluentValidation and Data Annotations               |
 | Testing          | **NUnit**, Moq, Microsoft.AspNetCore.Mvc.Testing        |
-| Documentation    | MkDocs + Material Theme (`/docs`)                      |
+| Documentation    | MkDocs + Material Theme (`/docs`)                       |
 
 ---
 
