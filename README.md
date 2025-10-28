@@ -10,10 +10,11 @@
 - **Reservation Engine**: Full contract flow with pickup/drop-off locations and calendar views
 - **Pricing & Discounts**: Flexible pricing rules, coupons, and long-term rental offers
 - **Multilingual Support**: UI in Bulgarian 🇧🇬, German DE and English EN
+- **Admin Dashboard**: client history, pending actions
 
 ## 📦Future features
 - **Documents & Notifications**: Track technical inspections, insurance, service history, and reminders
-- **Admin Dashboard**: Stats, client history, most rented vehicles, pending actions
+- **Admin Dashboard**: most rented vehicles
 ---
 
 ## 🛠️ Tech Stack
@@ -62,7 +63,7 @@ Comprehensive architecture, setup guides, and module documentation can be found 
 
 07_Architecture.md: Layered architecture and principles
 
-09_API_Endpoints.md: Route and controller reference
+Future feature: 09_API_Endpoints.md: Route and controller reference
 
 See full structure in docs/mkdocs.yml
 
@@ -84,7 +85,7 @@ Tested layers include:
 
 - ✅ Web controllers
 
-- ✅ End-to-end API integration
+- ✅ End-to-end integration
 
 Test framework: NUnit with mocks (Moq)
 
@@ -95,9 +96,10 @@ Contributions are welcome! See:
 
 Suggested branch flow:
 	main       → stable
-	dev        → integration
+	develop    → integration
 	feature/*  → features
 	bugfix/*   → fixes
+	hotfix/*   → hot fixes
 
 ## 📄 License
 
